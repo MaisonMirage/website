@@ -2195,9 +2195,19 @@
       </div>
     </div>
     <div class="cart-footer" id="cartFooter" style="display:none;">
-      <div class="cart-total-row">
-        <span class="cart-total-label">Total</span>
-        <span class="cart-total-price" id="cartTotalPrice">0,00 €</span>
+      <div style="margin-bottom:1.5rem;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.6rem; font-family:var(--mono); font-size:0.55rem; letter-spacing:0.15em; color:var(--ink-muted); text-transform:uppercase;">
+          <span>Sous-total</span>
+          <span id="cartSubtotalPrice" style="color:var(--ink);">0,00 €</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.8rem; font-family:var(--mono); font-size:0.55rem; letter-spacing:0.15em; color:var(--ink-muted); text-transform:uppercase;">
+          <span>Livraison (Coursier privé)</span>
+          <span id="cartDeliveryPrice" style="color:var(--ink);">9,90 €</span>
+        </div>
+        <div class="cart-total-row" style="margin-bottom:0; padding-top:0.8rem; border-top:1px dashed rgba(26,23,20,0.1);">
+          <span class="cart-total-label" style="color:var(--ink); font-weight:500;">Total</span>
+          <span class="cart-total-price" id="cartTotalPrice">0,00 €</span>
+        </div>
       </div>
       
       <div id="cartActionButtons" style="display:flex; flex-direction:column; gap:0.8rem;">
@@ -2455,7 +2465,14 @@
     const totalQty = cart.reduce((s,i) => s+i.qty, 0);
     const totalPrice = cart.reduce((s,i) => s + i.price * i.qty, 0);
     // === JAUGE DE LIVRAISON DYNAMIQUE ===
-    const freeShippingThreshold = 80; // Ton palier de 80 euros
+    // === JAUGE DE LIVRAISON & CALCUL DES FRAIS ===
+    const freeShippingThreshold = 80; 
+    const deliveryCost = 9.90;
+    
+    // Déterminer le coût de la livraison actuel
+    let currentDelivery = (totalPrice >= freeShippingThreshold) ? 0 : deliveryCost;
+    let finalTotal = totalPrice + currentDelivery;
+
     const trackerText = document.getElementById('shippingTrackerText');
     const trackerBar = document.getElementById('shippingBarFill');
 
@@ -2472,6 +2489,22 @@
         trackerBar.style.width = '100%';
       }
     }
+
+    // Mise à jour des textes dans le panier
+    const subtotalEl = document.getElementById('cartSubtotalPrice');
+    const deliveryEl = document.getElementById('cartDeliveryPrice');
+    const totalEl = document.getElementById('cartTotalPrice');
+
+    if (subtotalEl) subtotalEl.textContent = totalPrice.toFixed(2).replace('.',',') + ' €';
+    if (deliveryEl) {
+      if (currentDelivery === 0) {
+        deliveryEl.innerHTML = '<span style="color:var(--gold); font-weight:600;">OFFERTE</span>';
+      } else {
+        deliveryEl.textContent = currentDelivery.toFixed(2).replace('.',',') + ' €';
+      }
+    }
+    if (totalEl) totalEl.textContent = finalTotal.toFixed(2).replace('.',',') + ' €';
+    // ==============================================
     // =====================================
 
     cartBadge.textContent = totalQty;
@@ -2553,8 +2586,13 @@
     cart.forEach(item => {
       message += `▪ ${item.qty}x ${item.name} (${(item.price * item.qty).toFixed(2).replace('.',',')} €)\n`;
     });
-    const totalPrice = cart.reduce((s,i) => s + i.price * i.qty, 0).toFixed(2).replace('.',',');
-    message += `*Total : ${totalPrice} €*\n\n`;
+    const totalPriceNum = cart.reduce((s,i) => s + i.price * i.qty, 0);
+    const waDeliveryCost = (totalPriceNum >= 80) ? 0 : 9.90;
+    const waFinalTotal = totalPriceNum + waDeliveryCost;
+
+    message += `*Sous-total : ${totalPriceNum.toFixed(2).replace('.',',')} €*\n`;
+    message += (waDeliveryCost === 0) ? `*Livraison : OFFERTE*\n` : `*Livraison : 9,90 €*\n`;
+    message += `*TOTAL À RÉGLER : ${waFinalTotal.toFixed(2).replace('.',',')} €*\n\n`;
     
     message += `📍 *MES INFORMATIONS :*\n`;
     message += `Nom : ${name}\n`;
