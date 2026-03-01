@@ -1991,7 +1991,7 @@
     </div>
     <div class="hero-right">
       <div class="hero-right-bg"></div>
-      <img src="img/fraise-coupe.png" alt="Trio signature Maison Mirage" class="hero-img-main" id="heroMain"/>
+      <img src="img/trio2-trans.png" alt="Trio signature Maison Mirage" class="hero-img-main" id="heroMain"/>
     </div>
   </header>
 
@@ -2781,66 +2781,14 @@
     renderCart();
   });
 
-  // ══════════════════════════════════════════════
-  // STRIPE CHECKOUT (Paiement en ligne)
-  // ══════════════════════════════════════════════
   document.getElementById('cartCheckout')?.addEventListener('click', async () => {
     const checkoutBtn = document.getElementById('cartCheckout');
     if (cart.length === 0) return;
-
-    // Fallback local (file:// ou localhost)
-    const isLocal = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    
-    if (isLocal) {
-      const recap = cart.map(i => `• ${i.name} x${i.qty} — ${(i.price * i.qty).toFixed(2)}€`).join('\n');
-      const total = cart.reduce((s, i) => s + i.price * i.qty, 0).toFixed(2);
-      const body = `Bonjour Maison Mirage,\n\nJe souhaite commander :\n\n${recap}\n\nTotal : ${total}€\n\nCordialement`;
-      window.location.href = `mailto:bonjour@maison-mirage.fr?subject=${encodeURIComponent('Commande Maison Mirage')}&body=${encodeURIComponent(body)}`;
-      return;
-    }
-
-    // Stripe Checkout (mode serveur)
-    const originalText = checkoutBtn.textContent;
-    checkoutBtn.textContent = 'Redirection…';
-    checkoutBtn.style.pointerEvents = 'none';
-    checkoutBtn.style.opacity = '0.7';
-
-    try {
-      const response = await fetch('/api/create-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          items: cart.map(item => ({
-            name: item.name,
-            price: item.price,
-            qty: item.qty,
-            sub: item.sub || '',
-            img: item.img || '',
-          })),
-          origin: window.location.origin,
-        }),
-      });
-      const data = await response.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error(data.error || 'Erreur inconnue');
-      }
-    } catch (err) {
-      console.error('Checkout error:', err);
-      checkoutBtn.textContent = 'Erreur — Réessayer';
-      checkoutBtn.style.background = '#8B3A3A';
-      checkoutBtn.style.pointerEvents = '';
-      checkoutBtn.style.opacity = '';
-      setTimeout(() => {
-        checkoutBtn.textContent = originalText;
-        checkoutBtn.style.background = '';
-      }, 3000);
-    }
-  });
-
+    // ══════════════════════════════════════════════
+  // WHATSAPP CHECKOUT LOGIC
   // ══════════════════════════════════════════════
-  // WHATSAPP CHECKOUT (Avec mini-formulaire)
+ // ══════════════════════════════════════════════
+  // WHATSAPP CHECKOUT LOGIC (Avec mini-formulaire)
   // ══════════════════════════════════════════════
   
   // 1. Afficher/Cacher le formulaire
@@ -2899,6 +2847,60 @@
   // Changement de couleur du select quand une option est choisie
   document.getElementById('waPayment')?.addEventListener('change', function() {
     this.style.color = 'var(--ink)';
+  });
+    // --- LOCAL / FILE MODE FALLBACK ---
+    // Si le site n'est pas déployé sur un serveur, on envoie par email
+    const isLocal = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    if (isLocal) {
+      const recap = cart.map(i => `• ${i.name} x${i.qty} — ${(i.price * i.qty).toFixed(2)}€`).join('\n');
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0).toFixed(2);
+      const body = `Bonjour Maison Mirage,\n\nJe souhaite commander :\n\n${recap}\n\nTotal : ${total}€\n\nMerci de me confirmer la disponibilité et le créneau de retrait.\n\nCordialement`;
+      const mailtoUrl = `mailto:bonjour@maison-mirage.fr?subject=${encodeURIComponent('Commande Maison Mirage')}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
+      return;
+    }
+
+    // --- STRIPE CHECKOUT (mode serveur) ---
+    const originalText = checkoutBtn.textContent;
+    checkoutBtn.textContent = 'Redirection…';
+    checkoutBtn.style.pointerEvents = 'none';
+    checkoutBtn.style.opacity = '0.7';
+
+    try {
+      const response = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart.map(item => ({
+            name: item.name,
+            price: item.price,
+            qty: item.qty,
+            sub: item.sub || '',
+            img: item.img || '',
+          })),
+          origin: window.location.origin,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Erreur inconnue');
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      checkoutBtn.textContent = 'Erreur — Réessayer';
+      checkoutBtn.style.background = '#8B3A3A';
+      checkoutBtn.style.pointerEvents = '';
+      checkoutBtn.style.opacity = '';
+      setTimeout(() => {
+        checkoutBtn.textContent = originalText;
+        checkoutBtn.style.background = '';
+      }, 3000);
+    }
   });
 
   document.querySelectorAll('.shop-card-add').forEach(btn => {
