@@ -153,17 +153,18 @@
     ══════════════════════════════════════ */
     .hero {
       min-height: 100dvh;
-      position: relative;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
       overflow: hidden;
-      display: flex;
-      align-items: flex-end;
     }
 
     .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 4vw 6rem 7vw;
       position: relative;
       z-index: 2;
-      padding: 8rem 7vw 6rem;
-      max-width: 600px;
     }
 
     .hero-left::before {
@@ -307,35 +308,27 @@
 
     /* Hero Right */
     .hero-right {
+      position: relative;
+      background: var(--cream);
+      overflow: hidden;
+    }
+    .hero-right-bg {
       position: absolute;
       inset: 0;
-      z-index: 0;
+      background: none;
     }
-    .hero-right-bg { display: none; }
+
 
     .hero-img-main {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: 65% center;
+      object-fit: contain;
+      object-position: center center;
+      padding: 3rem;
       opacity: 0;
       will-change: transform;
-    }
-
-    .hero-right::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(248,232,214,0.97) 0%,
-        rgba(248,232,214,0.75) 30%,
-        rgba(248,232,214,0.15) 55%,
-        transparent 75%
-      );
-      z-index: 1;
     }
 
 
@@ -1870,18 +1863,9 @@
       nav { padding:0.75rem 1.2rem; }
       .nav-links { display:none; }
       .nav-burger { display:flex; }
-      .hero { min-height: 100dvh; }
-      .hero-left, .collection, .boutique, .faq, .philosophy { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .hero-left { max-width: 100%; }
-      .hero-right { display:block; }
-      .hero-right::after {
-        background: linear-gradient(
-          to bottom,
-          rgba(248,232,214,0.92) 0%,
-          rgba(248,232,214,0.65) 50%,
-          rgba(248,232,214,0.3) 100%
-        ) !important;
-      }
+      .hero { grid-template-columns:1fr; }
+      .hero-left, .collection, .boutique, .faq, .philosophy { padding-left: 1rem; padding-right: 1rem; }
+      .hero-right { display:none; }
       .hero-stats-row { display:none; }
       .section-header { grid-template-columns:1fr; gap:2rem; margin-bottom:4rem; }
       .creation-grid { grid-template-columns:1fr; }

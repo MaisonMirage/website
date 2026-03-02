@@ -153,17 +153,18 @@
     ══════════════════════════════════════ */
     .hero {
       min-height: 100dvh;
-      position: relative;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
       overflow: hidden;
-      display: flex;
-      align-items: flex-end;
     }
 
     .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 4vw 6rem 7vw;
       position: relative;
       z-index: 2;
-      padding: 8rem 7vw 6rem;
-      max-width: 600px;
     }
 
     .hero-left::before {
@@ -307,35 +308,25 @@
 
     /* Hero Right */
     .hero-right {
+      position: relative;
+      background: var(--cream-2);
+      overflow: hidden;
+    }
+    .hero-right-bg {
       position: absolute;
       inset: 0;
-      z-index: 0;
+      background: radial-gradient(ellipse at 55% 45%, rgba(168,137,92,0.14) 0%, transparent 65%);
     }
-    .hero-right-bg { display: none; }
+
 
     .hero-img-main {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 65% center;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 68%;
+      filter: drop-shadow(0 50px 100px rgba(26,23,20,0.18));
       opacity: 0;
       will-change: transform;
-    }
-
-    .hero-right::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(248,232,214,0.97) 0%,
-        rgba(248,232,214,0.75) 30%,
-        rgba(248,232,214,0.15) 55%,
-        transparent 75%
-      );
-      z-index: 1;
     }
 
 
@@ -1207,55 +1198,42 @@
     .cta-fine { font-family:var(--mono); font-size:0.52rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(253,250,247,0.4); }
 
     footer {
-      padding: 6rem 6vw 3rem;
-      border-top: 1px solid rgba(26,23,20,0.06);
-      text-align: center;
+      padding: 5rem 6vw 3.5rem;
+      border-top: 1px solid rgba(26,23,20,0.07);
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
     }
-    .footer-logo-wrap {
-      margin-bottom: 1.5rem;
+    .footer-brand { 
+      font-family:var(--serif); font-size:1.6rem; font-weight:300; 
+      letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.8rem; color:var(--ink);
     }
-    .footer-tagline { 
-      font-family:var(--mono); font-size:0.54rem; letter-spacing:0.3em; 
-      text-transform:uppercase; color:var(--ink-muted); margin-bottom:3rem; 
-    }
-    .footer-nav {
-      display:flex; justify-content:center; flex-wrap:wrap; gap:1rem 2.5rem;
-      margin-bottom:3rem;
-    }
-    .footer-nav a {
-      font-family:var(--mono); font-size:0.55rem; letter-spacing:0.18em;
-      text-transform:uppercase; color:var(--ink-muted); transition:color 0.3s;
-    }
-    .footer-nav a:hover { color:var(--ink); }
-    .footer-socials { display:flex; justify-content:center; gap:0.8rem; margin-bottom:3rem; }
+    .footer-tagline { font-family:var(--mono); font-size:0.54rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:1.5rem; }
+    .footer-note { font-size:0.8rem; line-height:1.85; color:var(--ink-muted); max-width:30ch; margin-bottom:2rem; }
+    .footer-socials { display:flex; gap:0.8rem; }
     .footer-social-btn {
-      width:2.4rem; height:2.4rem; border-radius:50%;
-      border:1px solid rgba(26,23,20,0.1);
+      width:2.2rem; height:2.2rem; border-radius:50%;
+      border:1px solid rgba(26,23,20,0.12);
       display:flex; align-items:center; justify-content:center;
       transition:background 0.3s, border-color 0.3s;
     }
     .footer-social-btn:hover { background:var(--ink); border-color:var(--ink); }
     .footer-social-btn:hover svg { stroke:var(--cream); }
     .footer-social-btn svg { stroke:var(--ink-muted); transition:stroke 0.3s; }
-    .footer-divider {
-      width:40px; height:1px; background:rgba(168,137,92,0.3); margin:0 auto 2rem;
-    }
-    .footer-contact {
-      font-size:0.78rem; line-height:2.2; color:var(--ink-muted); margin-bottom:2.5rem;
-    }
-    .footer-contact a { color:var(--ink-muted); transition:color 0.3s; }
-    .footer-contact a:hover { color:var(--gold); }
-    .footer-bottom {
+    .footer-col-label { font-family:var(--mono); font-size:0.54rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; }
+    .footer-links { list-style:none; display:flex; flex-direction:column; gap:0.9rem; }
+    .footer-links li a { font-size:0.82rem; color:var(--ink-muted); transition:color 0.3s; display:flex; align-items:center; gap:0.5rem; }
+    .footer-links li a::before { content:''; width:0; height:1px; background:var(--gold); transition:width 0.3s var(--ease-out); display:inline-block; }
+    .footer-links li a:hover { color:var(--ink); }
+    .footer-links li a:hover::before { width:12px; }
+    .footer-copy {
+      grid-column:1/-1;
+      border-top:1px solid rgba(26,23,20,0.06);
       padding-top:2rem;
-      border-top:1px solid rgba(26,23,20,0.04);
-      display:flex; justify-content:center; flex-wrap:wrap; gap:0.5rem 2rem;
+      display:flex; justify-content:space-between; align-items:center;
     }
-    .footer-bottom span, .footer-bottom a {
-      font-family:var(--mono); font-size:0.48rem; letter-spacing:0.2em;
-      text-transform:uppercase; color:rgba(107,101,96,0.5);
-    }
-    .footer-bottom a { transition:color 0.3s; }
-    .footer-bottom a:hover { color:var(--ink-muted); }
+    .footer-copy p { font-family:var(--mono); font-size:0.52rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-muted); }
 
     .footer-location {
       display:inline-flex; align-items:center; gap:0.6rem;
@@ -1264,7 +1242,7 @@
       border:1px solid rgba(26,23,20,0.1);
       border-radius:999px;
       padding:0.4rem 0.9rem;
-      margin-bottom:2.5rem;
+      margin-top:2rem;
     }
     .footer-location-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:breathe 2.5s ease-in-out infinite; }
 
@@ -1870,18 +1848,9 @@
       nav { padding:0.75rem 1.2rem; }
       .nav-links { display:none; }
       .nav-burger { display:flex; }
-      .hero { min-height: 100dvh; }
-      .hero-left, .collection, .boutique, .faq, .philosophy { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .hero-left { max-width: 100%; }
-      .hero-right { display:block; }
-      .hero-right::after {
-        background: linear-gradient(
-          to bottom,
-          rgba(248,232,214,0.92) 0%,
-          rgba(248,232,214,0.65) 50%,
-          rgba(248,232,214,0.3) 100%
-        ) !important;
-      }
+      .hero { grid-template-columns:1fr; }
+      .hero-left, .collection, .boutique, .faq, .philosophy { padding-left: 1rem; padding-right: 1rem; }
+      .hero-right { display:none; }
       .hero-stats-row { display:none; }
       .section-header { grid-template-columns:1fr; gap:2rem; margin-bottom:4rem; }
       .creation-grid { grid-template-columns:1fr; }
@@ -1904,13 +1873,13 @@
       .newsletter-band { grid-template-columns:1fr; gap:2.5rem; margin:0 1rem; padding:3rem 2rem; border-radius:2rem; }
       .cta-banner { grid-template-columns:1fr; gap:2rem; margin:0 1rem 4rem; padding:3rem 2rem; }
       .cta-banner-action { align-items:flex-start; }
-      footer { padding:3rem 1.5rem; }
-      .footer-nav { gap:0.8rem 1.5rem; }
+      footer { grid-template-columns:1fr 1fr; gap:2rem; padding:3rem 1.5rem; }
+      .footer-copy { grid-column:1/-1; flex-direction:column; gap:1rem; text-align:center; }
       .collection { padding:6rem 1.5rem; }
       .trail-img { display: none !important; }
     }
     @media (max-width: 480px) {
-      footer { padding:2.5rem 1rem; }
+      footer { grid-template-columns:1fr; }
       .shop-grid { grid-template-columns:1fr; }
     }
   </style>
@@ -2022,7 +1991,7 @@
     </div>
     <div class="hero-right">
       <div class="hero-right-bg"></div>
-      <img src="img/hero-flatlay.jpg" alt="Collection complète Maison Mirage — 9 trompe-l'œil" class="hero-img-main" id="heroMain"/>
+      <img src="img/fraise.png" alt="Trio signature Maison Mirage" class="hero-img-main" id="heroMain"/>
     </div>
   </header>
 
@@ -2389,49 +2358,61 @@
   </div>
 
   <footer>
-    <div class="footer-logo-wrap">
-      <img src="img/maison_mirage_logo_beige.png" alt="Maison Mirage" style="height:42px;width:auto;filter:brightness(0) saturate(100%);" />
+    <div>
+      <img src="img/maison_mirage_logo_beige.png" alt="Maison Mirage" style="height:36px;width:auto;margin-bottom:0.8rem;filter:brightness(0) saturate(100%);" />
+      <div class="footer-tagline">Haute Pâtisserie · Marseille</div>
+      <p class="footer-note">Des illusions comestibles nées d'un amour absolu pour le détail, la matière, et la surprise. Artisan depuis 2024.</p>
+      <div class="footer-location">
+        <div class="footer-location-dot"></div>
+        Marseille, Bouches-du-Rhône
+      </div>
+      <div class="footer-socials" style="margin-top:1.5rem;">
+        <a href="#" class="footer-social-btn" aria-label="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="Pinterest">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.852 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.771 0 3.132-1.867 3.132-4.563 0-2.386-1.716-4.052-4.165-4.052-2.836 0-4.5 2.127-4.5 4.327 0 .856.33 1.775.741 2.277a.3.3 0 0 1 .069.286c-.075.314-.245.995-.278 1.134-.045.183-.15.222-.345.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+          </svg>
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="TikTok">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+          </svg>
+        </a>
+      </div>
     </div>
-    <div class="footer-tagline">Haute Pâtisserie · Marseille</div>
-
-    <div class="footer-location">
-      <div class="footer-location-dot"></div>
-      Marseille, Bouches-du-Rhône
+    <div>
+      <p class="footer-col-label">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="#boutique">La Collection</a></li>
+        <li><a href="#atelier">L'Atelier</a></li>
+        <li><a href="#philosophy">Savoir-faire</a></li>
+        <li><a href="#boutique">Commander</a></li>
+        <li><a href="#engagements">Nos Engagements</a></li>
+      </ul>
     </div>
-
-    <nav class="footer-nav">
-      <a href="#boutique">Collection</a>
-      <a href="#atelier">Atelier</a>
-      <a href="#philosophy">Savoir-faire</a>
-      <a href="#engagements">Engagements</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-
-    <div class="footer-socials">
-      <a href="#" class="footer-social-btn" aria-label="Instagram">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-        </svg>
-      </a>
-      <a href="#" class="footer-social-btn" aria-label="TikTok">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-        </svg>
-      </a>
+    <div>
+      <p class="footer-col-label">Contact</p>
+      <ul class="footer-links">
+        <li><a href="#">Marseille, France</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#ccafa3a2b8adafb88cbca3a1a9a0a0a5e2aabe"><span class="__cf_email__" data-cfemail="ddbeb2b3a9bcbea99dadb2b0b8b1b1b4f3bbaf">[email&#160;protected]</span></a></li>
+        <li><a href="tel:+33622356575">+33 (0)6 22 35 65 75</a></li>
+      </ul>
     </div>
-
-    <div class="footer-divider"></div>
-
-    <div class="footer-contact">
-      <a href="mailto:bonjour@maison-mirage.fr">bonjour@maison-mirage.fr</a><br/>
-      <a href="tel:+33622356575">+33 (0)6 22 35 65 75</a>
+    <div>
+      <p class="footer-col-label">Légal</p>
+      <ul class="footer-links">
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">CGV</a></li>
+        <li><a href="#">Politique de confidentialité</a></li>
+      </ul>
     </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 Maison Mirage</span>
-      <a href="#">Mentions légales</a>
-      <a href="#">CGV</a>
-      <a href="#">Confidentialité</a>
+    <div class="footer-copy">
+      <p>© 2026 Maison Mirage — Tous droits réservés</p>
+      <p>Fait à Marseille avec soin &amp; obsession</p>
     </div>
   </footer>
 
