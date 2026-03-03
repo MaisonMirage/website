@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Événements & Scénographies — Maison Mirage</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Outfit:wght@200;300;400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+
+  <style>
+    :root {
+      --cream: #F8E8D6;
+      --cream-dark: #EDE0D4;
+      --ink: #1A1714;
+      --ink-muted: #6B6560;
+      --gold: #A8895C;
+      --gold-light: #C9AA7C;
+      --white: #FDFAF7;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Outfit', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --ease: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* Base & Grain Overlay (Consistent with Index) */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    /* Navigation Slim */
+    nav {
+      padding: 2rem 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .back-link {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--gold); }
+
+    /* Layout Split */
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      min-height: 90dvh;
+      padding: 0 6vw 4rem;
+      gap: 6vw;
+    }
+
+    /* Left Side: Content */
+    .content-side { padding-top: 4rem; }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .eyebrow::before { content:''; width: 30px; height: 1px; background: var(--gold); opacity: 0.5; }
+    
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 0.9;
+      margin-bottom: 2.5rem;
+    }
+    h1 em { font-style: italic; color: var(--gold-light); }
+
+    .description {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--ink-muted);
+      max-width: 45ch;
+      margin-bottom: 4rem;
+    }
+
+    .service-item {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(26,23,20,0.08);
+    }
+    .service-label {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .service-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; }
+
+    /* Right Side: Form */
+    .form-side {
+      background: var(--white);
+      border-radius: 3rem;
+      padding: 4rem;
+      box-shadow: 0 30px 90px rgba(26,23,20,0.04);
+      height: fit-content;
+      position: relative;
+      margin-top: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .full-width { grid-column: span 2; }
+
+    .input-group { position: relative; }
+    label {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--ink-muted);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    input, select, textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(26,23,20,0.15);
+      padding: 0.8rem 0;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.4s var(--ease);
+    }
+    input:focus, select:focus, textarea:focus {
+      border-bottom-color: var(--gold);
+    }
+    textarea { min-height: 100px; resize: none; }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 3rem;
+      padding: 1.4rem;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s var(--ease);
+      display: flex; justify-content: center; align-items: center; gap: 1rem;
+    }
+    .submit-btn:hover {
+      background: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(168,137,92,0.2);
+    }
+
+    .success-overlay {
+      position: absolute; inset: 0;
+      background: var(--white);
+      border-radius: 3rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 3rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.5s;
+      z-index: 10;
+    }
+    .success-overlay.active { opacity: 1; pointer-events: all; }
+
+    @media (max-width: 1024px) {
+      main { grid-template-columns: 1fr; }
+      .form-side { padding: 2.5rem; }
+    }
+    @media (max-width: 640px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .full-width { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Retour
+    </a>
+    <img src="img/maison_mirage_logo_beige.png" alt="Maison Mirage" style="height:30px; filter:brightness(0) saturate(100%);" />
+  </nav>
+
+  <main>
+    <section class="content-side">
+      <p class="eyebrow" id="reveal1">Événements Privés</p>
+      <h1 id="reveal2">Scénographies<br><em>Comestibles.</em></h1>
+      <p class="description" id="reveal3">
+        Du mariage intimiste sur la Côte Bleue au lancement de marque exclusif, nous créons des expériences visuelles et gustatives qui défient la réalité.
+      </p>
+
+      <div class="service-item" id="reveal4">
+        <span class="service-label">Option 01</span>
+        <h3 class="service-title">La Table d'Illusion</h3>
+        <p style="font-size: 0.85rem; color: var(--ink-muted); margin-top: 0.5rem;">Un buffet sculptural composé exclusivement de trompe-l'œil sur-mesure.</p>
+      </div>
+
+      <div class="service-item" id="reveal5">
+        <span class="service-label">Option 02</span>
+        <h3 class="service-title">Cadeaux d'Exception</h3>
+        <p style="font-size: 0.85rem; color: var(--ink-muted); margin-top: 0.5rem;">Des écrins individuels numérotés pour vos invités les plus prestigieux.</p>
+      </div>
+    </section>
+
+    <section class="form-side" id="formReveal">
+      <form id="quoteForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label>Votre Nom</label>
+            <input type="text" name="name" required placeholder="Jean Mirage" />
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" name="email" required placeholder="contact@votre-event.fr" />
+          </div>
+          <div class="input-group">
+            <label>Date de l'événement</label>
+            <input type="text" name="date" placeholder="Juin 2026" />
+          </div>
+          <div class="input-group">
+            <label>Type de réception</label>
+            <select name="type">
+              <option value="mariage">Mariage</option>
+              <option value="corporate">Événement Corporate</option>
+              <option value="anniversaire">Réception Privée</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="input-group full-width">
+            <label>Nombre de convives (estimation)</label>
+            <input type="number" name="guests" placeholder="Ex: 50" />
+          </div>
+          <div class="input-group full-width">
+            <label>Parlez-nous de votre projet</label>
+            <textarea name="message" placeholder="Lieu, thème, envies particulières..."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span>Envoyer la demande</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </form>
+
+      <div class="success-overlay" id="successOverlay">
+        <h2 style="font-family: var(--serif); font-size: 2.5rem; font-weight: 300; margin-bottom: 1rem;">Merci.</h2>
+        <p style="color: var(--ink-muted); line-height: 1.6;">Votre demande a été transmise à notre atelier.<br>Nous vous recontacterons sous 24h pour discuter de votre projet.</p>
+        <a href="index.html" class="submit-btn" style="margin-top: 2rem; max-width: 250px;">Retour à l'accueil</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Entrée en scène avec GSAP
+      const tl = gsap.timeline();
+      tl.from("#reveal1", { opacity: 0, x: -20, duration: 0.8, delay: 0.2 })
+        .from("#reveal2", { opacity: 0, y: 30, duration: 1 }, "-=0.5")
+        .from("#reveal3", { opacity: 0, y: 20, duration: 0.8 }, "-=0.6")
+        .from(".service-item", { opacity: 0, y: 20, duration: 0.8, stagger: 0.2 }, "-=0.6")
+        .from("#formReveal", { opacity: 0, scale: 0.95, duration: 1, ease: "power2.out" }, "-=1");
+
+      // 3. FORM SUBMISSION INTERACTION (Connecté à Formspree)
+      const form = document.getElementById('quoteForm');
+      const successOverlay = document.getElementById('successOverlay');
+      const submitBtn = form.querySelector('.submit-btn');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        
+        // État de chargement
+        const originalBtnContent = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span>Transmission...</span>';
+        submitBtn.style.pointerEvents = 'none';
+
+        const formData = new FormData(form);
+
+        try {
+          // Envoi vers Formspree (Remplace TON_ID_EVENEMENTS ci-dessous)
+          const response = await fetch('https://formspree.io/f/xnjbeapv', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            // Succès : Animation GSAP
+            gsap.to(form, { opacity: 0, scale: 0.95, duration: 0.4, onComplete: () => {
+              form.style.visibility = 'hidden';
+              successOverlay.classList.add('active');
+              gsap.fromTo(successOverlay, 
+                { opacity: 0, y: 20 }, 
+                { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+              );
+            }});
+          } else {
+            submitBtn.innerHTML = '<span>Erreur. Réessayez</span>';
+            setTimeout(() => { submitBtn.innerHTML = originalBtnContent; submitBtn.style.pointerEvents = 'auto'; }, 3000);
+          }
+        } catch (error) {
+          submitBtn.innerHTML = '<span>Erreur de réseau</span>';
+          setTimeout(() => { submitBtn.innerHTML = originalBtnContent; submitBtn.style.pointerEvents = 'auto'; }, 3000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
