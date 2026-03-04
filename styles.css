@@ -1,0 +1,580 @@
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* MAISON MIRAGE - SHARED CSS                                                  */
+/* Luxury Pâtisserie in Marseille - Common Styles & Design Tokens             */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 1. TOKENS & BASELINE - CSS Custom Properties                               */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --cream: #F8E8D6;
+  --cream-2: #F2EAE0;
+  --cream-3: #EDE0D4;
+  --ink: #1A1714;
+  --ink-muted: #6B6560;
+  --gold: #A8895C;
+  --gold-light: #C9AA7C;
+  --gold-pale: #E8D5B8;
+  --white: #FDFAF7;
+
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Outfit', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-expo: cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 2. RESET + BASE                                                             */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 3. GRAIN OVERLAY                                                            */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="fractalNoise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100" height="100" fill="black" filter="url(%23fractalNoise)" /></svg>');
+  background-size: 64px 64px;
+  opacity: 0.04;
+  z-index: -1;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 4. BASE ELEMENT RESETS                                                      */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 5. CUSTOM SCROLLBAR                                                         */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-light);
+}
+
+/* Firefox */
+* {
+  scrollbar-color: var(--gold) var(--cream);
+  scrollbar-width: thin;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 6. SHARED TYPOGRAPHY CLASSES                                                */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.section-h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 6vw, 3rem);
+  line-height: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+.section-h2 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.section-desc {
+  font-size: 0.875rem;
+  line-height: 1.9;
+  color: var(--ink-muted);
+  max-width: 42ch;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 7. SHARED BUTTON STYLES                                                     */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+.btn-primary {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 2rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-ghost {
+  position: relative;
+  display: inline-block;
+  padding: 0.875rem 1.75rem;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 2rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out);
+}
+
+.btn-ghost:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 8. SHARED FORM STYLES (evenements, partenaires)                             */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 2rem;
+  transition: all 0.3s var(--ease-out);
+}
+
+.back-link:hover {
+  transform: translateX(-0.5rem);
+}
+
+.back-link::before {
+  content: '←';
+}
+
+.brand-logo {
+  height: clamp(34px, 8vw, 38px);
+  width: auto;
+  filter: brightness(0.9) contrast(1.1);
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  font-family: var(--sans);
+  pointer-events: none;
+  transition: all 0.3s var(--ease-out);
+  z-index: 1;
+}
+
+.input-group input,
+.input-group textarea {
+  padding: 1rem;
+  border: 1px solid var(--cream-3);
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s var(--ease-out);
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(168, 137, 92, 0.1);
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:not(:placeholder-shown) ~ label {
+  top: -0.75rem;
+  left: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--gold);
+  background: var(--cream);
+  padding: 0 0.5rem;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: transparent;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--cream-3);
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  appearance: none;
+  padding-right: 2.5rem;
+  transition: all 0.3s var(--ease-out);
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(168, 137, 92, 0.1);
+}
+
+.custom-select-wrapper::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--ink-muted);
+  font-size: 0.625rem;
+}
+
+.custom-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--cream-3);
+  border-top: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+}
+
+.custom-options.active {
+  display: block;
+}
+
+.custom-option {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+  border-bottom: 1px solid var(--cream-3);
+}
+
+.custom-option:last-child {
+  border-bottom: none;
+}
+
+.custom-option:hover,
+.custom-option.selected {
+  background: var(--gold-pale);
+  color: var(--ink);
+}
+
+.validation-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  display: none;
+}
+
+.validation-icon.success {
+  display: block;
+  color: var(--gold);
+}
+
+.validation-icon.error {
+  display: block;
+  color: #E74C3C;
+}
+
+.submit-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.submit-btn {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  border-radius: 2rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out);
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gold);
+  transform: translateX(-100%);
+  transition: transform 0.4s var(--ease-out);
+  z-index: -1;
+}
+
+.submit-btn:hover::before {
+  transform: translateX(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.privacy-note {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.6;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.privacy-note a {
+  color: var(--gold);
+  transition: color 0.3s var(--ease-out);
+}
+
+.privacy-note a:hover {
+  color: var(--gold-light);
+}
+
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 23, 20, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s var(--ease-out);
+}
+
+.success-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.success-mark {
+  width: 80px;
+  height: 80px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: var(--white);
+  animation: breathe 0.8s var(--ease-spring) forwards;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 9. ANIMATION CLASSES                                                        */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.gs-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 10. KEYFRAME ANIMATIONS                                                     */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes scrollLine {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes typingBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* END SHARED STYLES                                                            */
+/* ══════════════════════════════════════════════════════════════════════════ */
