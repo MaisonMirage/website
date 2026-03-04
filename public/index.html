@@ -212,7 +212,7 @@
     /* ══════════════════════════════════════
        CART & PANIER
     ══════════════════════════════════════ */
-    #cart-toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:var(--cream); padding:1rem 2rem; border-radius:999px; font-family:var(--mono); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; z-index:10004; opacity:0; transition:opacity 0.4s, transform 0.4s; pointer-events:none; display:flex; align-items:center; gap:0.8rem; }
+    #cart-toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:var(--cream); padding:1rem 2rem; border-radius:999px; font-family:var(--mono); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; z-index:10006; opacity:0; transition:opacity 0.4s, transform 0.4s; pointer-events:none; display:flex; align-items:center; gap:0.8rem; }
     #cart-toast.show { opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto; }
     .cart-toast-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:breathe 1.5s ease-in-out infinite; }
     #cart-count-badge { position:absolute; top:-6px; right:-6px; width:18px; height:18px; border-radius:50%; background:var(--gold); color:var(--white); font-family:var(--mono); font-size:0.55rem; display:flex; align-items:center; justify-content:center; opacity:0; transform:scale(0); transition:opacity 0.3s, transform 0.4s; }
@@ -224,7 +224,7 @@
     #cart-overlay.open { opacity:1; pointer-events:auto; }
     .cart-header { display:flex; justify-content:space-between; align-items:center; padding:2rem 2rem 1.5rem; border-bottom:1px solid rgba(26,23,20,0.06); }
     .cart-title { font-family:var(--serif); font-size:1.5rem; font-weight:300; }
-    .cart-close { width:2.2rem; height:2.2rem; border-radius:50%; border:1px solid rgba(26,23,20,0.1); background:transparent; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.3s; }
+    .cart-close { width:2.6rem; height:2.6rem; border-radius:50%; border:1px solid rgba(26,23,20,0.1); background:transparent; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.3s; }
     .cart-close:hover { background:var(--cream-3); }
     .cart-items { flex:1; overflow-y:auto; padding:1.5rem 2rem; }
     .cart-shipping-tracker { padding: 1.5rem 2rem 0; border-bottom: 1px solid rgba(26,23,20,0.04); padding-bottom: 1.2rem; background: var(--cream); }
@@ -238,7 +238,7 @@
     .cart-item-name { font-family:var(--serif); font-size:1rem; font-weight:300; }
     .cart-item-sub { font-family:var(--mono); font-size:0.5rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-muted); margin-top:0.2rem; }
     .cart-item-qty { display:flex; align-items:center; gap:0.6rem; margin-top:0.5rem; }
-    .cart-qty-btn { width:2rem; height:2rem; border-radius:50%; border:1px solid rgba(26,23,20,0.12); background:transparent; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.75rem; color:var(--ink-muted); transition:border-color 0.3s; }
+    .cart-qty-btn { width:2.6rem; height:2.6rem; border-radius:50%; border:1px solid rgba(26,23,20,0.12); background:transparent; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.75rem; color:var(--ink-muted); transition:border-color 0.3s; }
     .cart-qty-btn:hover { border-color:var(--gold); }
     .cart-qty-num { font-family:var(--mono); font-size:0.7rem; min-width:1.2rem; text-align:center; }
     .cart-item-price { font-family:var(--serif); font-size:1rem; font-weight:300; white-space:nowrap; }
@@ -274,7 +274,8 @@
     .pm-toggle-btn { font-family:var(--mono); font-size:0.5rem; letter-spacing:0.15em; text-transform:uppercase; padding:0.4rem 0.9rem; border-radius:999px; border:none; background:transparent; color:var(--ink-muted); cursor:pointer; transition:all 0.3s; }
     .pm-toggle-btn.active { background:var(--ink); color:var(--cream); }
     .pm-body { padding:3.5rem; display:flex; flex-direction:column; justify-content:center; }
-    .pm-close { position:absolute; top:1.5rem; right:1.5rem; width:2.2rem; height:2.2rem; border-radius:50%; border:1px solid rgba(26,23,20,0.1); background:var(--cream); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10; box-shadow:0 2px 8px rgba(26,23,20,0.12); }
+    .pm-close { position:absolute; top:1rem; right:1rem; width:2.8rem; height:2.8rem; border-radius:50%; border:1px solid rgba(26,23,20,0.1); background:var(--cream); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10; box-shadow:0 4px 16px rgba(26,23,20,0.12); }
+    .pm-close svg { width: 14px; height: 14px; } align-items:center; justify-content:center; cursor:pointer; z-index:10; box-shadow:0 2px 8px rgba(26,23,20,0.12); }
     .pm-name { font-family:var(--serif); font-size:2.2rem; font-weight:300; margin-bottom:0.3rem; }
     .pm-sub { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:1.5rem; }
     .pm-desc { font-size:0.9rem; line-height:1.8; color:var(--ink-muted); margin-bottom:2rem; }
@@ -337,7 +338,7 @@
     /* ══════════════════════════════════════
        CHAT WIDGET STYLES
     ══════════════════════════════════════ */
-    #chat-bubble { position: fixed; bottom: 2rem; right: 2rem; z-index: 9000; width: 3.2rem; height: 3.2rem; border-radius: 50%; background: var(--ink); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 32px rgba(26,23,20,0.18); transition: transform 0.3s, background 0.3s; }
+    #chat-bubble { position: fixed; bottom: 2rem; right: 2rem; z-index: 800; width: 3.2rem; height: 3.2rem; border-radius: 50%; background: var(--ink); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 32px rgba(26,23,20,0.18); transition: transform 0.3s, background 0.3s; }
     #chat-bubble:hover { transform: scale(1.08); }
     #chat-bubble svg { stroke: var(--cream); }
     #chat-bubble .chat-icon-close { display:none; }
@@ -346,7 +347,7 @@
     #chat-bubble.open { background: var(--gold); }
     #chat-badge { position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); border: 2px solid var(--ink); animation: breathe 2s ease-in-out infinite; }
     #chat-bubble.open #chat-badge { display: none; }
-    #chat-window { position: fixed; bottom: 5.5rem; right: 2rem; z-index: 8999; width: min(380px, calc(100vw - 2rem)); max-height: min(520px, calc(100dvh - 8rem)); background: var(--cream); border-radius: 1.8rem; border: 1px solid rgba(26,23,20,0.08); box-shadow: 0 24px 80px rgba(26,23,20,0.15); display: flex; flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(12px) scale(0.96); pointer-events: none; transition: opacity 0.35s, transform 0.35s; }
+    #chat-window { position: fixed; bottom: 5.5rem; right: 2rem; z-index: 800; width: min(380px, calc(100vw - 2rem)); max-height: min(520px, calc(100dvh - 8rem)); background: var(--cream); border-radius: 1.8rem; border: 1px solid rgba(26,23,20,0.08); box-shadow: 0 24px 80px rgba(26,23,20,0.15); display: flex; flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(12px) scale(0.96); pointer-events: none; transition: opacity 0.35s, transform 0.35s; }
     #chat-window.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
     .chat-header { padding: 1.4rem 1.6rem; border-bottom: 1px solid rgba(26,23,20,0.06); display: flex; align-items: center; gap: 1rem; }
     .chat-header-avatar { width: 2rem; height: 2rem; border-radius: 50%; background: var(--ink); display: flex; align-items: center; justify-content: center; }
@@ -403,6 +404,7 @@
       .pm-img { border-radius:2.5rem 2.5rem 0 0; min-height:250px; }
       #chat-bubble { bottom: 1.2rem; right: 1.2rem; }
       #chat-window { bottom: 4.8rem; right: 1.2rem; width: calc(100vw - 2.4rem); }
+      #cart-toast { bottom: 5.5rem; }
     }
     @media (max-width: 480px) {
       .shop-grid { grid-template-columns:1fr; }
