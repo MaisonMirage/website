@@ -62,12 +62,8 @@
     .nav-link:hover::after { width:100%; }
 
     .nav-cta {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
       font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white);
-      background: var(--ink); padding: 0.6rem 1.4rem; border-radius: 999px; transition: all 0.3s var(--ease-spring);
+      background: var(--ink); padding: 0.55rem 1.4rem; border-radius: 999px; transition: background 0.3s, transform 0.15s var(--ease-spring);
       border: 1px solid transparent; box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
     }
     .nav-cta:hover { background: var(--gold); }
@@ -150,22 +146,13 @@
     /* ══════════════════════════════════════
        ORDER GATEWAY (Bento Menu)
     ══════════════════════════════════════ */
-   /* --- MENU DE COMMANDE --- */
-   #order-gateway {
-  position: fixed; inset: 0; z-index: 10000;
-  background: rgba(26, 23, 20, 0.88); backdrop-filter: blur(24px) saturate(1.2); -webkit-backdrop-filter: blur(24px) saturate(1.2);
-  color: var(--cream); display: flex; align-items: center; padding: 6vw;
-  opacity: 0; 
-  pointer-events: none; 
-  visibility: hidden; /* <-- L'ANTI-BUG CHROME EST ICI */
-  transition: opacity 0.6s var(--ease-out), visibility 0.6s; 
-  will-change: opacity, visibility;
-}
-#order-gateway.open { 
-  opacity: 1; 
-  pointer-events: auto; 
-  visibility: visible; /* <-- LE PANNEAU REDEVIENT PHYSIQUE ICI */
-}
+    #order-gateway {
+      position: fixed; inset: 0; z-index: 10000;
+      background: rgba(26, 23, 20, 0.88); backdrop-filter: blur(24px) saturate(1.2); -webkit-backdrop-filter: blur(24px) saturate(1.2);
+      color: var(--cream); display: flex; align-items: center; padding: 6vw;
+      opacity: 0; pointer-events: none; transition: opacity 0.6s var(--ease-out); will-change: opacity;
+    }
+    #order-gateway.open { opacity: 1; pointer-events: auto; }
     .order-close { position: absolute; top: 2.5rem; right: 4vw; background: transparent; border: none; color: rgba(248,232,214,0.6); font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; display: flex; align-items: center; gap: 1rem; padding: 1rem; transition: color 0.3s; cursor:pointer; }
     .order-close:hover { color: var(--cream); }
     .order-gateway-inner { width: 100%; max-width: 1400px; margin: 0 auto; }
@@ -390,35 +377,10 @@
     .nav-burger.open span:nth-child(2) { opacity: 0; }
     .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* --- MENU NOIR MOBILE --- */
-#mobile-overlay { 
-  position: fixed; inset: 0; z-index: 900; background: var(--ink); 
-  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; 
-  padding: 0 2rem 4rem; 
-  opacity: 0; 
-  pointer-events: none; 
-  visibility: hidden; /* <-- L'ANTI-BUG CHROME EST ICI */
-  transition: opacity 0.5s, visibility 0.5s; 
-}
-#mobile-overlay.open { 
-  opacity: 1; 
-  pointer-events: all; 
-  visibility: visible; /* <-- LE MENU REDEVIENT PHYSIQUE ICI */
-}
+    #mobile-overlay { position: fixed; inset: 0; z-index: 900; background: var(--ink); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 2rem 4rem; opacity: 0; pointer-events: none; transition: opacity 0.5s; }
+    #mobile-overlay.open { opacity: 1; pointer-events: all; }
     .mobile-nav-item { font-family: var(--serif); font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 300; color: rgba(248,232,214,0.15); line-height: 1.1; transition: color 0.3s; margin-bottom: 0.5rem; }
     #mobile-overlay.open .mobile-nav-item { color: var(--cream); }
-
-    /* --- Sécurité Anti-Chevauchement (Tablettes & Mobiles) --- */
-    @media (max-width: 1024px) {
-      .nav-links { display: none !important; }
-      .nav-burger { display: flex !important; z-index: 10; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; position: relative; }
-      
-      /* On cache le texte pour transformer le bouton panier en bulle parfaite */
-      .cart-text-label { display: none; }
-      .nav-cta { padding: 0 !important; width: 44px; height: 44px; justify-content: center; gap: 0 !important; border-radius: 50% !important; }
-      .nav-cta svg { width: 18px; height: 18px; margin: 0; }
-      #cart-count-badge { top: -2px; right: -2px; }
-    }
 
     @media (max-width: 768px) {
       nav { padding:0.75rem 1.2rem; overflow:visible; }
@@ -522,9 +484,9 @@
       <a href="#philosophy" class="nav-link">Savoir-faire</a>
       <a href="#" class="nav-link order-trigger">Commander / Devis</a>
     </div>
-    <a href="#" class="nav-cta" id="navCta">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <span class="cart-text-label">Panier</span>
+    <a href="#" class="nav-cta" id="navCta" style="position:relative;display:inline-flex;align-items:center;gap:0.6rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Panier
       <div id="cart-count-badge">0</div>
     </a>
     <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-overlay">
