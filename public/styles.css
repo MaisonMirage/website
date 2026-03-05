@@ -651,6 +651,40 @@ select { display: none; }
     background-position: center center !important;
   }
 }
+/* Style de base pour tout le monde */
+.parallax-section {
+  position: relative;
+  padding: 15rem 6vw;
+  background-image: url('img/boite-trans.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 70vh;
+  background-attachment: fixed; /* Marche sur Chrome/Desktop */
+}
+
+.engagements-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* CORRECTIF SPÉCIFIQUE IPHONE / SAFARI */
+@path-to-ios-fix {
+  /* On cible les appareils tactiles ou Safari Mobile */
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    .parallax-section {
+      background-attachment: scroll !important; /* Force l'affichage normal */
+      background-position: center center;
+      min-height: 500px;
+    }
+  }
+}
 /* ══════════════════════════════════════
    END SHARED STYLES
 ══════════════════════════════════════ */
