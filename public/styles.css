@@ -645,8 +645,10 @@ select { display: none; }
 /* Ajustement Mobile */
 @media (max-width: 768px) {
   .engagements.parallax-bg {
-    background-attachment: scroll; /* Le parallaxe bug souvent sur mobile, on le désactive */
-    padding: 10rem 6vw;
+    background-attachment: scroll !important; /* Le parallaxe bug souvent sur mobile, on le désactive */
+    padding: 8rem 6vw !important;
+    min-height: auto !important;
+    background-position: center center !important;
   }
 }
 /* ══════════════════════════════════════
