@@ -463,7 +463,128 @@ select { display: none; }
   0%, 60%, 100% { transform: translateY(0); }
   30%           { transform: translateY(-4px); }
 }
+/* ════════════════════════════════════════════════════════
+   ACCESSIBILITÉ : Ajustement global des micro-typographies 
+════════════════════════════════════════════════════════ */
 
+/* Remonte les textes secondaires standards à 0.7rem */
+.nav-link, .nav-cta, .section-eyebrow, .btn-primary, .btn-ghost, 
+.atelier-step-num, .philosophy-divider-text, .order-eyebrow, 
+.order-path-num, .order-path-link, .filter-pill, .shop-card-sub, 
+.shop-card-price span, .cart-footer-row, .pm-sub, .pm-section-label, 
+.pm-allergen-tag, .newsletter-submit, .cta-banner-eyebrow, 
+.footer-nav a, .chat-quick-btn {
+    font-size: 0.7rem;
+}
+
+/* Remonte les éléments qui étaient vraiment minuscules (0.48rem à 0.55rem) à 0.65rem */
+.scroll-hint-label, .shop-card-zoom-hint, .shop-card-badge-new, 
+.cart-item-sub, .pm-toggle-btn, .cart-shipping-tracker p {
+    font-size: 0.65rem;
+}
+
+/* Ajuste légèrement les boutons finaux du panier pour garder l'équilibre */
+.cart-checkout, .cart-whatsapp {
+    font-size: 0.75rem;
+}
+
+/* ══════════════════════════════════════
+   SECTION PACKAGING (L'ÉCRIN)
+══════════════════════════════════════ */
+.packaging {
+  padding: 12rem 6vw;
+  background: var(--ink); /* On casse le rythme avec un fond noir luxe */
+  color: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 8vw;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Forcer les couleurs des textes standards sur fond noir */
+.packaging .section-eyebrow { color: var(--gold); }
+.packaging .section-eyebrow::before { background: var(--gold); }
+.packaging .section-h2 { color: var(--white); }
+.packaging .section-h2 em { color: var(--gold-light); }
+.packaging .section-desc { color: rgba(253, 250, 247, 0.7); max-width: 48ch; }
+
+.packaging-features {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  border-top: 1px solid rgba(253, 250, 247, 0.1);
+  padding-top: 2.5rem;
+}
+
+.pack-feat { display: flex; flex-direction: column; gap: 0.4rem; }
+.pack-feat-title { 
+  font-family: var(--mono); 
+  font-size: 0.65rem; /* Ajusté avec notre règle d'accessibilité */
+  letter-spacing: 0.2em; 
+  text-transform: uppercase; 
+  color: var(--gold); 
+}
+.pack-feat-desc { 
+  font-family: var(--sans); 
+  font-size: 0.85rem; 
+  line-height: 1.6;
+  color: rgba(253, 250, 247, 0.6); 
+}
+
+/* Le visuel (Vidéo ou Image) */
+.packaging-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5; /* Format portrait élégant */
+  border-radius: 2.5rem;
+  overflow: hidden;
+}
+
+.packaging-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  background: var(--ink); /* Fond de secours */
+}
+
+.packaging-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: opacity 0.5s;
+}
+
+/* L'aura lumineuse dorée derrière la boîte */
+.packaging-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(circle, rgba(168,137,92,0.35) 0%, transparent 70%);
+  z-index: 1;
+  filter: blur(50px);
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Adaptation Mobile */
+@media (max-width: 768px) {
+  .packaging {
+    grid-template-columns: 1fr;
+    padding: 8rem 6vw;
+    gap: 4rem;
+  }
+  .packaging-visual {
+    aspect-ratio: 1; /* Carré sur mobile pour prendre moins de hauteur */
+  }
+}
 /* ══════════════════════════════════════
    END SHARED STYLES
 ══════════════════════════════════════ */
