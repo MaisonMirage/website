@@ -781,15 +781,36 @@ select { display: none; }
     .atelier { padding: 14rem 0 10rem; overflow: hidden; position: relative; }
     .atelier::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(to right, transparent, rgba(26,23,20,0.08), transparent); }
     .atelier-header { padding: 0 6vw; display: grid; grid-template-columns: 1fr 1fr; gap:4rem; align-items:end; margin-bottom: 6rem; }
-    .atelier-steps-outer { padding-left: 6vw; overflow: hidden; }
-    .atelier-steps { display: flex; gap: 3rem; width: max-content; will-change: transform; }
-    .atelier-step { width: 380px; flex-shrink: 0; }
+    /* NOUVEAU CODE PC : Grille de 4 colonnes */
+.atelier-steps-outer { 
+  padding: 0 6vw; /* Encadrement classique gauche/droite */
+}
+.atelier-steps { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); /* Force 4 colonnes égales */
+  gap: 3vw; /* Espace qui s'adapte à la taille de l'écran */
+  width: 100%; 
+}
+.atelier-step { 
+  width: 100%; /* L'image prend la taille de sa colonne */
+}
     .atelier-step-num { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; display:flex; align-items:center; gap:1rem; }
     .atelier-step-num::after { content:''; flex:1; height:1px; background:rgba(168,137,92,0.2); }
     .atelier-step-img { width:100%; aspect-ratio: 4/3; border-radius: 2rem; overflow:hidden; background: var(--cream-2); margin-bottom: 2rem; position:relative; }
     .atelier-step-img img { width:100%; height:100%; object-fit:cover; mix-blend-mode:multiply; }
     .atelier-step-title { font-family: var(--serif); font-size: 1.8rem; font-weight:300; letter-spacing:-0.01em; line-height:1.1; color:var(--ink); margin-bottom:1rem; }
     .atelier-step-desc { font-size:0.85rem; line-height:1.85; color:var(--ink-muted); }
+    .atelier-steps {
+      cursor: grab;
+      /* Masque complètement la barre de défilement sur PC */
+      scrollbar-width: none; 
+    }
+    .atelier-steps::-webkit-scrollbar {
+      display: none;
+    }
+    .atelier-steps.active {
+      cursor: grabbing;
+    }
 
     /* ══════════════════════════════════════
        PHILOSOPHY
@@ -1100,6 +1121,27 @@ select { display: none; }
       .cart-text-label { display: none; }
       .nav-cta svg { width: 18px; height: 18px; margin: 0; }
       #cart-count-badge { top: -2px; right: -2px; }
+      /* Règle spécifique pour l'Atelier sur Tablette */
+  .atelier-steps-outer {
+    padding-left: 6vw;
+    padding-right: 0; /* Laisse le contenu déborder à droite */
+    overflow-x: auto; /* Active le défilement */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .atelier-steps-outer::-webkit-scrollbar { display: none; } /* Cache la barre moche */
+  
+  .atelier-steps {
+    display: flex; /* On repasse en ligne horizontale */
+    width: max-content;
+    gap: 2rem;
+    padding-right: 6vw;
+  }
+  
+  .atelier-step {
+    width: 320px; /* Taille fixe parfaite pour tablette */
+    flex-shrink: 0;
+  }
     }
     @media (max-width: 768px) {
       /* 1. On crée nos 3 emplacements : Gauche (1fr), Centre (auto), Droite (1fr) */
@@ -1179,6 +1221,14 @@ select { display: none; }
       #chat-bubble { bottom: 1.2rem; right: 1.2rem; }
       #chat-window { bottom: 4.8rem; right: 1.2rem; width: calc(100vw - 2.4rem); }
       #cart-toast { bottom: 5.5rem; }
+      /* Ajustements de l'Atelier pour Mobile */
+  .atelier-steps { 
+    gap: 1.2rem; 
+  }
+  .atelier-step { 
+    width: 82vw; /* Prend presque tout l'écran, mais laisse voir le bout de la carte d'après ! */
+    max-width: 280px; 
+  }
     }
     @media (max-width: 480px) {
       .shop-grid { grid-template-columns:1fr; }
@@ -1376,9 +1426,18 @@ nav.scrolled {
 .atelier { padding: 14rem 0 10rem; overflow: hidden; position: relative; }
 .atelier::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(to right, transparent, rgba(26,23,20,0.08), transparent); }
 .atelier-header { padding: 0 6vw; display: grid; grid-template-columns: 1fr 1fr; gap:4rem; align-items:end; margin-bottom: 6rem; }
-.atelier-steps-outer { padding-left: 6vw; overflow: hidden; }
-.atelier-steps { display: flex; gap: 3rem; width: max-content; will-change: transform; }
-.atelier-step { width: 380px; flex-shrink: 0; }
+.atelier-steps-outer { 
+  padding: 0 6vw; /* Ajoute des marges de chaque côté */
+}
+.atelier-steps { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); /* Crée 4 colonnes égales */
+  gap: 2vw; /* Espace fluide entre les colonnes */
+  width: 100%; 
+}
+.atelier-step { 
+  width: 100%; /* L'image s'adapte à sa colonne */
+}
 .atelier-step-num { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; display:flex; align-items:center; gap:1rem; }
 .atelier-step-num::after { content:''; flex:1; height:1px; background:rgba(168,137,92,0.2); }
 .atelier-step-img { width:100%; aspect-ratio: 4/3; border-radius: 2rem; overflow:hidden; background: var(--cream-2); margin-bottom: 2rem; position:relative; }
@@ -1652,6 +1711,27 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
   .cart-text-label { display: none; }
   .nav-cta svg { width: 18px; height: 18px; margin: 0; }
   #cart-count-badge { top: -2px; right: -2px; }
+  /* --- CARROUSEL ATELIER (TABLETTE) --- */
+  .atelier-steps-outer {
+    padding-left: 6vw;
+    padding-right: 0; 
+    overflow-x: auto; /* Active le défilement horizontal */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .atelier-steps-outer::-webkit-scrollbar { display: none; } /* Cache la barre grise */
+  
+  .atelier-steps {
+    display: flex; /* On repasse en ligne pour scroller */
+    width: max-content;
+    gap: 2rem;
+    padding-right: 6vw;
+  }
+  
+  .atelier-step {
+    width: 320px; /* Taille fixe pour tablette */
+    flex-shrink: 0;
+  }
 }
 
 /* --- MOBILE --- */
@@ -1689,6 +1769,14 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
 
   /* Parallaxe désactivé sur mobile pour la performance et stabilité */
   .parallax-section { background-attachment: scroll !important; padding: 8rem 6vw !important; min-height: auto !important; background-position: center center !important; }
+  /* --- CARROUSEL ATELIER (MOBILE) --- */
+  .atelier-steps { 
+    gap: 1.2rem; 
+  }
+  .atelier-step { 
+    width: 82vw; /* Laisse dépasser la carte suivante pour inviter au scroll */
+    max-width: 280px; 
+  }
 }
 
 /* --- PETIT MOBILE --- */
@@ -1711,6 +1799,23 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
       min-height: 500px;
     }
   }
+  /* ══════════════════════════════════════
+   ATELIER : AFFICHAGE GRILLE SUR PC
+══════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .atelier-steps {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; /* 4 colonnes égales pour tes 4 étapes */
+    gap: 2.5rem !important;
+    overflow: visible !important; /* On désactive le défilement */
+    padding-bottom: 0 !important;
+  }
+  
+  .atelier-step {
+    min-width: auto !important; /* On annule la largeur forcée du mobile */
+    width: 100% !important;
+  }
+}
 }
 /* ══════════════════════════════════════
    END SHARED STYLES
