@@ -1785,38 +1785,58 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
   .hero-h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
 }
 
-/* CORRECTIF SPÉCIFIQUE IPHONE / SAFARI POUR PARALLAXE */
-@media (hover: none) and (pointer: coarse) {
-  .parallax-section { background-attachment: scroll !important; background-position: center center; min-height: 500px; }
-}
-/* CORRECTIF SPÉCIFIQUE IPHONE / SAFARI */
-@path-to-ios-fix {
-  /* On cible les appareils tactiles ou Safari Mobile */
-  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
-    .parallax-section {
-      background-attachment: scroll !important; /* Force l'affichage normal */
-      background-position: center center;
-      min-height: 500px;
-    }
-  }
-  /* ══════════════════════════════════════
-   ATELIER : AFFICHAGE GRILLE SUR PC
+/* ══════════════════════════════════════
+   12. CORRECTIFS SPÉCIFIQUES & PC
 ══════════════════════════════════════ */
+
+/* 1. CORRECTIF IPHONE / SAFARI POUR PARALLAXE */
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+  .parallax-section {
+    background-attachment: scroll !important;
+    background-position: center center;
+    min-height: 500px;
+  }
+}
+
+/* 2. ATELIER : AFFICHAGE GRILLE SUR PC */
 @media (min-width: 1024px) {
   .atelier-steps {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important; /* 4 colonnes égales pour tes 4 étapes */
+    grid-template-columns: repeat(4, 1fr) !important;
     gap: 2.5rem !important;
-    overflow: visible !important; /* On désactive le défilement */
+    overflow: visible !important;
     padding-bottom: 0 !important;
   }
-  
   .atelier-step {
-    min-width: auto !important; /* On annule la largeur forcée du mobile */
+    min-width: auto !important;
     width: 100% !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════
+   CORRECTION UX : ZONE DE CLIC GÉANTE POUR LE BURGER
+════════════════════════════════════════════════════════ */
+.nav-burger {
+    position: relative !important;
+    justify-content: center !important; 
+    padding: 0 !important; 
+    z-index: 1005 !important;
 }
+
+.nav-burger::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    bottom: -20px;
+    left: -30px; /* Sort de la barre pour capter les clics sur le bord de l'écran */
+    right: -20px;
+    background: transparent; 
+}
+
+.nav-burger span {
+    pointer-events: none !important;
+}
+
 /* ══════════════════════════════════════
    END SHARED STYLES
 ══════════════════════════════════════ */
