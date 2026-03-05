@@ -1,0 +1,690 @@
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* MAISON MIRAGE — SHARED DESIGN SYSTEM                                     */
+/* Haute Pâtisserie · Marseille                                             */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   1. TOKENS & BASELINE
+══════════════════════════════════════ */
+:root {
+  --cream:      #F8E8D6;
+  --cream-2:    #F2EAE0;
+  --cream-3:    #EDE0D4;
+  --ink:        #1A1714;
+  --ink-muted:  #6B6560;
+  --gold:       #A8895C;
+  --gold-light: #C9AA7C;
+  --gold-pale:  #E8D5B8;
+  --white:      #FDFAF7;
+  --serif:      'Cormorant Garamond', Georgia, serif;
+  --sans:       'Outfit', system-ui, sans-serif;
+  --mono:       'JetBrains Mono', monospace;
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-expo:  cubic-bezier(0.87, 0, 0.13, 1);
+  /* Alias for subpages that use --ease */
+  --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ══════════════════════════════════════
+   2. RESET + BASE
+══════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; font-size:16px; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════
+   3. GRAIN OVERLAY — Fixed, GPU-only
+══════════════════════════════════════ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ══════════════════════════════════════
+   4. BASE ELEMENT RESETS
+══════════════════════════════════════ */
+img { display:block; max-width:100%; }
+a   { text-decoration:none; color:inherit; }
+
+/* ══════════════════════════════════════
+   5. CUSTOM SCROLLBAR
+══════════════════════════════════════ */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius:2px; }
+
+/* Firefox */
+html { scrollbar-color: var(--gold) var(--cream); scrollbar-width: thin; }
+
+/* ══════════════════════════════════════
+   6. SHARED TYPOGRAPHY
+══════════════════════════════════════ */
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.section-h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+.section-h2 em { font-style: italic; color: var(--gold-light); }
+
+.section-desc {
+  font-size: 0.875rem;
+  line-height: 1.9;
+  color: var(--ink-muted);
+  max-width: 42ch;
+  align-self: end;
+}
+
+/* ══════════════════════════════════════
+   7. SHARED BUTTON STYLES
+══════════════════════════════════════ */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2.2rem;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: transform 0.15s var(--ease-spring);
+  border: 1px solid var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform 0.55s var(--ease-out);
+}
+.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary span { position: relative; z-index: 1; }
+.btn-primary:active { transform: scale(0.96); }
+
+.btn-arrow {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(253,250,247,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s var(--ease-spring), border-color 0.3s;
+  position: relative;
+  z-index: 1;
+}
+.btn-primary:hover .btn-arrow { transform: translateX(5px); border-color: rgba(255,255,255,0.4); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2.2rem;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: background 0.35s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+/* ══════════════════════════════════════
+   8. SHARED FORM STYLES
+   (Used by evenements.html & partenaires.html)
+══════════════════════════════════════ */
+
+/* --- Back Link --- */
+.back-link {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.back-link:hover { color: var(--ink); transform: translateX(-5px); }
+
+/* --- Brand Logo --- */
+.brand-logo {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%);
+}
+
+/* --- Eyebrow (subpage variant) --- */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+/* --- Floating Label Inputs --- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 3rem;
+}
+.full-width { grid-column: span 2; }
+
+.input-group {
+  position: relative;
+  margin-top: 1rem;
+}
+.input-group label {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-muted);
+  transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+  transform-origin: left top;
+  pointer-events: none;
+}
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(26,23,20,0.15);
+  padding: 1rem 0 0.8rem;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.4s var(--ease);
+}
+.input-group textarea { min-height: 80px; resize: none; overflow: hidden; }
+
+/* Float label on focus or when filled */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:not(:placeholder-shown) ~ label {
+  transform: translateY(-1.8rem) scale(0.85);
+  color: var(--gold);
+}
+.input-group input:focus,
+.input-group textarea:focus {
+  border-bottom-color: var(--gold);
+}
+
+/* --- Validation Icon --- */
+.validation-icon {
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s var(--ease-spring);
+  color: var(--gold);
+}
+.input-group input:valid:not(:placeholder-shown) ~ .validation-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Custom Luxe Dropdown --- */
+.custom-select-wrapper {
+  position: relative;
+  user-select: none;
+  margin-top: 1rem;
+}
+.custom-select-wrapper label {
+  position: absolute;
+  top: -0.8rem;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+}
+.custom-select {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0 0.8rem;
+  border-bottom: 1px solid rgba(26,23,20,0.15);
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.4s var(--ease);
+}
+.custom-select:hover { border-bottom-color: var(--gold); }
+.custom-select::after {
+  content: '';
+  width: 8px; height: 8px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform 0.4s var(--ease-spring);
+}
+.custom-select.open::after { transform: translateY(2px) rotate(-135deg); border-color: var(--gold); }
+
+.custom-options {
+  position: absolute;
+  top: 100%; left: 0; right: 0;
+  background: var(--white);
+  border-radius: 0 0 1.5rem 1.5rem;
+  box-shadow: 0 20px 50px rgba(26,23,20,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.4s var(--ease);
+  z-index: 100;
+  overflow: hidden;
+  padding: 0.5rem 0;
+}
+.custom-select.open + .custom-options {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.custom-option {
+  padding: 1rem 1.5rem;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+.custom-option:hover, .custom-option.selected {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+/* Hide native select */
+select { display: none; }
+
+/* --- Submit Button --- */
+.submit-wrap {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.submit-btn {
+  padding: 1.2rem 2.5rem;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  transition: all 0.4s var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform 0.5s var(--ease);
+  z-index: 0;
+}
+.submit-btn:hover::before { transform: translateX(0); }
+.submit-btn span, .submit-btn svg { position: relative; z-index: 1; }
+.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(168,137,92,0.25); }
+.submit-btn:active { transform: translateY(1px) scale(0.98); }
+
+/* --- Privacy Note --- */
+.privacy-note {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  max-width: 150px;
+}
+
+/* --- Success Overlay --- */
+.success-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  border-radius: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+.success-overlay.active { opacity: 1; pointer-events: auto; }
+
+.success-mark {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  color: var(--gold);
+}
+
+/* ══════════════════════════════════════
+   9. ANIMATION CLASSES
+══════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(40px); }
+.gs-reveal { /* GSAP will animate these from initial state */ }
+
+/* ══════════════════════════════════════
+   10. KEYFRAME ANIMATIONS
+══════════════════════════════════════ */
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  50.1%{ transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%      { transform: scale(1.1); opacity: 1; }
+}
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%           { transform: translateY(-4px); }
+}
+/* ════════════════════════════════════════════════════════
+   ACCESSIBILITÉ : Ajustement global des micro-typographies 
+════════════════════════════════════════════════════════ */
+
+/* Remonte les textes secondaires standards à 0.7rem */
+.nav-link, .nav-cta, .section-eyebrow, .btn-primary, .btn-ghost, 
+.atelier-step-num, .philosophy-divider-text, .order-eyebrow, 
+.order-path-num, .order-path-link, .filter-pill, .shop-card-sub, 
+.shop-card-price span, .cart-footer-row, .pm-sub, .pm-section-label, 
+.pm-allergen-tag, .newsletter-submit, .cta-banner-eyebrow, 
+.footer-nav a, .chat-quick-btn {
+    font-size: 0.7rem;
+}
+
+/* Remonte les éléments qui étaient vraiment minuscules (0.48rem à 0.55rem) à 0.65rem */
+.scroll-hint-label, .shop-card-zoom-hint, .shop-card-badge-new, 
+.cart-item-sub, .pm-toggle-btn, .cart-shipping-tracker p {
+    font-size: 0.65rem;
+}
+
+/* Ajuste légèrement les boutons finaux du panier pour garder l'équilibre */
+.cart-checkout, .cart-whatsapp {
+    font-size: 0.75rem;
+}
+
+/* ══════════════════════════════════════
+   SECTION PACKAGING (L'ÉCRIN)
+══════════════════════════════════════ */
+.packaging {
+  padding: 12rem 6vw;
+  background: var(--ink); /* On casse le rythme avec un fond noir luxe */
+  color: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 8vw;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Forcer les couleurs des textes standards sur fond noir */
+.packaging .section-eyebrow { color: var(--gold); }
+.packaging .section-eyebrow::before { background: var(--gold); }
+.packaging .section-h2 { color: var(--white); }
+.packaging .section-h2 em { color: var(--gold-light); }
+.packaging .section-desc { color: rgba(253, 250, 247, 0.7); max-width: 48ch; }
+
+.packaging-features {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  border-top: 1px solid rgba(253, 250, 247, 0.1);
+  padding-top: 2.5rem;
+}
+
+.pack-feat { display: flex; flex-direction: column; gap: 0.4rem; }
+.pack-feat-title { 
+  font-family: var(--mono); 
+  font-size: 0.65rem; /* Ajusté avec notre règle d'accessibilité */
+  letter-spacing: 0.2em; 
+  text-transform: uppercase; 
+  color: var(--gold); 
+}
+.pack-feat-desc { 
+  font-family: var(--sans); 
+  font-size: 0.85rem; 
+  line-height: 1.6;
+  color: rgba(253, 250, 247, 0.6); 
+}
+
+/* Le visuel (Vidéo ou Image) */
+.packaging-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5; /* Format portrait élégant */
+  border-radius: 2.5rem;
+  overflow: hidden;
+}
+
+.packaging-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  background: var(--ink); /* Fond de secours */
+}
+
+.packaging-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: opacity 0.5s;
+}
+
+/* L'aura lumineuse dorée derrière la boîte */
+.packaging-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(circle, rgba(168,137,92,0.35) 0%, transparent 70%);
+  z-index: 1;
+  filter: blur(50px);
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Adaptation Mobile */
+@media (max-width: 768px) {
+  .packaging {
+    grid-template-columns: 1fr;
+    padding: 8rem 6vw;
+    gap: 4rem;
+  }
+  .packaging-visual {
+    aspect-ratio: 1; /* Carré sur mobile pour prendre moins de hauteur */
+  }
+}
+
+/* ══════════════════════════════════════
+   ENGAGEMENTS (Bannière Parallaxe Écrin)
+══════════════════════════════════════ */
+.engagements.parallax-bg {
+  position: relative;
+  padding: 14rem 6vw;
+  background-color: red; /* <-- AJOUTE CETTE LIGNE POUR TESTER */
+  background-image: url('img/boite-trans.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* L'effet parallaxe luxe au scroll */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Le voile sombre pour garantir la lisibilité du texte */
+.engagements-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 23, 20, 0.45); /* Opacité à ajuster selon tes goûts */
+  z-index: 1;
+}
+
+.engagements-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* On force la couleur de l'eyebrow pour qu'il contraste sur le fond sombre */
+.engagements .section-eyebrow.eyebrow-light {
+  color: var(--gold-light);
+  margin-bottom: 2.5rem;
+  justify-content: center; /* On centre le petit trait et le texte */
+}
+
+.engagements .section-eyebrow.eyebrow-light::before {
+  background: var(--gold-light);
+}
+
+.engagements-quote {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--white);
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Ombre douce pour détacher le texte de l'image */
+}
+
+/* Ajustement Mobile */
+@media (max-width: 768px) {
+  .engagements.parallax-bg {
+    background-attachment: scroll !important; /* Le parallaxe bug souvent sur mobile, on le désactive */
+    padding: 8rem 6vw !important;
+    min-height: auto !important;
+    background-position: center center !important;
+  }
+}
+/* Style de base pour tout le monde */
+.parallax-section {
+  position: relative;
+  padding: 15rem 6vw;
+  background-image: url('img/boite-trans.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 70vh;
+  background-attachment: fixed; /* Marche sur Chrome/Desktop */
+}
+
+.engagements-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* CORRECTIF SPÉCIFIQUE IPHONE / SAFARI */
+@path-to-ios-fix {
+  /* On cible les appareils tactiles ou Safari Mobile */
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    .parallax-section {
+      background-attachment: scroll !important; /* Force l'affichage normal */
+      background-position: center center;
+      min-height: 500px;
+    }
+  }
+}
+/* ══════════════════════════════════════
+   END SHARED STYLES
+══════════════════════════════════════ */
