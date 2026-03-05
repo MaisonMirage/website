@@ -585,6 +585,70 @@ select { display: none; }
     aspect-ratio: 1; /* Carré sur mobile pour prendre moins de hauteur */
   }
 }
+
+/* ══════════════════════════════════════
+   ENGAGEMENTS (Bannière Parallaxe Écrin)
+══════════════════════════════════════ */
+.engagements.parallax-bg {
+  position: relative;
+  padding: 14rem 6vw;
+  background-color: red; /* <-- AJOUTE CETTE LIGNE POUR TESTER */
+  background-image: url('img/boite-trans.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* L'effet parallaxe luxe au scroll */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Le voile sombre pour garantir la lisibilité du texte */
+.engagements-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 23, 20, 0.45); /* Opacité à ajuster selon tes goûts */
+  z-index: 1;
+}
+
+.engagements-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* On force la couleur de l'eyebrow pour qu'il contraste sur le fond sombre */
+.engagements .section-eyebrow.eyebrow-light {
+  color: var(--gold-light);
+  margin-bottom: 2.5rem;
+  justify-content: center; /* On centre le petit trait et le texte */
+}
+
+.engagements .section-eyebrow.eyebrow-light::before {
+  background: var(--gold-light);
+}
+
+.engagements-quote {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--white);
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Ombre douce pour détacher le texte de l'image */
+}
+
+/* Ajustement Mobile */
+@media (max-width: 768px) {
+  .engagements.parallax-bg {
+    background-attachment: scroll; /* Le parallaxe bug souvent sur mobile, on le désactive */
+    padding: 10rem 6vw;
+  }
+}
 /* ══════════════════════════════════════
    END SHARED STYLES
 ══════════════════════════════════════ */

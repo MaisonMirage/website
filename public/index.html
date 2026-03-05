@@ -229,10 +229,7 @@
     .shop-card-price { font-family:var(--serif); font-size:1.4rem; font-weight:300; color:var(--ink); }
     .shop-card-price span { font-family:var(--mono); font-size:0.6rem; color:var(--ink-muted); letter-spacing:0.1em; margin-left:0.3rem; }
 
-    /* ══════════════════════════════════════
-       ENGAGEMENTS
-    ══════════════════════════════════════ */
-    .engagements { padding: 10rem 6vw; }
+  
 
     /* ══════════════════════════════════════
        CART & PANIER
@@ -755,14 +752,16 @@
     </div>
   </section>
 
-  <section class="engagements">
-    <div class="reveal" style="max-width:580px;">
-      <p class="section-eyebrow" style="margin-bottom:2.5rem;">Notre Promesse</p>
-      <blockquote style="font-family:var(--serif);font-size:clamp(1.8rem,3.2vw,3rem);font-weight:300;font-style:italic;line-height:1.25;color:var(--ink);">
-        Sculpté à la main. Nuancé à l'aérographe.<br>Préparé le jour même dans notre atelier marseillais.
-      </blockquote>
+  <section class="engagements" style="position: relative; padding: 15rem 6vw; background: url('img/boite-trans.png') no-repeat center center fixed; background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 80vh;">
+    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+    
+    <div class="reveal" style="position: relative; z-index: 2; max-width: 900px;">
+        <p class="section-eyebrow" style="color: var(--gold-light); justify-content: center; margin-bottom: 2rem;">Notre Promesse</p>
+        <blockquote style="font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; font-style: italic; line-height: 1.25; color: var(--white); text-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+            Sculpté à la main. Nuancé à l'aérographe.<br>Préparé le jour même dans notre atelier marseillais.
+        </blockquote>
     </div>
-  </section>
+</section>
 
   <section class="faq" id="faq">
     <div class="faq-left">
