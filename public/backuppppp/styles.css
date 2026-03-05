@@ -608,7 +608,7 @@ select { display: none; }
 .engagements-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(26, 23, 20, 0.65); /* Opacité à ajuster selon tes goûts */
+  background: rgba(26, 23, 20, 0.75) !important; /* Opacité à ajuster selon tes goûts */
   z-index: 1;
 }
 
