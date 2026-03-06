@@ -525,6 +525,11 @@
     const name = document.getElementById('waName').value; const address = document.getElementById('waAddress').value; const time = document.getElementById('waTime').value; const payment = document.getElementById('waPayment').value;
     if(!name || !address || !time || !payment) return alert("Veuillez remplir toutes les informations.");
 
+    // -- NOUVEAU : Sauvegarde silencieuse dans le navigateur --
+    localStorage.setItem('mirage_nom', name);
+    localStorage.setItem('mirage_adresse', address);
+    // --------------------------------------------------------
+    
     let msg = `Bonjour Maison Mirage,\n\n🛍️ *MON PANIER :*\n`;
     cart.forEach(i => msg += `▪ ${i.qty}x ${i.name}\n`);
     msg += `\n📍 *LIVRAISON :*\nNom : ${name}\nAdresse : ${address}\nHeure : ${time}\nPaiement : ${payment}`;
@@ -685,6 +690,17 @@
       await fetch('https://formspree.io/f/mojngado', { method: 'POST', body: new FormData(e.target), headers: { 'Accept': 'application/json' } });
       btn.textContent = "Merci !"; btn.style.background = "var(--gold)"; e.target.reset();
     } catch(err) { btn.textContent = "Erreur"; }
+  });
+
+  // ══════════════════════════════════════════════
+  // 7. UX : AUTO-COMPLÉTION INVITÉ (LOCALSTORAGE)
+  // ══════════════════════════════════════════════
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedName = localStorage.getItem('mirage_nom');
+    const savedAddress = localStorage.getItem('mirage_adresse');
+    
+    if(savedName) document.getElementById('waName').value = savedName;
+    if(savedAddress) document.getElementById('waAddress').value = savedAddress;
   });
   </script>
 
