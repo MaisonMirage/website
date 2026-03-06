@@ -320,7 +320,7 @@
       <a href="#faq">FAQ</a>
     </nav>
     <div class="footer-contact">
-      <a href="mailto:bonjour@maison-mirage.fr">bonjour@maison-mirage.fr</a><br/>
+      <a href="/cdn-cgi/l/email-protection#b3d1dcddd9dcc6c1f3ded2dac0dcdd9ededac1d2d4d69dd5c1"><span class="__cf_email__" data-cfemail="1c7e73727673696e5c717d756f73723171756e7d7b79327a6e">[email&#160;protected]</span></a><br/>
       <a href="tel:+33622356575">+33 (0)6 22 35 65 75</a>
     </div>
     <div class="footer-bottom">
@@ -402,6 +402,10 @@
         <div class="pm-section-label">Allergènes</div>
         <div class="pm-allergens" id="pmAllergens"></div>
         <div class="pm-price" id="pmPrice"></div>
+        <button class="pm-add-cart" id="pmAddCart">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span>Ajouter au panier</span>
+        </button>
       </div>
     </div>
   </div>
@@ -427,20 +431,20 @@
     </div>
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ══════════════════════════════════════════════
   // 1. DONNÉES PRODUITS
   // ══════════════════════════════════════════════
   const productData = {
-    'La Fraise': { img:'img/fraise.webp', zoom:'img/fraise-coupe.webp', sub:'Confit Intense · Ganache Montée', desc:'Sous une coque rouge vif réalisée à l\'aérographe, un confit de fraise gariguette, une ganache montée vanille et un biscuit amande moelleux.', allergens:['Lait','Oeufs','Gluten','Fruits à coque'] },
-    'La Mangue': { img:'img/mangue.webp', zoom:'img/mangue-zoom.webp', sub:'Cœur Exotique · Velours', desc:'Un cœur coulant mangue alphonso, une mousse légère au fruit de la passion et un croustillant coco.', allergens:['Lait','Oeufs','Gluten','Coco'] },
-    'La Framboise': { img:'img/framboise.webp', zoom:'img/framboise-zoom.webp', sub:'Velours Rouge · Acidulée', desc:'Un insert framboise, un crémeux framboise-litchi, et une mousse vanille.', allergens:['Lait','Oeufs','Gluten'] },
-    'La Pêche': { img:'img/peche.webp', zoom:'img/peche-zoom.webp', sub:'Signature Fruitée', desc:'Un confit de pêche blanche, une mousse pêche-verveine et un biscuit financier noisette.', allergens:['Lait','Oeufs','Gluten','Noisette'] },
-    'Le Citron': { img:'img/citron.webp', zoom:'img/citron-zoom.webp', sub:'Zeste Givré · Acidité', desc:'Un crémeux citron de Menton, une meringue italienne, et un confit citron-basilic.', allergens:['Lait','Oeufs','Gluten'] },
-    'Le Cacao': { img:'img/cacao.webp', zoom:'img/cacao-zoom.webp', sub:'Fève Intense · Grand Cru', desc:'Une ganache chocolat noir Tanzanie 75%, un croustillant praliné, et un biscuit chocolat sans farine.', allergens:['Lait','Oeufs','Fruits à coque'] },
-    "L'Arachide": { img:'img/cacahuete.webp', zoom:'img/cacahuete-zoom.webp', sub:'Praliné Coulant · Orfèvre', desc:'Un praliné cacahuète coulant, caramel beurre salé, mousse chocolat lait.', allergens:['Lait','Oeufs','Gluten','Arachide'] },
-    'La Passion': { img:'img/passion.webp', zoom:'img/passion-zoom.webp', sub:'Éclat Tropical', desc:'Un insert passion-mangue, crémeux chocolat blanc-passion.', allergens:['Lait','Oeufs','Gluten'] },
-    'La Vanille': { img:'img/vanille.webp', zoom:'img/vanille-zoom.webp', sub:'Bourbon · Madagascar', desc:'Une crème vanille bourbon de Madagascar infusée 48h, un caramel vanille.', allergens:['Lait','Oeufs','Gluten'] }
+    'La Fraise': { img:'img/fraise.webp', zoom:'img/fraise-coupe.webp', sub:'Confit Intense · Ganache Montée', desc:'Sous une coque rouge vif réalisée à l\'aérographe, un confit de fraise gariguette, une ganache montée vanille et un biscuit amande moelleux.', allergens:['Lait','Oeufs','Gluten','Fruits à coque'], price:7.90 },
+    'La Mangue': { img:'img/mangue.webp', zoom:'img/mangue-zoom.webp', sub:'Cœur Exotique · Velours', desc:'Un cœur coulant mangue alphonso, une mousse légère au fruit de la passion et un croustillant coco.', allergens:['Lait','Oeufs','Gluten','Coco'], price:7.90 },
+    'La Framboise': { img:'img/framboise.webp', zoom:'img/framboise-zoom.webp', sub:'Velours Rouge · Acidulée', desc:'Un insert framboise, un crémeux framboise-litchi, et une mousse vanille.', allergens:['Lait','Oeufs','Gluten'], price:7.90 },
+    'La Pêche': { img:'img/peche.webp', zoom:'img/peche-zoom.webp', sub:'Signature Fruitée', desc:'Un confit de pêche blanche, une mousse pêche-verveine et un biscuit financier noisette.', allergens:['Lait','Oeufs','Gluten','Noisette'], price:7.90 },
+    'Le Citron': { img:'img/citron.webp', zoom:'img/citron-zoom.webp', sub:'Zeste Givré · Acidité', desc:'Un crémeux citron de Menton, une meringue italienne, et un confit citron-basilic.', allergens:['Lait','Oeufs','Gluten'], price:7.90 },
+    'Le Cacao': { img:'img/cacao.webp', zoom:'img/cacao-zoom.webp', sub:'Fève Intense · Grand Cru', desc:'Une ganache chocolat noir Tanzanie 75%, un croustillant praliné, et un biscuit chocolat sans farine.', allergens:['Lait','Oeufs','Fruits à coque'], price:8.90 },
+    "L'Arachide": { img:'img/cacahuete.webp', zoom:'img/cacahuete-zoom.webp', sub:'Praliné Coulant · Orfèvre', desc:'Un praliné cacahuète coulant, caramel beurre salé, mousse chocolat lait.', allergens:['Lait','Oeufs','Gluten','Arachide'], price:8.90 },
+    'La Passion': { img:'img/passion.webp', zoom:'img/passion-zoom.webp', sub:'Éclat Tropical', desc:'Un insert passion-mangue, crémeux chocolat blanc-passion.', allergens:['Lait','Oeufs','Gluten'], price:7.90 },
+    'La Vanille': { img:'img/vanille.webp', zoom:'img/vanille-zoom.webp', sub:'Bourbon · Madagascar', desc:'Une crème vanille bourbon de Madagascar infusée 48h, un caramel vanille.', allergens:['Lait','Oeufs','Gluten'], price:9.90 }
   };
 
   // ══════════════════════════════════════════════
@@ -450,13 +454,16 @@
   const pmImgWrap = document.getElementById('pmImgWrap');
   const pmToggleWrap = document.getElementById('pmToggleWrap');
 
+  let currentProduct = null; // Produit actuellement affiché dans la modal
+
   function openProduct(name) {
     const d = productData[name]; if (!d) return;
+    currentProduct = { name, price: d.price, img: d.img };
     document.getElementById('pmImg').src = d.img;
     document.getElementById('pmName').textContent = name;
     document.getElementById('pmSub').textContent = d.sub;
     document.getElementById('pmDesc').textContent = d.desc;
-    document.getElementById('pmPrice').innerHTML = '7,90 €<span>/ pièce</span>';
+    document.getElementById('pmPrice').innerHTML = d.price.toFixed(2).replace('.',',') + ' €<span>/ pièce</span>';
     const ac = document.getElementById('pmAllergens'); ac.innerHTML = '';
     d.allergens.forEach(a => { const tag = document.createElement('span'); tag.className = 'pm-allergen-tag'; tag.textContent = a; ac.appendChild(tag); });
 
@@ -481,11 +488,10 @@
     pmImgWrap.classList.toggle('zoom-active', btn.dataset.view === 'zoom');
   });
 
-  document.getElementById('pmClose').addEventListener('click', () => { pmModal.classList.remove('open'); pmImgWrap.classList.remove('zoom-active'); });
-  pmModal.addEventListener('click', (e) => { if (e.target === pmModal) { pmModal.classList.remove('open'); pmImgWrap.classList.remove('zoom-active'); } });
+  document.getElementById('pmClose').addEventListener('click', () => { pmModal.classList.remove('open'); pmImgWrap.classList.remove('zoom-active'); currentProduct = null; });
+  pmModal.addEventListener('click', (e) => { if (e.target === pmModal) { pmModal.classList.remove('open'); pmImgWrap.classList.remove('zoom-active'); currentProduct = null; } });
   document.querySelectorAll('.shop-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      if(e.target.closest('.shop-card-add')) return;
       openProduct(card.querySelector('.shop-card-name').textContent);
     });
   });
@@ -494,14 +500,18 @@
   // 3. PANIER & COMMANDE
   // ══════════════════════════════════════════════
   let cart = [];
+  window.cart = cart; // rendre accessible aux onclick inline
   function renderCart() {
+    window.cart = cart; // garder la référence synchronisée
     const totalQty = cart.reduce((s,i) => s+i.qty, 0);
     const totalPrice = cart.reduce((s,i) => s + i.price * i.qty, 0);
     const waDeliveryCost = (totalPrice >= 80) ? 0 : 9.90;
 
     document.getElementById('cart-count-badge').textContent = totalQty;
     document.getElementById('cart-count-badge').classList.toggle('show', totalQty > 0);
-    document.getElementById('cartItems').innerHTML = '';
+
+    // Supprimer uniquement les .cart-item, PAS le #cartEmpty
+    document.querySelectorAll('#cartItems .cart-item').forEach(el => el.remove());
 
     if(cart.length === 0) {
       document.getElementById('cartEmpty').style.display = 'flex';
@@ -511,18 +521,20 @@
     } else {
       document.getElementById('cartEmpty').style.display = 'none';
       document.getElementById('cartFooter').style.display = 'block';
+      const cartItemsEl = document.getElementById('cartItems');
       cart.forEach((item, idx) => {
-        document.getElementById('cartItems').innerHTML += `
-          <div class="cart-item">
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
             <div class="cart-item-img"><img src="${item.img}"/></div>
             <div><div class="cart-item-name">${item.name}</div>
             <div class="cart-item-qty">
-              <button class="cart-qty-btn" onclick="cart[${idx}].qty--; if(cart[${idx}].qty<=0) cart.splice(${idx},1); renderCart();">-</button>
+              <button class="cart-qty-btn" onclick="window.cart[${idx}].qty--; if(window.cart[${idx}].qty<=0) window.cart.splice(${idx},1); renderCart();">-</button>
               <span class="cart-qty-num">${item.qty}</span>
-              <button class="cart-qty-btn" onclick="cart[${idx}].qty++; renderCart();">+</button>
+              <button class="cart-qty-btn" onclick="window.cart[${idx}].qty++; renderCart();">+</button>
             </div></div>
-            <div class="cart-item-price">${(item.price * item.qty).toFixed(2).replace('.',',')} €</div>
-          </div>`;
+            <div class="cart-item-price">${(item.price * item.qty).toFixed(2).replace('.',',')} €</div>`;
+        cartItemsEl.appendChild(div);
       });
       document.getElementById('cartSubtotalPrice').textContent = totalPrice.toFixed(2).replace('.',',') + ' €';
       document.getElementById('cartDeliveryPrice').innerHTML = waDeliveryCost === 0 ? '<span style="color:var(--gold)">OFFERTE</span>' : '9,90 €';
@@ -534,15 +546,20 @@
     }
   }
 
-  document.querySelectorAll('.shop-card-add').forEach(btn => {
-    btn.addEventListener('click', e => {
-      const name = btn.dataset.name;
-      const existing = cart.find(i => i.name === name);
-      if(existing) existing.qty++; else cart.push({name, price:parseFloat(btn.dataset.price), qty:1, img:productData[name].img});
-      renderCart();
-      document.getElementById('cart-toast').classList.add('show');
-      setTimeout(() => document.getElementById('cart-toast').classList.remove('show'), 3000);
-    });
+  // Bouton "Ajouter au panier" dans la modal produit
+  document.getElementById('pmAddCart').addEventListener('click', () => {
+    if (!currentProduct) return;
+    const name = currentProduct.name;
+    const existing = cart.find(i => i.name === name);
+    if(existing) existing.qty++; else cart.push({name, price: currentProduct.price, qty:1, img: currentProduct.img});
+    renderCart();
+    // Fermer la modal
+    pmModal.classList.remove('open');
+    pmImgWrap.classList.remove('zoom-active');
+    currentProduct = null;
+    // Toast de confirmation
+    document.getElementById('cart-toast').classList.add('show');
+    setTimeout(() => document.getElementById('cart-toast').classList.remove('show'), 3000);
   });
 
   document.getElementById('navCta').addEventListener('click', e => { e.preventDefault(); document.getElementById('cart-panel').classList.add('open'); document.getElementById('cart-overlay').classList.add('open'); });
@@ -755,14 +772,4 @@
       "addressCountry": "FR"
     },
     "priceRange": "€€",
-    "servesCuisine": "Pâtisserie française",
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-      "opens": "09:00",
-      "closes": "19:00"
-    }
-  }
-  </script>
-</body>
-</html>
+    "servesCuisine": "Pâtisserie françai

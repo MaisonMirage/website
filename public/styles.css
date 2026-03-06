@@ -430,6 +430,18 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
 .pm-allergens { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem; }
 .pm-allergen-tag { font-family:var(--mono); font-size:0.55rem; letter-spacing:0.1em; padding:0.3rem 0.7rem; border-radius:999px; border:1px solid rgba(26,23,20,0.1); color:var(--ink-muted); }
 .pm-price { font-family:var(--serif); font-size:1.8rem; font-weight:300; }
+.pm-add-cart {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  margin-top: 2rem; padding: 1rem 2.2rem;
+  background: var(--ink); color: var(--cream);
+  border: 1px solid var(--ink); border-radius: 999px;
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  cursor: pointer; transition: background 0.3s var(--ease-spring), transform 0.15s var(--ease-spring);
+}
+.pm-add-cart:hover { background: var(--gold); }
+.pm-add-cart:active { transform: scale(0.96); }
+.pm-add-cart svg { stroke: var(--cream); }
 
 #chat-bubble { position: fixed; bottom: 2rem; right: 2rem; z-index: 800; width: 3.2rem; height: 3.2rem; border-radius: 50%; background: var(--ink); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 32px rgba(26,23,20,0.18); transition: transform 0.3s, background 0.3s; }
 #chat-bubble:hover { transform: scale(1.08); }
