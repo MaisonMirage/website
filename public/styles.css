@@ -554,6 +554,21 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
   .atelier-steps { gap: 1.2rem; }
   .atelier-step { width: 82vw; max-width: 280px; }
 }
+.pm-body {
+  padding: 2rem 1.5rem 2.5rem; 
+}
+
+/* 2. Transformation du bouton en Sticky CTA */
+#pmAddCart {
+  position: sticky;
+  bottom: 1rem;          /* Garde un espace élégant avec le bas de l'écran */
+  width: 100%;           /* Prend toute la largeur disponible */
+  justify-content: center;
+  z-index: 100;          /* Reste au-dessus du texte pendant le scroll */
+  margin-top: 1.5rem;
+  /* Ombre portée douce pour le détacher visuellement du texte en dessous */
+  box-shadow: 0 12px 35px rgba(26, 23, 20, 0.4); 
+}
 
 /* --- PETIT MOBILE --- */
 @media (max-width: 480px) {
