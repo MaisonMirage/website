@@ -248,7 +248,7 @@
             Préparé le jour même dans notre atelier marseillais.
         </blockquote>
     </div>
-</section>
+  </section>
 
   <section class="faq" id="faq">
     <div class="faq-left">
@@ -454,7 +454,7 @@
   const pmImgWrap = document.getElementById('pmImgWrap');
   const pmToggleWrap = document.getElementById('pmToggleWrap');
 
-  let currentProduct = null; // Produit actuellement affiché dans la modal
+  let currentProduct = null; 
 
   function openProduct(name) {
     const d = productData[name]; if (!d) return;
@@ -467,7 +467,6 @@
     const ac = document.getElementById('pmAllergens'); ac.innerHTML = '';
     d.allergens.forEach(a => { const tag = document.createElement('span'); tag.className = 'pm-allergen-tag'; tag.textContent = a; ac.appendChild(tag); });
 
-    // Zoom toggle setup
     pmImgWrap.classList.remove('zoom-active');
     if (d.zoom) {
       document.getElementById('pmImgZoom').src = d.zoom;
@@ -480,7 +479,6 @@
     pmModal.classList.add('open');
   }
 
-  // Toggle Vue / Texture in modal
   pmToggleWrap.addEventListener('click', (e) => {
     const btn = e.target.closest('.pm-toggle-btn'); if (!btn) return;
     pmToggleWrap.querySelectorAll('.pm-toggle-btn').forEach(b => b.classList.remove('active'));
@@ -500,9 +498,9 @@
   // 3. PANIER & COMMANDE
   // ══════════════════════════════════════════════
   let cart = [];
-  window.cart = cart; // rendre accessible aux onclick inline
+  window.cart = cart; 
   function renderCart() {
-    window.cart = cart; // garder la référence synchronisée
+    window.cart = cart; 
     const totalQty = cart.reduce((s,i) => s+i.qty, 0);
     const totalPrice = cart.reduce((s,i) => s + i.price * i.qty, 0);
     const waDeliveryCost = (totalPrice >= 80) ? 0 : 9.90;
@@ -510,7 +508,6 @@
     document.getElementById('cart-count-badge').textContent = totalQty;
     document.getElementById('cart-count-badge').classList.toggle('show', totalQty > 0);
 
-    // Supprimer uniquement les .cart-item, PAS le #cartEmpty
     document.querySelectorAll('#cartItems .cart-item').forEach(el => el.remove());
 
     if(cart.length === 0) {
@@ -546,18 +543,15 @@
     }
   }
 
-  // Bouton "Ajouter au panier" dans la modal produit
   document.getElementById('pmAddCart').addEventListener('click', () => {
     if (!currentProduct) return;
     const name = currentProduct.name;
     const existing = cart.find(i => i.name === name);
     if(existing) existing.qty++; else cart.push({name, price: currentProduct.price, qty:1, img: currentProduct.img});
     renderCart();
-    // Fermer la modal
     pmModal.classList.remove('open');
     pmImgWrap.classList.remove('zoom-active');
     currentProduct = null;
-    // Toast de confirmation
     document.getElementById('cart-toast').classList.add('show');
     setTimeout(() => document.getElementById('cart-toast').classList.remove('show'), 3000);
   });
@@ -565,13 +559,16 @@
   document.getElementById('navCta').addEventListener('click', e => { e.preventDefault(); document.getElementById('cart-panel').classList.add('open'); document.getElementById('cart-overlay').classList.add('open'); });
   document.getElementById('cartClose').addEventListener('click', () => { document.getElementById('cart-panel').classList.remove('open'); document.getElementById('cart-overlay').classList.remove('open'); });
 
-  // WhatsApp Checkout Logique
   document.getElementById('btnShowWaForm').addEventListener('click', () => { document.getElementById('cartActionButtons').style.display='none'; document.getElementById('waFormContainer').style.display='flex'; });
   document.getElementById('cancelWa').addEventListener('click', () => { document.getElementById('waFormContainer').style.display='none'; document.getElementById('cartActionButtons').style.display='flex'; });
 
   document.getElementById('cartWhatsappSubmit').addEventListener('click', () => {
     const name = document.getElementById('waName').value; const address = document.getElementById('waAddress').value; const time = document.getElementById('waTime').value; const payment = document.getElementById('waPayment').value;
     if(!name || !address || !time || !payment) return alert("Veuillez remplir toutes les informations.");
+
+    // LOCALSTORAGE SAUVEGARDE
+    localStorage.setItem('mirage_nom', name);
+    localStorage.setItem('mirage_adresse', address);
 
     let msg = `Bonjour Maison Mirage,\n\n🛍️ *MON PANIER :*\n`;
     cart.forEach(i => msg += `▪ ${i.qty}x ${i.name}\n`);
@@ -580,23 +577,49 @@
   });
 
   // ══════════════════════════════════════════════
-  // 4. GSAP & ANIMATIONS
+  // 4. GSAP & ANIMATIONS (Version Haute Couture)
   // ══════════════════════════════════════════════
   function initGSAP() {
     gsap.registerPlugin(ScrollTrigger);
+    
     document.getElementById('navbar').classList.add('visible');
-    ScrollTrigger.create({ start: 'top -60', onEnter: () => document.getElementById('navbar').classList.add('scrolled'), onLeaveBack: () => document.getElementById('navbar').classList.remove('scrolled') });
+    ScrollTrigger.create({ 
+      start: 'top -60', 
+      onEnter: () => document.getElementById('navbar').classList.add('scrolled'), 
+      onLeaveBack: () => document.getElementById('navbar').classList.remove('scrolled') 
+    });
 
-    gsap.timeline({delay:0.1}).to('.hero-eyebrow',{opacity:1, y:0, duration:0.9}).to('.hero-h1',{opacity:1, y:0, duration:1.1},'-=0.7').to('.hero-desc',{opacity:1, y:0},'-=0.7').to('.hero-actions',{opacity:1, y:0},'-=0.7').to('.scroll-hint',{opacity:1, duration:0.8},'-=0.3');
-    gsap.to('#heroMain', {opacity:1, duration:1.2, delay:0.4});
+    const heroTl = gsap.timeline({ delay: 0.15 });
+    
+    gsap.set('.hero-eyebrow, .hero-h1, .hero-desc, .hero-actions', { opacity: 0, y: 40 });
+    gsap.set('#heroMain', { opacity: 0, scale: 1.05 }); 
 
-    document.querySelectorAll('.reveal').forEach((el, i) => {
-      gsap.to(el, { opacity:1, y:0, duration:0.9, scrollTrigger: { trigger:el, start:'top 88%' } });
+    heroTl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" })
+          .to('.hero-h1', { opacity: 1, y: 0, duration: 1.6, ease: "power4.out" }, "-=0.9")
+          .to('.hero-desc', { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, "-=1.2")
+          .to('.hero-actions', { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, "-=1.0")
+          .to('.scroll-hint', { opacity: 1, duration: 1.5, ease: "power2.out" }, "-=0.5");
+    
+    gsap.to('#heroMain', { opacity: 1, scale: 1, duration: 2.2, ease: "power3.out", delay: 0.2 });
+
+    document.querySelectorAll('.reveal').forEach((el) => {
+      gsap.set(el, { opacity: 0, y: 50 }); 
+      
+      gsap.to(el, { 
+        opacity: 1, 
+        y: 0, 
+        duration: 1.4, 
+        ease: "power3.out", 
+        scrollTrigger: { 
+          trigger: el, 
+          start: 'top 85%', 
+          toggleActions: "play none none none" 
+        } 
+      });
     });
   }
   const waitGSAP = setInterval(() => { if (window.gsap && window.ScrollTrigger) { clearInterval(waitGSAP); initGSAP(); } }, 50);
 
-  // Preloader dismiss
   window.addEventListener('load', () => {
     setTimeout(() => {
       const preloader = document.getElementById('preloader');
@@ -746,7 +769,6 @@
   document.getElementById('chatSend').addEventListener('click', () => { if(chatInput.value.trim()) sendMessage(chatInput.value.trim(), null); });
   chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && chatInput.value.trim()) sendMessage(chatInput.value.trim(), null); });
 
-  // Newsletter Submit
   document.getElementById('newsletterForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = e.target.querySelector('button'); btn.textContent = "Envoi...";
@@ -755,21 +777,82 @@
       btn.textContent = "Merci !"; btn.style.background = "var(--gold)"; e.target.reset();
     } catch(err) { btn.textContent = "Erreur"; }
   });
-  </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Bakery",
-    "name": "Maison Mirage",
-    "description": "Haute pâtisserie artisanale — créations trompe-l'œil sculptées à la main à Marseille.",
-    "url": "https://maison-mirage.fr",
-    "telephone": "+33622356575",
-    "email": "bonjour@maison-mirage.fr",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Marseille",
-      "addressCountry": "FR"
-    },
-    "priceRange": "€€",
-    "servesCuisine": "Pâtisserie françai
+  // ══════════════════════════════════════════════
+  // 7. UX : AUTO-COMPLÉTION INVITÉ (LOCALSTORAGE)
+  // ══════════════════════════════════════════════
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedName = localStorage.getItem('mirage_nom');
+    const savedAddress = localStorage.getItem('mirage_adresse');
+    
+    if(savedName) document.getElementById('waName').value = savedName;
+    if(savedAddress) document.getElementById('waAddress').value = savedAddress;
+  });
+
+  // ══════════════════════════════════════════════
+  // 8. UX : EFFET LOUPE (PAN ZOOM) SUR LES CARTES
+  // ══════════════════════════════════════════════
+  document.querySelectorAll('.shop-card-img-wrap').forEach(wrap => {
+    wrap.addEventListener('mousemove', (e) => {
+      const rect = wrap.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      const zoomImg = wrap.querySelector('.shop-card-zoom');
+      if(zoomImg) {
+        zoomImg.style.transformOrigin = `${x}% ${y}%`;
+      }
+    });
+
+    wrap.addEventListener('mouseleave', () => {
+      const zoomImg = wrap.querySelector('.shop-card-zoom');
+      if(zoomImg) {
+        setTimeout(() => { zoomImg.style.transformOrigin = '50% 50%'; }, 400);
+      }
+    });
+  });
+  // ══════════════════════════════════════════════
+  // 9. UX : LOUPE TACTILE MODALE PRODUIT (TOUCH & DRAG)
+  // ══════════════════════════════════════════════
+  const pmImgWrapEl = document.getElementById('pmImgWrap');
+  const pmImgZoomEl = document.getElementById('pmImgZoom');
+
+  function handleModalLoupe(e) {
+    // 1. On ignore si le client clique sur les petits boutons "Vue/Texture"
+    if(e.target.closest('.pm-toggle-wrap')) return;
+    // 2. On ignore si la création n'a pas d'image de coupe détaillée
+    if(document.getElementById('pmToggleWrap').style.display === 'none') return;
+
+    // 3. Empêche la page de scroller quand on explore l'image sur mobile
+    if(e.type === 'touchmove' || e.type === 'touchstart') e.preventDefault(); 
+
+    const rect = pmImgWrapEl.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    // Calcul de la position du doigt ou de la souris (en pourcentage)
+    const x = ((clientX - rect.left) / rect.width) * 100;
+    const y = ((clientY - rect.top) / rect.height) * 100;
+
+    // Application de la loupe
+    pmImgWrapEl.classList.add('loupe-active');
+    pmImgZoomEl.style.transformOrigin = `${x}% ${y}%`;
+  }
+
+  function resetModalLoupe() {
+    pmImgWrapEl.classList.remove('loupe-active');
+    // On recentre l'origine doucement après que le client ait relâché l'image
+    setTimeout(() => { pmImgZoomEl.style.transformOrigin = '50% 50%'; }, 300);
+  }
+
+  // Activation sur Ordinateur (Souris)
+  pmImgWrapEl.addEventListener('mousemove', handleModalLoupe);
+  pmImgWrapEl.addEventListener('mouseleave', resetModalLoupe);
+
+  // Activation sur Mobile (Tactile)
+  pmImgWrapEl.addEventListener('touchstart', handleModalLoupe, {passive: false});
+  pmImgWrapEl.addEventListener('touchmove', handleModalLoupe, {passive: false});
+  pmImgWrapEl.addEventListener('touchend', resetModalLoupe);
+  </script>
+</body>
+</html>

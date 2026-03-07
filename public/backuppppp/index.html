@@ -702,22 +702,35 @@
     if(savedName) document.getElementById('waName').value = savedName;
     if(savedAddress) document.getElementById('waAddress').value = savedAddress;
   });
-  </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Bakery",
-    "name": "Maison Mirage",
-    "description": "Haute pâtisserie artisanale — créations trompe-l'œil sculptées à la main à Marseille.",
-    "url": "https://maison-mirage.fr",
-    "telephone": "+33622356575",
-    "email": "bonjour@maison-mirage.fr",
-    "address": { "@type": "PostalAddress", "addressLocality": "Marseille", "addressCountry": "FR" },
-    "priceRange": "€€",
-    "servesCuisine": "Pâtisserie française",
-    "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "19:00" }
-  }
+  // ══════════════════════════════════════════════
+  // 8. UX : EFFET LOUPE (PAN ZOOM) SUR LES CARTES
+  // ══════════════════════════════════════════════
+  document.querySelectorAll('.shop-card-img-wrap').forEach(wrap => {
+    wrap.addEventListener('mousemove', (e) => {
+      // On récupère la taille et la position de l'image
+      const rect = wrap.getBoundingClientRect();
+      
+      // On calcule la position de la souris en pourcentage (de 0 à 100%)
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      // On applique ce pourcentage au point de transformation de l'image zoomée
+      const zoomImg = wrap.querySelector('.shop-card-zoom');
+      if(zoomImg) {
+        zoomImg.style.transformOrigin = `${x}% ${y}%`;
+      }
+    });
+
+    // Quand la souris quitte l'image, on remet le zoom au centre en douceur
+    wrap.addEventListener('mouseleave', () => {
+      const zoomImg = wrap.querySelector('.shop-card-zoom');
+      if(zoomImg) {
+        // Un petit timeout permet à l'opacité de baisser avant de recentrer
+        setTimeout(() => { zoomImg.style.transformOrigin = '50% 50%'; }, 400);
+      }
+    });
+  });
   </script>
 </body>
 </html>
