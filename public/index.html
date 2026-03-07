@@ -834,6 +834,10 @@
     const x = ((clientX - rect.left) / rect.width) * 100;
     const y = ((clientY - rect.top) / rect.height) * 100;
 
+    // LE CORRECTIF UX : On bloque (clamp) les valeurs strictement entre 0% et 100%
+    x = Math.max(0, Math.min(x, 100));
+    y = Math.max(0, Math.min(y, 100));
+
     // Application de la loupe
     pmImgWrapEl.classList.add('loupe-active');
     pmImgZoomEl.style.transformOrigin = `${x}% ${y}%`;
