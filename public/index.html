@@ -436,12 +436,12 @@
   // 1. DONNÉES PRODUITS
   // ══════════════════════════════════════════════
   const productData = {
-    'La Fraise': { img:'img/fraise.webp', zoom:'img/fraise-coupe.webp', sub:'Confit Intense · Ganache Montée', desc:'Sous une coque rouge vif réalisée à l\'aérographe, un confit de fraise gariguette, une ganache montée vanille et un biscuit amande moelleux.', allergens:['Lait','Oeufs','Gluten','Fruits à coque'], price:7.90 },
-    'La Mangue': { img:'img/mangue.webp', zoom:'img/mangue-zoom.webp', sub:'Cœur Exotique · Velours', desc:'Un cœur coulant mangue alphonso, une mousse légère au fruit de la passion et un croustillant coco.', allergens:['Lait','Oeufs','Gluten','Coco'], price:7.90 },
+    'La Fraise': { img:'img/fraise.webp', zoom:'img/fraise-coupe.webp', sub:'Confit Intense · Ganache Montée', desc:'Sous une coque rouge vif réalisée à l\'aérographe, un confit de fraise gariguette, une ganache montée vanille.', allergens:['Lait','Oeufs','Gluten','Fruits à coque'], price:7.90 },
+    'La Mangue': { img:'img/mangue.webp', zoom:'img/mangue-zoom.webp', sub:'Cœur Exotique · Velours', desc:'Un cœur coulant mangue alphonso, une mousse légère au fruit de la passion.', allergens:['Lait','Oeufs','Gluten','Coco'], price:7.90 },
     'La Framboise': { img:'img/framboise.webp', zoom:'img/framboise-zoom.webp', sub:'Velours Rouge · Acidulée', desc:'Un insert framboise, un crémeux framboise-litchi, et une mousse vanille.', allergens:['Lait','Oeufs','Gluten'], price:7.90 },
-    'La Pêche': { img:'img/peche.webp', zoom:'img/peche-zoom.webp', sub:'Signature Fruitée', desc:'Un confit de pêche blanche, une mousse pêche-verveine et un biscuit financier noisette.', allergens:['Lait','Oeufs','Gluten','Noisette'], price:7.90 },
+    'La Pêche': { img:'img/peche.webp', zoom:'img/peche-zoom.webp', sub:'Signature Fruitée', desc:'Un confit de pêche blanche, une mousse pêche-verveine.', allergens:['Lait','Oeufs','Gluten','Noisette'], price:7.90 },
     'Le Citron': { img:'img/citron.webp', zoom:'img/citron-zoom.webp', sub:'Zeste Givré · Acidité', desc:'Un crémeux citron de Menton, une meringue italienne, et un confit citron-basilic.', allergens:['Lait','Oeufs','Gluten'], price:7.90 },
-    'Le Cacao': { img:'img/cacao.webp', zoom:'img/cacao-zoom.webp', sub:'Fève Intense · Grand Cru', desc:'Une ganache chocolat noir Tanzanie 75%, un croustillant praliné, et un biscuit chocolat sans farine.', allergens:['Lait','Oeufs','Fruits à coque'], price:8.90 },
+    'Le Cacao': { img:'img/cacao.webp', zoom:'img/cacao-zoom.webp', sub:'Fève Intense · Grand Cru', desc:'Une ganache chocolat noir Tanzanie 75%, un croustillant praliné.', allergens:['Lait','Oeufs','Fruits à coque'], price:8.90 },
     "L'Arachide": { img:'img/cacahuete.webp', zoom:'img/cacahuete-zoom.webp', sub:'Praliné Coulant · Orfèvre', desc:'Un praliné cacahuète coulant, caramel beurre salé, mousse chocolat lait.', allergens:['Lait','Oeufs','Gluten','Arachide'], price:8.90 },
     'La Passion': { img:'img/passion.webp', zoom:'img/passion-zoom.webp', sub:'Éclat Tropical', desc:'Un insert passion-mangue, crémeux chocolat blanc-passion.', allergens:['Lait','Oeufs','Gluten'], price:7.90 },
     'La Vanille': { img:'img/vanille.webp', zoom:'img/vanille-zoom.webp', sub:'Bourbon · Madagascar', desc:'Une crème vanille bourbon de Madagascar infusée 48h, un caramel vanille.', allergens:['Lait','Oeufs','Gluten'], price:9.90 }
@@ -811,37 +811,43 @@
       }
     });
   });
-  // ══════════════════════════════════════════════
+// ══════════════════════════════════════════════
   // 9. UX : LOUPE TACTILE MODALE PRODUIT (TOUCH & DRAG)
   // ══════════════════════════════════════════════
   const pmImgWrapEl = document.getElementById('pmImgWrap');
   const pmImgZoomEl = document.getElementById('pmImgZoom');
 
   function handleModalLoupe(e) {
-    // 1. On ignore si le client clique sur les petits boutons "Vue/Texture"
     if(e.target.closest('.pm-toggle-wrap')) return;
-    // 2. On ignore si la création n'a pas d'image de coupe détaillée
     if(document.getElementById('pmToggleWrap').style.display === 'none') return;
 
-    // 3. Empêche la page de scroller quand on explore l'image sur mobile
     if(e.type === 'touchmove' || e.type === 'touchstart') e.preventDefault(); 
 
     const rect = pmImgWrapEl.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-    // Calcul de la position du doigt ou de la souris (en pourcentage)
-    const x = ((clientX - rect.left) / rect.width) * 100;
-    const y = ((clientY - rect.top) / rect.height) * 100;
+    let x = ((clientX - rect.left) / rect.width) * 100;
+    let y = ((clientY - rect.top) / rect.height) * 100;
 
-    // LE CORRECTIF UX : On bloque (clamp) les valeurs strictement entre 0% et 100%
+    // LE CORRECTIF UX : On bloque strictement entre 0% et 100% pour éviter le blanc
     x = Math.max(0, Math.min(x, 100));
     y = Math.max(0, Math.min(y, 100));
 
-    // Application de la loupe
     pmImgWrapEl.classList.add('loupe-active');
     pmImgZoomEl.style.transformOrigin = `${x}% ${y}%`;
   }
+
+  function resetModalLoupe() {
+    pmImgWrapEl.classList.remove('loupe-active');
+    setTimeout(() => { pmImgZoomEl.style.transformOrigin = '50% 50%'; }, 300);
+  }
+
+  pmImgWrapEl.addEventListener('mousemove', handleModalLoupe);
+  pmImgWrapEl.addEventListener('mouseleave', resetModalLoupe);
+  pmImgWrapEl.addEventListener('touchstart', handleModalLoupe, {passive: false});
+  pmImgWrapEl.addEventListener('touchmove', handleModalLoupe, {passive: false});
+  pmImgWrapEl.addEventListener('touchend', resetModalLoupe);
   </script>
 </body>
 </html>
