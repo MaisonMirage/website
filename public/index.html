@@ -842,21 +842,6 @@
     pmImgWrapEl.classList.add('loupe-active');
     pmImgZoomEl.style.transformOrigin = `${x}% ${y}%`;
   }
-
-  function resetModalLoupe() {
-    pmImgWrapEl.classList.remove('loupe-active');
-    // On recentre l'origine doucement après que le client ait relâché l'image
-    setTimeout(() => { pmImgZoomEl.style.transformOrigin = '50% 50%'; }, 300);
-  }
-
-  // Activation sur Ordinateur (Souris)
-  pmImgWrapEl.addEventListener('mousemove', handleModalLoupe);
-  pmImgWrapEl.addEventListener('mouseleave', resetModalLoupe);
-
-  // Activation sur Mobile (Tactile)
-  pmImgWrapEl.addEventListener('touchstart', handleModalLoupe, {passive: false});
-  pmImgWrapEl.addEventListener('touchmove', handleModalLoupe, {passive: false});
-  pmImgWrapEl.addEventListener('touchend', resetModalLoupe);
   </script>
 </body>
 </html>
