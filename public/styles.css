@@ -244,6 +244,36 @@ select { display: none; }
 .phil-stats-val { font-family:var(--serif); font-size:2.5rem; font-weight:300; line-height:1; color:var(--ink); }
 .phil-stats-label { font-family:var(--mono); font-size:0.56rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-muted); margin-top:0.4rem; }
 
+/* ══════════════════════════════════════
+   BOUTON ASMR VIDÉO
+══════════════════════════════════════ */
+.asmr-toggle {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(26, 23, 20, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--cream);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-spring);
+  z-index: 10;
+}
+.asmr-toggle:hover {
+  background: rgba(26, 23, 20, 0.9);
+  transform: scale(1.05);
+}
+
 .boutique { padding: 14rem 6vw 10rem; position: relative; }
 .boutique::before { content:''; position:absolute; top:0; left:6vw; right:6vw; height:1px; background: linear-gradient(to right, transparent, rgba(26,23,20,0.08) 30%, rgba(26,23,20,0.08) 70%, transparent); }
 .boutique-header { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:7rem; }
@@ -613,4 +643,53 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
   transform: scale(2.2); 
   transition: none; 
   z-index: 2;
+}
+
+/* --- SECTION SAVOIR-FAIRE : MINIMALISME LUXE --- */
+/* --- STABILISATION LUXE PHILOSOPHY (RECADRAGE ACTIF) --- */
+.philosophy-visual {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; /* Aligne le cadre vidéo proprement sur la droite */
+  align-items: center;
+}
+
+/* LE CADRE DE DÉCOUPE */
+.video-philosophy-frame {
+  width: 100%;
+  max-width: 500px; 
+  height: 580px; /* <-- C'est ici qu'on ajoute de la hauteur (avant c'était 360px) */
+  border-radius: 2.5rem; 
+  overflow: hidden; 
+  
+  box-shadow: 0 30px 60px rgba(26,23,20,0.15);
+  
+  /* Fix pour Safari */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  transform: translateZ(0); 
+}
+
+/* LA VIDÉO ELLE-MÊME, REPOSITIONNÉE POUR LE CROP */
+.cropped-action-video {
+  position: relative; /* Positionnement relatif dans son cadre */
+  
+  /* LE SECRET DU CROP : On remonte de 10px pour masquer la bande noire */
+  top: -10px; 
+  
+  left: 0;
+  width: 100%;
+  
+  /* LE SECRET DU RATIO : On augmente la hauteur de 10px pour compenser le crop en haut */
+  height: calc(100% + 10px); 
+  
+  object-fit: cover; /* Assure que l'image est remplie sans déformation */
+}
+
+/* Responsive pour mobile */
+@media (max-width: 992px) {
+  .philosophy-visual {
+      justify-content: center;
+      margin-top: 3rem;
+  }
 }

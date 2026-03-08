@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Partenariats & B2B — Maison Mirage</title>
-  <meta name="description" content="Partenariats professionnels B2B — Maison Mirage, haute pâtisserie artisanale à Marseille. Hôtellerie de luxe, restauration gastronomique, épiceries fines." />
+  <meta name="description" content="Partenariats professionnels B2B — Maison Mirage, haute pâtisserie artisanale à Marseille. Restaurants, hôtels, lieux de vie et concept stores." />
   <meta property="og:title" content="Partenariats & B2B — Maison Mirage" />
-  <meta property="og:description" content="Intégrez l'expérience Mirage à votre carte. Collaborations exclusives pour les établissements les plus prestigieux." />
+  <meta property="og:description" content="Intégrez l'expérience Mirage à votre carte. Des créations spectaculaires, prêtes à servir, pour booster l'attractivité de votre établissement." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
 
@@ -18,14 +18,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 
   <style>
-    /* ══════════════════════════════════════
-       PAGE-SPECIFIC: Subpage Nav
-    ══════════════════════════════════════ */
-    nav { padding:2.5rem 6vw; display:flex; justify-content:space-between; align-items:center; position:relative; z-index:10; }
+    .subpage-header { padding:2.5rem 6vw; display:flex; justify-content:space-between; align-items:center; position:relative; z-index:10; }
 
-    /* ══════════════════════════════════════
-       PAGE-SPECIFIC: Layout
-    ══════════════════════════════════════ */
     main { display:grid; grid-template-columns:1fr 1.3fr; min-height:calc(100dvh - 100px); padding:0 6vw 5rem; gap:8vw; align-items:center; }
     .content-side { position:relative; }
 
@@ -33,27 +27,19 @@
     h1 em { font-style:italic; color:var(--gold); }
     .description { font-size:1rem; line-height:1.8; color:var(--ink-muted); max-width:42ch; margin-bottom:3.5rem; }
 
-    /* ══════════════════════════════════════
-       PAGE-SPECIFIC: B2B List
-    ══════════════════════════════════════ */
     .b2b-list { display:flex; flex-direction:column; gap:2rem; border-left:1px solid rgba(26,23,20,0.1); padding-left:2rem; }
     .b2b-item { position:relative; }
     .b2b-item::before { content:''; position:absolute; left:-2rem; top:0.6rem; width:12px; height:1px; background:var(--gold); }
     .b2b-title { font-family:var(--serif); font-size:1.3rem; font-weight:400; color:var(--ink); margin-bottom:0.4rem; }
     .b2b-desc { font-family:var(--sans); font-size:0.85rem; color:var(--ink-muted); line-height:1.6; }
 
-    /* Visual anchor */
     .visual-anchor { position:absolute; bottom:-10%; left:-5%; width:400px; height:150px; border-radius:999px; background:radial-gradient(ellipse at center, rgba(168,137,92,0.15) 0%, transparent 70%); pointer-events:none; z-index:-1; transform:rotate(-15deg); }
 
-    /* ══════════════════════════════════════
-       PAGE-SPECIFIC: Dark Form Card
-    ══════════════════════════════════════ */
     .form-side { background:var(--ink); color:var(--cream); border-radius:2.5rem; padding:4.5rem; box-shadow:0 40px 100px -20px rgba(26,23,20,0.2); position:relative; }
     .form-side::before { content:''; position:absolute; inset:0; border-radius:2.5rem; border:1px solid rgba(255,255,255,0.08); pointer-events:none; }
     .form-header { margin-bottom:3.5rem; }
     .form-header p { font-family:var(--mono); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); }
 
-    /* Dark theme overrides for inputs */
     .form-side .input-group label { color:rgba(248,232,214,0.4); }
     .form-side .input-group input, .form-side .input-group textarea { border-bottom-color:rgba(248,232,214,0.2); color:var(--white); }
     .form-side .input-group input:focus ~ label, .form-side .input-group input:not(:placeholder-shown) ~ label,
@@ -69,26 +55,34 @@
     .form-side .custom-option { color:rgba(248,232,214,0.6); }
     .form-side .custom-option:hover, .form-side .custom-option.selected { background:rgba(255,255,255,0.05); color:var(--white); }
 
-    /* Submit (inverted for dark bg) */
     .form-side .submit-btn { background:var(--cream); color:var(--ink); }
     .form-side .submit-btn:hover span, .form-side .submit-btn:hover svg { color:var(--white); }
     .form-side .privacy-note { color:rgba(248,232,214,0.4); }
 
-    /* Success */
+    /* SECTION WHATSAPP B2B */
+    .wa-pro-wrap { margin-top:3.5rem; padding-top:2rem; border-top:1px dashed rgba(248,232,214,0.15); display:flex; justify-content:space-between; align-items:center; }
+    .wa-pro-text { font-family:var(--sans); font-size:0.85rem; color:rgba(248,232,214,0.6); }
+    .wa-btn-pro { display:inline-flex; align-items:center; gap:0.6rem; font-family:var(--mono); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink); background:var(--gold-light); padding:0.8rem 1.6rem; border-radius:999px; text-decoration:none; transition:transform 0.3s var(--ease-spring), background 0.3s; }
+    .wa-btn-pro:hover { background:var(--white); transform:translateY(-2px); }
+
     .form-side .success-overlay { background:var(--ink); }
     .form-side .success-mark { border-color:var(--gold-light); color:var(--gold-light); }
     .success-title { font-family:var(--serif); font-size:2.8rem; font-weight:300; margin-bottom:1.5rem; color:var(--white); }
     .success-desc { color:rgba(248,232,214,0.7); line-height:1.8; max-width:35ch; margin-bottom:3rem; }
 
-    /* ══════════════════════════════════════
-       PAGE-SPECIFIC: Responsive
-    ══════════════════════════════════════ */
     @media (max-width:1024px) { main { grid-template-columns:1fr; padding-top:2rem; gap:4rem; } .form-side { padding:3rem 2rem; } .visual-anchor { display:none; } }
-    @media (max-width:640px) { .form-grid { grid-template-columns:1fr; gap:2rem; } .full-width { grid-column:span 1; } .submit-wrap { flex-direction:column; gap:2rem; align-items:stretch; text-align:center; } .privacy-note { max-width:100%; } }
+    @media (max-width:640px) { 
+        .form-grid { grid-template-columns:1fr; gap:2rem; } 
+        .full-width { grid-column:span 1; } 
+        .submit-wrap { flex-direction:column; gap:2rem; align-items:stretch; text-align:center; } 
+        .privacy-note { max-width:100%; } 
+        .wa-pro-wrap { flex-direction:column; gap:1.5rem; text-align:center; }
+        .wa-btn-pro { width:100%; justify-content:center; }
+    }
   </style>
 </head>
 <body>
-  <nav id="navReveal">
+  <nav id="navReveal" class="subpage-header">
     <a href="index.html" class="back-link" aria-label="Retour à la page d'accueil">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Retour
@@ -99,21 +93,24 @@
   <main>
     <section class="content-side">
       <div class="visual-anchor"></div>
-      <p class="eyebrow gs-reveal">B2B & Hôtellerie</p>
-      <h1 class="gs-reveal">L'Excellence<br><em>Partagée.</em></h1>
-      <p class="description gs-reveal">Intégrez l'expérience Mirage à votre carte. Nous collaborons avec les établissements les plus prestigieux de la région pour offrir à leur clientèle une signature sucrée inoubliable.</p>
+      <p class="eyebrow gs-reveal">B2B & Lieux de vie</p>
+      <h1 class="gs-reveal">L'Attractivité<br><em>Dessinée.</em></h1>
+      <p class="description gs-reveal">De la table bistronomique au concept store tendance, intégrez l'expérience Mirage à votre carte. Offrez à vos clients un dessert spectaculaire, prêt à servir et pensé pour marquer les esprits.</p>
+      <div class="gs-reveal" style="margin: 3rem 0; border-radius: 2.5rem; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.05); position: relative;">
+        <img src="img/vitrine-boutique.png" alt="Boutique Maison Mirage" style="width: 100%; height: auto; display: block; transition: transform 0.8s ease-out;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
       <div class="b2b-list gs-reveal">
         <div class="b2b-item">
-          <h3 class="b2b-title">Sourcing & Régularité</h3>
-          <p class="b2b-desc">Une production quotidienne au gramme près, garantissant un standard de qualité digne des plus grands palaces.</p>
+          <h3 class="b2b-title">Volumes & Régularité</h3>
+          <p class="b2b-desc">Une production calibrée pour vos besoins (jusqu'à 200 pièces par semaine). Un standard de qualité irréprochable, sans nécessiter de chef pâtissier sur place.</p>
         </div>
         <div class="b2b-item">
-          <h3 class="b2b-title">Livraison Premium</h3>
-          <p class="b2b-desc">Un service de conciergerie et de coursiers privés dédié aux professionnels, assuré 6 jours sur 7 sur Marseille et alentours.</p>
+          <h3 class="b2b-title">Clé en main & Livraison</h3>
+          <p class="b2b-desc">Un service de conciergerie pro dédié. Livraison directe dans vos vitrines ou vos chambres froides sur Marseille et alentours, 7 jours sur 7.</p>
         </div>
         <div class="b2b-item">
-          <h3 class="b2b-title">Créations Exclusives</h3>
-          <p class="b2b-desc">Possibilité de développer un trompe-l'œil signature unique, reprenant l'identité ou les produits phares de votre établissement.</p>
+          <h3 class="b2b-title">Le Climax Visuel</h3>
+          <p class="b2b-desc">Plus qu'un dessert, le trompe-l'œil est une expérience virale. Il dynamise immédiatement vos ventes additionnelles et fait rayonner votre établissement sur les réseaux.</p>
         </div>
       </div>
     </section>
@@ -131,7 +128,7 @@
           </div>
           <div class="input-group">
             <input type="text" id="role" name="role" required placeholder=" " />
-            <label for="role">Votre Fonction (Ex: Chef F&B)</label>
+            <label for="role">Votre Fonction (Ex: Gérant, Chef, Directeur...)</label>
             <svg class="validation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
           </div>
           <div class="input-group full-width">
@@ -148,28 +145,26 @@
             <label id="establishment-type-label">Type d'établissement</label>
             <div class="custom-select" id="customSelect" role="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="establishment-type-label">Sélectionner...</div>
             <div class="custom-options" id="customOptions" role="listbox" aria-labelledby="establishment-type-label">
-              <div class="custom-option" role="option" data-value="salon">Salon de Thé & Coffee Shop Premium</div>
-              <div class="custom-option" role="option" data-value="concept">Épicerie Fine & Concept Store</div>
-              <div class="custom-option" role="option" data-value="traiteur">Traiteur de prestige & Événementiel</div>
-              <div class="custom-option" role="option" data-value="hotel">Hôtel 4* / 5* & Palace</div>
-              <div class="custom-option" role="option" data-value="gastro">Restaurant Gastronomique</div>
-              <div class="custom-option" role="option" data-value="bistronomique">Table Bistronomique & Brasserie</div>
-              <div class="custom-option" role="option" data-value="autre">Autre établissement de bouche</div>
+              <div class="custom-option" role="option" data-value="restaurant">Restaurant & Brasserie</div>
+              <div class="custom-option" role="option" data-value="lounge">Bar Lounge & Lieu de vie</div>
+              <div class="custom-option" role="option" data-value="salon">Salon de Thé & Coffee Shop</div>
+              <div class="custom-option" role="option" data-value="hotel">Hôtel & Boutique Hôtel</div>
+              <div class="custom-option" role="option" data-value="traiteur">Traiteur & Événementiel</div>
+              <div class="custom-option" role="option" data-value="autre">Autre établissement</div>
             </div>
             <select name="type" id="realSelect" required>
               <option value="" disabled selected></option>
-              <option value="hotel">Hôtel 4* / 5* & Palace</option>
-              <option value="gastro">Restaurant Gastronomique</option>
-              <option value="bistronomique">Table Bistronomique & Brasserie</option>
-              <option value="salon">Salon de Thé & Coffee Shop Premium</option>
-              <option value="concept">Épicerie Fine & Concept Store</option>
-              <option value="traiteur">Traiteur de prestige & Événementiel</option>
-              <option value="autre">Autre établissement de bouche</option>
+              <option value="restaurant">Restaurant & Brasserie</option>
+              <option value="lounge">Bar Lounge & Lieu de vie</option>
+              <option value="salon">Salon de Thé & Coffee Shop</option>
+              <option value="hotel">Hôtel & Boutique Hôtel</option>
+              <option value="traiteur">Traiteur & Événementiel</option>
+              <option value="autre">Autre établissement</option>
             </select>
           </div>
           <div class="input-group full-width">
             <textarea id="message" name="message" placeholder=" " required oninput="this.style.height='';this.style.height=this.scrollHeight+'px'"></textarea>
-            <label for="message">Vos besoins (Volumes estimés, questions techniques...)</label>
+            <label for="message">Vos besoins (Volumes estimés par semaine, questions...)</label>
           </div>
         </div>
         <div class="submit-wrap">
@@ -180,12 +175,21 @@
           </button>
         </div>
       </form>
+
+      <div class="wa-pro-wrap">
+        <span class="wa-pro-text">Préférez-vous un échange direct ?</span>
+        <a href="https://wa.me/33622356575?text=Bonjour%20Maison%20Mirage,%20je%20suis%20un%20professionnel%20et%20je%20souhaite%20échanger%20sur%20un%20partenariat." target="_blank" class="wa-btn-pro" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>WhatsApp Pro</span>
+        </a>
+      </div>
+      
       <div class="success-overlay" id="successOverlay" role="alert" aria-live="polite">
         <div class="success-mark">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
         <h2 class="success-title">Demande transmise.</h2>
-        <p class="success-desc">Nous vous remercions pour l'intérêt porté à Maison Mirage. Notre pôle B2B vous contactera très prochainement pour organiser une dégustation privée.</p>
+        <p class="success-desc">Nous vous remercions pour l'intérêt porté à Maison Mirage. Notre pôle B2B vous contactera très prochainement pour discuter de votre établissement.</p>
         <a href="index.html" class="submit-btn" style="text-decoration:none;"><span>Retour au site</span></a>
       </div>
     </section>
@@ -247,6 +251,7 @@
           if (response.ok) {
             gsap.to(form, { opacity: 0, scale: 0.95, duration: 0.4, onComplete: () => {
               form.style.visibility = 'hidden';
+              document.querySelector('.wa-pro-wrap').style.display = 'none'; /* Cache aussi l'option WA */
               successOverlay.classList.add('active');
               gsap.fromTo(successOverlay, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
             }});
