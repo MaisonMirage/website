@@ -142,6 +142,17 @@ html { scrollbar-color: var(--gold) var(--cream); scrollbar-width: thin; }
 .nav-cta:hover { background: var(--gold); }
 .nav-cta:active { transform: scale(0.96); }
 
+/* --- CORRECTION ALIGNEMENT NAVBAR --- */
+.nav-left {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.nav-right {
+  grid-column: 3;
+  justify-self: end;
+}
+
 /* ══════════════════════════════════════
    7. FORMULAIRES (B2B & ÉVÉNEMENTS)
 ══════════════════════════════════════ */
@@ -610,11 +621,46 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
     margin-top: 1.5rem;
     box-shadow: 0 12px 35px rgba(26, 23, 20, 0.4);
   }
+
+/* --- ADAPTATION MOBILE (APP-LIKE SWIPE) --- */
+  /* 1. On casse la grille classique pour en faire un rail horizontal */
+  .shop-grid {
+      display: flex;
+      flex-wrap: nowrap; /* Empêche le passage à la ligne */
+      overflow-x: auto; /* Active le défilement horizontal */
+      overflow-y: hidden;
+      
+      gap: 1.5rem;
+      
+      /* On fait déborder le rail jusqu'aux bords de l'écran tout en gardant du padding interne */
+      margin: 0 -6vw; 
+      padding: 0 6vw 2rem 6vw; 
+
+      /* 2. La magie du Scroll Snap (L'effet aimant) */
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; /* Rendu fluide sur iPhone */
+
+      /* 3. On cache la barre de défilement moche pour le look "Application" */
+      scrollbar-width: none; 
+  }
+  
+  .shop-grid::-webkit-scrollbar {
+      display: none;
+  }
+
+  /* 4. Le design des cartes dans le carrousel */
+  .shop-grid .shop-card {
+      /* La carte prend 78% de l'écran. La suivante dépasse juste ce qu'il faut. */
+      flex: 0 0 78vw; 
+      
+      /* L'aimant s'arrête parfaitement au centre de la carte à chaque "swipe" */
+      scroll-snap-align: center; 
+  }
 }
 
 /* --- PETIT MOBILE --- */
 @media (max-width: 480px) {
-  .shop-grid { grid-template-columns:1fr; }
   .hero-h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
 }
 
@@ -691,5 +737,349 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
   .philosophy-visual {
       justify-content: center;
       margin-top: 3rem;
+  }
+}
+
+/* --- SECTION PREUVE SOCIALE (MARQUEE INFINI) --- */
+/* --- L'EMBALLAGE DU LOGO ET SON TOOLTIP --- */
+.logo-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Le texte généré automatiquement à partir de data-name */
+.logo-wrapper::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: -30px; /* Se place juste en dessous du logo */
+  left: 50%;
+  transform: translateX(-50%) translateY(10px); /* Légèrement décalé vers le bas au repos */
+  
+  color: var(--ink); /* Ta couleur de texte foncée */
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+  
+  opacity: 0; /* Invisible par défaut */
+  pointer-events: none; /* Empêche le texte de bloquer la souris */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* L'animation d'apparition du texte au survol de la boîte */
+.logo-wrapper:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* Remonte doucement à sa place */
+}
+
+/* (RAPPEL) : On s'assure que c'est bien l'image qui grossit au survol de la boîte */
+.logo-wrapper:hover img {
+  filter: grayscale(100%) opacity(100%);
+  transform: scale(1.08);
+}
+.trust-marquee-section {
+  width: 100%;
+  padding: 3rem 0;
+  background-color: transparent; /* S'intègre au fond de ta page */
+  border-bottom: 1px solid rgba(26, 23, 20, 0.05); /* Ligne de séparation ultra-fine */
+  margin-bottom: 4rem; /* Donne de l'air avant la section vidéo */
+}
+
+.trust-label {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+  opacity: 0.4;
+  margin-bottom: 2.5rem;
+}
+
+/* Le conteneur avec l'effet de fondu sur les bords */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  
+  /* LE CORRECTIF : On donne 30px d'air en haut et en bas pour l'agrandissement */
+  padding: 30px 0; 
+  
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  /* L'animation : 30 secondes pour un tour complet, de manière linéaire */
+  animation: scrollMarquee 35s linear infinite;
+}
+
+.marquee-logos {
+  display: flex;
+  align-items: center;
+  gap: 6rem; /* Espace généreux entre chaque logo */
+  padding-right: 6rem; /* Espace vital après le dernier logo pour raccorder avec le clone */
+}
+
+/* Le design des logos : Format Médaille/Blason LISIBLE */
+.marquee-logos img {
+  height: 85px; /* La nouvelle taille assumée */
+  width: 85px;
+  filter: opacity(65%); 
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+/* Effet au survol */
+.marquee-logos img:hover {
+  filter: grayscale(100%) opacity(100%);
+  transform: scale(1.05);
+}
+
+/* L'animation qui crée l'infini */
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+  
+  /* -50% car on a 2 blocs identiques. Quand on arrive à la moitié, ça saute au début invisiblement */
+}
+
+/* Adaptation pour les téléphones */
+@media (max-width: 992px) {
+  .marquee-logos { {
+      gap: 4rem; /* Un peu plus d'espace pour respirer sur mobile */
+      padding-right: 4rem;
+  }
+  .marquee-logos img {
+      height: 55px; /* On réduit un peu sur mobile pour rester élégant, mais on reste lisible */
+  }
+}
+  .trust-marquee-section {
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+  }
+}
+
+/* --- SECTION ESPACE PRO : GRILLE DES PARTENAIRES --- */
+.partners-gallery-section {
+  width: 100%;
+  padding: 4rem 5%;
+  margin-bottom: 4rem;
+}
+
+.partners-header {
+  text-align: center;
+  margin-bottom: 4rem; /* Un bel espace avant la grille */
+}
+
+/* La Grille : Centre les éléments et les passe à la ligne automatiquement */
+.partners-grid {
+  display: flex;
+  flex-wrap: wrap; /* C'est ça qui crée les lignes */
+  justify-content: center;
+  align-items: center;
+  gap: 5rem 6rem; /* 5rem d'espace vertical, 6rem d'espace horizontal */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Le design des logos de la grille (Identique à l'accueil) */
+.partners-grid img {
+  height: 85px;
+  width: 85px; 
+  object-fit: cover;
+  
+  filter: grayscale(100%) opacity(65%); 
+  
+  /* La découpe en rond parfait */
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  
+  transition: filter 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* L'effet au survol dans la grille */
+.partners-grid .logo-wrapper:hover img {
+  filter: grayscale(100%) opacity(100%);
+  transform: scale(1.08); 
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+}
+
+/* Adaptation pour les téléphones */
+@media (max-width: 992px) {
+  .partners-grid {
+      gap: 4rem 3rem; /* On réduit les espaces sur mobile */
+  }
+  .partners-grid img {
+      height: 65px;
+      width: 65px;
+  }
+}
+
+/* --- LE TÉMOIGNAGE ESPACE PRO --- */
+.pro-testimonial {
+  max-width: 750px;
+  margin: 2rem auto 4rem auto; /* Centre le bloc et donne de l'air avant la grille */
+  text-align: center;
+}
+
+.pro-testimonial .quote {
+  font-family: var(--serif); /* Ta police de luxe */
+  font-size: 1.6rem;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  font-style: italic; /* L'italique donne le ton de la citation */
+}
+
+.pro-testimonial .author {
+  font-family: var(--mono); /* Ta police technique/moderne */
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  opacity: 0.5; /* Discret pour laisser la vedette à la citation */
+}
+
+
+/* --- L'IMAGE PRINCIPALE --- */
+.hero-img-wrapper {
+  width: 100%;
+  height: 50vh; /* Force une hauteur élégante (moitié de l'écran) */
+  min-height: 400px;
+  max-height: 550px;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(26,23,20,0.08);
+  margin: 3rem 0 5rem 0; /* Plus d'air en dessous */
+  border: 1px solid rgba(26,23,20,0.05);
+}
+
+.hero-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Centre l'image sans la déformer */
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-img-wrapper:hover img {
+  transform: scale(1.04); /* Zoom subtil et très lent au survol */
+}
+
+/* --- LES 3 ARGUMENTS (Style Éditorial) --- */
+.b2b-list { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 6rem; /* On augmente encore l'espace entre les colonnes */
+  width: 100%;
+  text-align: left; 
+}
+
+.b2b-item { 
+  position: relative; 
+  padding-top: 2.5rem; /* Espace pour le numéro et la ligne */
+  border-top: 1px solid rgba(26,23,20,0.1); /* Ligne fine sur toute la largeur */
+}
+
+/* La petite ligne dorée qui vient par-dessus la ligne grise */
+.b2b-item::before { 
+  content: ''; 
+  position: absolute; 
+  left: 0; 
+  top: -1px; 
+  width: 40px; 
+  height: 1px; 
+  background: var(--gold); 
+  transition: width 0.5s ease;
+}
+
+.b2b-item:hover::before { width: 100%; } /* La ligne s'allonge au survol, petit effet sympa */
+
+/* La numérotation luxe */
+.b2b-num {
+  position: absolute;
+  top: 0.8rem;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+.b2b-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--ink); margin-bottom: 1rem; }
+.b2b-desc { 
+  font-family: var(--sans); 
+  font-size: 0.95rem; 
+  color: var(--ink-muted); 
+  line-height: 1.8; /* Plus d'interligne pour faciliter la lecture */
+  max-width: 90%; /* Empêche le texte de s'étaler jusqu'au bord */
+}
+
+/* --- LE VERROUILLAGE DU FORMULAIRE --- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colonnes parfaitement égales */
+  column-gap: 4rem; /* L'espace horizontal que tu mesurais dans la vidéo */
+  row-gap: 2.5rem; /* L'espace vertical entre chaque ligne */
+  margin-bottom: 3.5rem;
+}
+/* --- 2. LE FORMULAIRE NOIR : L'ESPACE VIP --- */
+.form-side { 
+  width: 100%;
+  max-width: 950px; /* Un poil plus large pour imposer le respect */
+  background: var(--ink); 
+  color: var(--cream); 
+  border-radius: 2.5rem; 
+  
+  /* LE SECRET EST ICI : On donne une respiration immense, surtout en bas */
+  padding: 5rem 5rem 6rem 5rem; 
+  
+  /* Ombre plus profonde et luxueuse */
+  box-shadow: 0 60px 120px rgba(26,23,20,0.25); 
+  position: relative; 
+  margin-bottom: 5rem; /* Évite que le bloc colle au bas du navigateur */
+}
+.full-width { grid-column: 1 / -1; } /* Force un champ à prendre toute la largeur */
+.wa-pro-wrap { 
+  margin-top: 4.5rem; /* On repousse le bloc loin du bouton d'envoi */
+  padding-top: 3.5rem; 
+  /* Fini les pointillés, place à une ligne continue très subtile */
+  border-top: 1px solid rgba(248,232,214,0.08); 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+/* --- TRANSITION DE PAGE (APP-LIKE) --- */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--cream, #F8E8D6); /* Ta couleur de fond signature */
+  z-index: 99999; /* Par-dessus TOUT (menu, popups, etc.) */
+  pointer-events: none; /* Empêche de bloquer les clics une fois invisible */
+  /* GSAP va s'occuper de l'opacité */
+}
+
+/* Ajustement Mobile pour le texte */
+@media (max-width: 992px) {
+  .pro-testimonial .quote {
+      font-size: 1.2rem;
+      padding: 0 1rem;
+  }
+}
+/* Adaptation Mobile de l'espace VIP */
+@media (max-width: 640px) {
+  .form-side {
+      padding: 4rem 2rem 5rem 2rem; /* On garde de l'air en bas même sur téléphone */
+  }
+  .b2b-list {
+      gap: 4rem;
+      max-width: 100%;
   }
 }
