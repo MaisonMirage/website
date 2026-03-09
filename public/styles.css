@@ -753,20 +753,20 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
   transform: translateZ(0); 
 }
 
-/* LA VIDÉO ELLE-MÊME, REPOSITIONNÉE POUR LE CROP */
+/* LA VIDÉO ELLE-MÊME, REPOSITIONNÉE POUR LE CROP ET LE CADRAGE HAUT */
 .cropped-action-video {
-  position: relative; /* Positionnement relatif dans son cadre */
+  position: relative; 
   
-  /* LE SECRET DU CROP : On remonte de 10px pour masquer la bande noire */
-  top: -10px; 
-  
+  /* 1. On remonte de 15px pour être certain de masquer la bande noire */
+  top: -15px; 
   left: 0;
   width: 100%;
+  height: calc(100% + 30px); /* On compense la taille pour ne pas créer de trou en bas */
   
-  /* LE SECRET DU RATIO : On augmente la hauteur de 10px pour compenser le crop en haut */
-  height: calc(100% + 10px); 
+  object-fit: cover; 
   
-  object-fit: cover; /* Assure que l'image est remplie sans déformation */
+  /* 2. LE SECRET EST ICI : On force l'affichage sur le HAUT de l'image (à 15% du sommet) au lieu de 50% (le milieu) */
+  object-position: center 15%; 
 }
 
 /* Responsive pour mobile (Section Savoir-Faire) */
@@ -778,14 +778,14 @@ footer { padding: 6rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
   
   /* LE CORRECTIF : On réduit le cadre gigantesque sur téléphone */
   .video-philosophy-frame {
-      height: 350px; /* Une hauteur parfaite pour un smartphone */
+      height: 420px; /* Une hauteur parfaite pour un smartphone */
   }
 }
 
 /* Pour les tous petits écrans (iPhone SE etc.) */
 @media (max-width: 480px) {
   .video-philosophy-frame {
-      height: 300px;
+      height: 380px;
   }
 }
 
