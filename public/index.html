@@ -70,7 +70,7 @@
     </a>
     <div class="nav-right">
       <a href="partenaires.html" class="nav-cta" aria-label="Espace Professionnel">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
         <span class="cart-text-label">Espace Pro</span>
       </a>
     </div>
@@ -151,7 +151,17 @@
     
     <div class="philosophy-visual reveal">
       <div class="video-philosophy-frame">
-        <video class="cropped-action-video" src="img/peche-decoupe.mp4" autoplay muted loop playsinline></video>
+        <video id="asmrVideo" class="cropped-action-video" src="img/peche-decoupe.mp4" autoplay muted loop playsinline></video>
+        
+        <button id="asmrBtn" class="asmr-toggle" aria-label="Activer le son">
+          <span class="icon-muted">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+          </span>
+          <span class="icon-sound" style="display: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          </span>
+          <span>ASMR</span>
+        </button>
       </div>
     </div>
 </section>
@@ -170,6 +180,11 @@
       <button class="filter-pill" data-filter="fruit">Fruits</button>
       <button class="filter-pill" data-filter="chocolat">Chocolat &amp; Praliné</button>
       <button class="filter-pill" data-filter="signature">Signatures</button>
+    </div>
+    
+    <div class="mobile-swipe-hint">
+      <span>Glisser pour explorer</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="m14 6 6 6-6 6"/></svg>
     </div>
 
     <div class="shop-grid">
@@ -626,8 +641,8 @@
   document.getElementById('chatSend').addEventListener('click', () => { if(chatInput.value.trim()) sendMessage(chatInput.value.trim(), null); });
   chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && chatInput.value.trim()) sendMessage(chatInput.value.trim(), null); });
 
-  // Logique de la vidéo ASMR
-  const asmrVideo = document.getElementById('asmrVideo');
+ // --- LOGIQUE DE LA VIDÉO ASMR ---
+ const asmrVideo = document.getElementById('asmrVideo');
       const asmrBtn = document.getElementById('asmrBtn');
       
       if (asmrVideo && asmrBtn) {
@@ -635,11 +650,13 @@
           if (asmrVideo.muted) {
             // On active le son
             asmrVideo.muted = false;
-            // On remet la vidéo au début pour entendre le "CRACK"
+            // On remet la vidéo au début pour entendre le "CRACK" de la découpe
             asmrVideo.currentTime = 0; 
-            // On change l'icône
+            // On change l'icône (désactivé -> activé)
             asmrBtn.querySelector('.icon-muted').style.display = 'none';
             asmrBtn.querySelector('.icon-sound').style.display = 'block';
+            
+            // Petit effet visuel sur le bouton pour montrer qu'il est actif
             asmrBtn.style.color = 'var(--gold)';
             asmrBtn.style.borderColor = 'var(--gold)';
           } else {
@@ -647,6 +664,8 @@
             asmrVideo.muted = true;
             asmrBtn.querySelector('.icon-muted').style.display = 'block';
             asmrBtn.querySelector('.icon-sound').style.display = 'none';
+            
+            // Retour au style normal
             asmrBtn.style.color = 'var(--cream)';
             asmrBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
           }
