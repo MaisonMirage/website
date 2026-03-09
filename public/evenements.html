@@ -31,7 +31,10 @@
         flex-direction: column; 
         gap: 8rem; 
         min-height: calc(100dvh - 100px); 
-        padding: 0 6vw 5rem; 
+        
+        /* LE FIX EST ICI : On remplace le 0 par 9rem pour pousser le texte sous le menu */
+        padding: 9rem 6vw 5rem; 
+        
         align-items: center; 
     }
     
@@ -187,7 +190,7 @@
        PAGE-SPECIFIC: Responsive
     ══════════════════════════════════════ */
     @media (max-width:1024px) { 
-        main { gap: 5rem; padding-top: 2rem; } 
+        main { gap: 5rem; padding-top: 7rem; } 
         .b2b-list { grid-template-columns: 1fr; gap: 3rem; } 
         .form-side { padding: 4rem 2rem 5rem 2rem; } 
         .visual-anchor { display: none; } 
@@ -205,13 +208,31 @@
 </head>
 <body>
   <div class="page-transition"></div>
-  <header id="navReveal" class="subpage-header">
-    <a href="index.html" class="back-link" aria-label="Retour à la page d'accueil">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Retour
+  <div id="mobile-overlay" role="dialog" aria-label="Menu de navigation">
+    <a href="index.html#boutique" class="mobile-nav-item">Le Catalogue</a>
+    <a href="index.html#atelier" class="mobile-nav-item">L'Atelier</a>
+    <a href="index.html#philosophy" class="mobile-nav-item">Savoir-faire</a>
+    <a href="partenaires.html" class="mobile-nav-item">Espace Pro (B2B)</a>
+    <a href="evenements.html" class="mobile-nav-item">Événements</a>
+  </div>
+
+  <nav id="navbar">
+    <div class="nav-left">
+      <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-overlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <a href="index.html" class="nav-brand" aria-label="Retour à l'accueil">
+      <img src="img/maison_mirage_logo_beige.png" alt="" class="brand-logo" />
+      <span class="brand-name">Maison Mirage</span>
     </a>
-    <img src="img/maison_mirage_logo_beige.png" alt="Maison Mirage" class="brand-logo" loading="lazy" width="120" height="34" />
-  </header>
+    <div class="nav-right">
+      <a href="partenaires.html" class="nav-cta" aria-label="Espace Professionnel">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        <span class="cart-text-label">Espace Pro</span>
+      </a>
+    </div>
+  </nav>
 
   <main>
     
@@ -482,6 +503,37 @@
         }
       });
     });
+    // Afficher la navbar au démarrage
+    document.getElementById('navbar').classList.add('visible');
+
+// Effet au scroll (si tu veux qu'elle devienne opaque en descendant)
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+        document.getElementById('navbar').classList.add('scrolled');
+    } else {
+        document.getElementById('navbar').classList.remove('scrolled');
+    }
+});
+
+// Logique du menu burger
+const navBurger = document.getElementById('navBurger');
+const mobileOverlay = document.getElementById('mobile-overlay');
+
+if(navBurger && mobileOverlay) {
+    navBurger.addEventListener('click', function() {
+      this.classList.toggle('open');
+      const isOpen = this.classList.contains('open');
+      this.setAttribute('aria-expanded', isOpen);
+      mobileOverlay.classList.toggle('open');
+    });
+
+    // Fermer le menu si on clique sur un lien
+    document.querySelectorAll('.mobile-nav-item').forEach(l => l.addEventListener('click', () => {
+      navBurger.classList.remove('open');
+      navBurger.setAttribute('aria-expanded', 'false');
+      mobileOverlay.classList.remove('open');
+    }));
+}
   </script>
 </body>
 </html>
