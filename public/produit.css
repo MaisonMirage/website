@@ -143,7 +143,7 @@
 
 /* --- MOBILE --- */
 @media (max-width: 768px) {
-  .product-hero { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 5vw 3rem; }
+  .product-hero { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 7vw 3rem; }
   .product-gallery { position: static; }
   .product-name { font-size: 2.8rem; }
   .product-thumb { width: 96px; height: 96px; border-radius: 1.2rem; }
