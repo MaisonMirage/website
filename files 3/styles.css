@@ -786,21 +786,14 @@ footer { padding: 4rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
 
   /* 4. Le design des cartes dans le carrousel */
   .shop-grid .shop-card {
-      /* 72vw = l'image ne touche jamais les bords, on aperçoit la carte suivante */
-      flex: 0 0 72vw; 
+      /* La carte prend 78% de l'écran. La suivante dépasse juste ce qu'il faut. */
+      flex: 0 0 78vw; 
       
       /* L'aimant s'arrête parfaitement au centre de la carte à chaque "swipe" */
       scroll-snap-align: center; 
-
-      /* Padding interne pour que l'image ne colle pas aux bords */
-      padding: 0 2vw;
-  }
-  /* L'image prend toute la largeur de la zone paddée */
-  .shop-grid .shop-card .shop-card-img-wrap {
-      border-radius: 2rem;
   }
   /* Padding interne sur le texte des cartes mobile */
-  .shop-card-name, .shop-card-sub, .shop-card-footer { padding: 0 2vw; }
+  .shop-card-name, .shop-card-sub, .shop-card-footer { padding: 0 0.3rem; }
 }
 
 /* --- PETIT MOBILE --- */
