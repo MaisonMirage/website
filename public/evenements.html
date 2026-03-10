@@ -555,6 +555,7 @@
         mobileOverlay.classList.remove('open');
         if(navbar) navbar.classList.remove('menu-open');
         document.body.style.overflow = '';
+        document.body.classList.remove('menu-active');
       }
       navBurger.addEventListener('click', function() {
         const opening = !this.classList.contains('open');
@@ -563,6 +564,7 @@
         mobileOverlay.classList.toggle('open');
         if(navbar) navbar.classList.toggle('menu-open');
         document.body.style.overflow = opening ? 'hidden' : '';
+        document.body.classList.toggle('menu-active', opening);
       });
       document.querySelectorAll('.mobile-nav-item').forEach(l => l.addEventListener('click', closeMenu));
       document.addEventListener('keydown', e => { if(e.key === 'Escape' && mobileOverlay.classList.contains('open')) closeMenu(); });

@@ -50,7 +50,11 @@ body::before {
   background: linear-gradient(to bottom, var(--cream) 40%, transparent);
   z-index: 700;
   pointer-events: none;
+  transition: opacity 0.3s;
 }
+/* Masquer le gradient et le grain quand le menu mobile est ouvert */
+body.menu-active::before,
+body.menu-active::after { opacity: 0; }
 
 body::after {
   content: '';
@@ -473,10 +477,14 @@ footer { padding: 4rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
   border-top: 1px solid rgba(248,232,214,0.1); padding-top: 1.5rem;
   opacity: 0; transition: opacity 0.5s 0.3s;
 }
+@media (max-width: 480px) {
+  .mobile-nav-footer { flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+}
 #mobile-overlay.open .mobile-nav-footer { opacity: 1; }
 .mobile-nav-footer a {
-  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; 
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; 
   text-transform: uppercase; color: rgba(248,232,214,0.4); transition: color 0.3s;
+  padding: 0.3rem 0; /* bigger touch target */
 }
 .mobile-nav-footer a:hover { color: var(--gold); }
 

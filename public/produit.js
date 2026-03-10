@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileOverlay.classList.toggle('open');
       navbar.classList.toggle('menu-open');
       document.body.style.overflow = opening ? 'hidden' : '';
+      document.body.classList.toggle('menu-active', opening);
     }
     function closeMenu() {
       navBurger.classList.remove('open');
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileOverlay.classList.remove('open');
       navbar.classList.remove('menu-open');
       document.body.style.overflow = '';
+      document.body.classList.remove('menu-active');
     }
 
     navBurger.addEventListener('click', toggleMenu);

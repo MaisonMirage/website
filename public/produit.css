@@ -149,6 +149,11 @@
   .product-thumb { width: 96px; height: 96px; border-radius: 1.2rem; }
   .related-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .related-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  /* CTAs full width et plus gros sur mobile */
+  .product-cta-primary { width: 100%; justify-content: center; padding: 1.3rem 2rem; }
+  .product-cta-secondary { width: 100%; justify-content: center; padding: 1.1rem 1.5rem; font-size: 0.65rem; }
+  /* Pricing grid en colonne sur petit écran */
+  .pricing-tier { padding: 0.8rem 1rem; }
 }
 @media (max-width: 480px) {
   .related-grid { grid-template-columns: 1fr; }

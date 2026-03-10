@@ -129,6 +129,10 @@
   filter: grayscale(100%);
   transition: all 0.4s var(--ease);
 }
+@media (max-width: 768px) {
+  .social-proof-logos { gap: 1.5rem; }
+  .social-proof-logos .sp-logo-wrap img { height: 28px; }
+}
 .social-proof-logos .sp-logo-wrap:hover img {
   opacity: 1;
   filter: grayscale(0%);
@@ -168,8 +172,13 @@
   line-height: 1.6;
 }
 @media (max-width: 768px) {
-  .kpi-bar { grid-template-columns: 1fr; margin: 0 4vw; }
-  .kpi-item { padding: 1.8rem 1.5rem; }
+  .kpi-bar { margin: 0 4vw; }
+  .kpi-item { padding: 1.5rem 1rem; }
+  .kpi-number { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+  .kpi-label { font-size: 0.55rem; letter-spacing: 0.15em; }
+}
+@media (max-width: 380px) {
+  .kpi-bar { grid-template-columns: 1fr; }
 }
 
 /* --- VIDEO REVEAL SECTION --- */
