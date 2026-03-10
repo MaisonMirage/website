@@ -12,7 +12,7 @@
 .breadcrumb {
   padding: 2rem 6vw 0;
   font-family: var(--mono);
-  font-size: 0.55rem;
+  font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--ink-muted);
@@ -91,7 +91,7 @@
 
 /* --- COMPOSITION --- */
 .product-section-label {
-  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.25em;
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.25em;
   text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
 }
 .product-layers { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
@@ -104,7 +104,7 @@
 /* --- ALLERGÈNES --- */
 .product-allergens { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
 .allergen-tag {
-  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em;
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em;
   text-transform: uppercase; padding: 0.4rem 0.8rem; border-radius: 999px;
   border: 1px solid rgba(26,23,20,0.12); color: var(--ink-muted);
 }
@@ -146,6 +146,7 @@
   .product-hero { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 5vw 3rem; }
   .product-gallery { position: static; }
   .product-name { font-size: 2.8rem; }
+  .product-thumb { width: 96px; height: 96px; border-radius: 1.2rem; }
   .related-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .related-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }
