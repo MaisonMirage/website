@@ -9,6 +9,7 @@
   <meta property="og:description" content="Une scénographie comestible spectaculaire pour votre événement. Mariages, galas et réceptions privées." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
+  <meta property="og:image" content="https://www.lamaisonmirage.com/img/hero-flatlay.webp" />
   <link rel="canonical" href="https://www.lamaisonmirage.com/evenements.html" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
@@ -204,6 +205,16 @@
       .wa-btn-pro { width:100%; justify-content:center; }
       .event-chips { justify-content: center; }
     }
+
+    /* PRICING GRID */
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.6rem; }
+    .pricing-tier { padding:1rem 1.2rem; background:var(--cream-2); border-radius:1rem; text-align:center; border:1px solid transparent; }
+    .pricing-tier:last-child { background:rgba(168,137,92,0.08); border-color:rgba(168,137,92,0.2); }
+    .pricing-tier-qty { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .pricing-tier-price { font-family:var(--serif); font-size:1.4rem; font-weight:300; color:var(--ink); }
+    .pricing-tier-price span { font-family:var(--mono); font-size:0.55rem; color:var(--ink-muted); }
+    .pricing-tier:last-child .pricing-tier-price { color:var(--gold); }
+    @media(max-width:480px) { .pricing-grid{grid-template-columns:1fr;} .pricing-tier{display:flex;justify-content:space-between;align-items:center;} .pricing-tier-qty{margin-bottom:0;} }
   </style>
 </head>
 <body>
@@ -240,8 +251,8 @@
     <section class="content-side">
       <div class="visual-anchor"></div>
       <p class="eyebrow gs-reveal">Sur-mesure & Réceptions</p>
-      <h1 class="gs-reveal">Le Climax<br><em>Visuel.</em></h1>
-      <p class="description gs-reveal">Faites de votre dessert le centre de l'attention. Que ce soit pour un mariage, un événement d'entreprise, ou un anniversaire en petit comité, offrez à vos invités une expérience qu'ils n'oublieront pas.</p>
+      <h1 class="gs-reveal">L'instant que<br><em>tout le monde filme.</em></h1>
+      <p class="description gs-reveal">Mariages, anniversaires, galas ou événements d'entreprise — offrez à vos invités un moment spectaculaire. La découpe d'un trompe-l'œil Mirage devient le point culminant de votre réception.</p>
 
       <div class="hero-img-wrapper gs-reveal">
         <img src="img/table-evenement.webp" alt="Sweet Table Maison Mirage" />
@@ -269,7 +280,7 @@
       </div>
     </section>
 
-    <!-- TESTIMONIAL -->
+    <!-- TESTIMONIALS -->
     <section class="event-testimonial gs-reveal">
       <div class="event-testimonial-divider">
         <span></span>
@@ -278,6 +289,37 @@
       </div>
       <p class="event-testimonial-quote">Le moment de la découpe a été le point culminant de notre soirée. Nos invités n'en revenaient pas — un vrai fruit qu'on coupe et qui révèle un dessert d'exception.</p>
       <p class="event-testimonial-author">— Mariage, Domaine les Parcs · Aix-en-Provence</p>
+    </section>
+
+    <section class="event-testimonial gs-reveal">
+      <div class="event-testimonial-divider">
+        <span></span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span></span>
+      </div>
+      <p class="event-testimonial-quote">Pour notre gala d'entreprise (120 convives), Maison Mirage a créé des trompe-l'œil aux couleurs de notre marque. L'effet sur nos collaborateurs a été immédiat.</p>
+      <p class="event-testimonial-author">— Gala d'entreprise · Marseille</p>
+    </section>
+
+    <!-- FOURCHETTES DE PRIX -->
+    <section class="content-side gs-reveal" style="max-width:700px;">
+      <p class="eyebrow" style="justify-content:center;">Tarifs indicatifs</p>
+      <h2 style="font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,3.5vw,2.5rem);text-align:center;line-height:0.95;margin-bottom:2.5rem;">Chaque événement<br><em style="font-style:italic;color:var(--gold-light);">est unique.</em></h2>
+      <div class="pricing-grid" style="max-width:550px;margin:0 auto;">
+        <div class="pricing-tier">
+          <div class="pricing-tier-qty">Petit comité</div>
+          <div class="pricing-tier-price" style="font-size:1rem;">10-30 pièces</div>
+        </div>
+        <div class="pricing-tier">
+          <div class="pricing-tier-qty">Réception</div>
+          <div class="pricing-tier-price" style="font-size:1rem;">50-100 pièces</div>
+        </div>
+        <div class="pricing-tier">
+          <div class="pricing-tier-qty">Grand événement</div>
+          <div class="pricing-tier-price" style="font-size:1rem;">100+ pièces</div>
+        </div>
+      </div>
+      <p style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-align:center;margin-top:1.5rem;">Devis personnalisé sous 48h · Formes sur-mesure disponibles</p>
     </section>
 
     <!-- FORMULAIRE -->
@@ -305,6 +347,11 @@
           <div class="input-group">
             <input type="number" id="guests" name="guests" required placeholder=" " min="10" />
             <label for="guests">Nombre de convives estimé</label>
+            <svg class="validation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div class="input-group full-width">
+            <input type="email" id="email" name="email" required placeholder=" " />
+            <label for="email">Votre email</label>
             <svg class="validation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
           </div>
 
@@ -360,7 +407,7 @@
 
   <!-- FOOTER -->
   <footer class="page-footer">
-    <div class="page-footer-brand">Maison Mirage</div>
+    <div class="footer-brand-text">Maison Mirage</div>
     <div class="page-footer-tagline">Haute Pâtisserie · Marseille</div>
     <div class="page-footer-links">
       <a href="index.html">Accueil</a>

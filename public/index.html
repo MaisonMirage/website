@@ -13,6 +13,9 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Maison Mirage" />
+  <meta property="og:image" content="https://www.lamaisonmirage.com/img/hero-flatlay.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="800" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
@@ -43,6 +46,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" as="image" href="img/hero-flatlay.webp" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCL4B8SJY0"></script>
@@ -59,6 +63,10 @@
   <link rel="stylesheet" href="homepage.css" />
 </head>
 <body>
+
+  <!-- Accessibility: skip to content -->
+  <a href="#boutique" class="skip-to-content">Aller au contenu</a>
+  <noscript><style>#navbar{opacity:1;translate:0 0;}.reveal{opacity:1;transform:none;}.hero-eyebrow,.hero-h1,.hero-hook,.hero-desc,.hero-actions,.hero-img-main{opacity:1;transform:none;}</style></noscript>
 
   <!-- ═══════ ORDER GATEWAY (inchangé) ═══════ -->
   <div id="order-gateway" role="dialog" aria-label="Options de contact">
@@ -141,7 +149,7 @@
       <span class="scroll-hint-label">Défiler</span>
     </div>
     <div class="hero-right">
-      <img src="img/hero-flatlay.webp" alt="Collection Maison Mirage — desserts trompe-l'œil" class="hero-img-main" id="heroMain" width="1200" height="800"/>
+      <img src="img/hero-flatlay.webp" alt="Collection Maison Mirage — desserts trompe-l'œil" class="hero-img-main" id="heroMain" width="1200" height="800" fetchpriority="high"/>
     </div>
   </header>
 
@@ -298,25 +306,25 @@
       <div class="atelier-steps">
         <div class="atelier-step reveal">
           <div class="atelier-step-num">01 &mdash; Matière</div>
-          <div class="atelier-step-img"><img src="img/ingredient.webp" alt="Sélection des matières premières" width="380" height="285" loading="lazy"/></div>
+          <div class="atelier-step-img"><img src="img/ingredient.webp" alt="Sélection des matières premières" width="380" height="285" loading="lazy" loading="lazy"/></div>
           <h3 class="atelier-step-title">La profusion des matières</h3>
           <p class="atelier-step-desc">Fruits de saison gorgés de soleil, pistaches iraniennes, chocolats grands crus, gousses de Madagascar.</p>
         </div>
         <div class="atelier-step reveal">
           <div class="atelier-step-num">02 &mdash; Assemblage</div>
-          <div class="atelier-step-img"><img src="img/montage.webp" alt="Assemblage du dessert" width="380" height="285" loading="lazy"/></div>
+          <div class="atelier-step-img"><img src="img/montage.webp" alt="Assemblage du dessert" width="380" height="285" loading="lazy" loading="lazy"/></div>
           <h3 class="atelier-step-title">L'assemblage du cœur</h3>
           <p class="atelier-step-desc">Les textures sont superposées dans un ordre précis. Chaque couche joue un rôle dans le voyage gustatif.</p>
         </div>
         <div class="atelier-step reveal">
           <div class="atelier-step-num">03 &mdash; Glaçage</div>
-          <div class="atelier-step-img"><img src="img/atelier-glacage.webp" alt="Glaçage miroir" width="380" height="285" loading="lazy"/></div>
+          <div class="atelier-step-img"><img src="img/atelier-glacage.webp" alt="Glaçage miroir" width="380" height="285" loading="lazy" loading="lazy"/></div>
           <h3 class="atelier-step-title">Le glaçage miroir</h3>
           <p class="atelier-step-desc">Un enrobage miroir vient sceller la pièce et révéler ses premiers reflets.</p>
         </div>
         <div class="atelier-step reveal">
           <div class="atelier-step-num">04 &mdash; Finition</div>
-          <div class="atelier-step-img"><img src="img/atelier-finition.webp" alt="Finition trompe-l'œil" width="380" height="285" loading="lazy"/></div>
+          <div class="atelier-step-img"><img src="img/atelier-finition.webp" alt="Finition trompe-l'œil" width="380" height="285" loading="lazy" loading="lazy"/></div>
           <h3 class="atelier-step-title">La finition trompe-l'œil</h3>
           <p class="atelier-step-desc">L'enrobage final reproduit avec une fidélité troublante la matière du fruit original.</p>
         </div>
@@ -423,6 +431,20 @@
         </button>
         <div class="faq-answer"><p>Pour intégrer notre collection existante à votre carte, comptez 1 semaine. Pour une création signature exclusive, comptez 2 à 3 semaines de développement incluant les essais et ajustements.</p></div>
       </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span class="faq-q-text">Quels sont vos tarifs pour les professionnels ?</span>
+          <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2v8M2 6h8"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>Nos tarifs sont dégressifs : 6€/pièce en dessous de 50 unités, 5,50€ dès 50 pièces, et 5€ dès 100 pièces. Nous proposons une dégustation gratuite pour vos équipes avant tout engagement.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span class="faq-q-text">Combien de temps se conservent vos créations ?</span>
+          <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2v8M2 6h8"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>5 jours en chambre froide (0-4°C). Nos créations sont livrées prêtes à servir. Il suffit de les sortir 15 minutes avant le service pour un rendu visuel et gustatif optimal.</p></div>
+      </div>
     </div>
   </section>
 
@@ -473,22 +495,13 @@
     <div class="footer-brand-text">Maison Mirage</div>
     <div class="footer-tagline">Haute Pâtisserie · Marseille</div>
 
-    <div class="footer-social">
-      <a href="https://www.instagram.com/lamaisonmirage/" target="_blank" rel="noopener" aria-label="Instagram Maison Mirage">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-      <a href="https://www.tiktok.com/@lamaisonmirage" target="_blank" rel="noopener" aria-label="TikTok Maison Mirage">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-      </a>
-    </div>
-
     <nav class="footer-nav">
       <a href="#boutique">Le Catalogue</a>
       <a href="evenements.html">Événements</a>
       <a href="partenaires.html">Espace Pro</a>
     </nav>
     <div class="footer-contact">
-      <a href="/cdn-cgi/l/email-protection#086b67667c696b7c4864696569617b676665617a696f6d266b6765"><span class="__cf_email__" data-cfemail="5f3c30312b3e3c2b1f333e323e362c303132362d3e383a713c3032">[email&#160;protected]</span></a><br/>
+      <a href="mailto:contact@lamaisonmirage.com">contact@lamaisonmirage.com</a><br/>
       <a href="tel:+33622356575">+33 (0)6 22 35 65 75</a>
     </div>
     <div class="footer-bottom">
@@ -535,7 +548,7 @@
       <div class="chat-header-avatar"><img src="img/maison_mirage_logo_beige.webp" alt="M" style="width:1.2rem;"/></div>
       <div class="chat-header-info"><div class="chat-header-name">Pôle B2B & Événements</div></div>
     </div>
-    <div class="chat-messages" id="chatMessages">
+    <div class="chat-messages" id="chatMessages" aria-live="polite" aria-label="Messages du chat">
       <div class="chat-msg bot">Bonjour. Cet espace est dédié aux professionnels (restaurants, lounges, hôtellerie, événementiel). Comment puis-je vous aider ?</div>
     </div>
     <div class="chat-typing" id="chatTyping"><div class="chat-typing-dot"></div><div class="chat-typing-dot"></div><div class="chat-typing-dot"></div></div>
@@ -678,17 +691,20 @@
   }, 25000);
 
   const quickReplies = [
-    { label:'Délais de production', key:'delais' }, { label:'Livraison Pro', key:'livraison' },
-    { label:'Création Sur-mesure', key:'sur_mesure' }, { label:'Tarifs B2B', key:'prix' },
+    { label:'Tarifs & Volumes', key:'prix' }, { label:'Livraison Pro', key:'livraison' },
+    { label:'Délais de production', key:'delais' }, { label:'Création Sur-mesure', key:'sur_mesure' },
+    { label:'Conservation', key:'conservation' }, { label:'Allergènes', key:'allergenes' },
     { label:'Événements', key:'événement' }, { label:'Nous contacter', key:'contact_humain' }
   ];
 
   const chatResponses = {
     'delais': "Pour nos partenaires réguliers, nous produisons quotidiennement sur prévisionnel. Pour une nouvelle carte, comptez 2 semaines de développement et d'essais.",
-    'livraison': "Nous livrons vos établissements directement en chambre froide via nos coursiers réfrigérés exclusifs, 6j/7 sur Marseille.",
-    'sur_mesure': "Nous concevons des recettes et des moules 3D exclusifs pour les professionnels et l'événementiel. N'hésitez pas à laisser vos coordonnées.",
-    'prix': "Nos tarifs B2B sont étudiés sur mesure en fonction de vos volumes hebdomadaires. Nous pouvons organiser une dégustation.",
-    'événement': "Nous réalisons des scénographies sur-mesure pour mariages et galas professionnels. La rubrique Événements est à votre disposition pour demander un devis.",
+    'livraison': "Nous livrons vos établissements directement en chambre froide via nos coursiers réfrigérés exclusifs, 6j/7 sur Marseille et sa région. Zéro intermédiaire.",
+    'sur_mesure': "Nous concevons des recettes et des moules 3D exclusifs pour les professionnels et l'événementiel. Sculpture du moule, développement de recette, tests — le tout en 2 à 3 semaines.",
+    'prix': "Nos tarifs B2B sont dégressifs :\n\u2022 Moins de 50 pièces : 6€/pièce\n\u2022 Dès 50 pièces : 5,50€/pièce\n\u2022 Dès 100 pièces : 5€/pièce\nNous pouvons organiser une dégustation gratuite pour votre équipe.",
+    'événement': "Nous réalisons des scénographies sur-mesure pour mariages, galas et réceptions. Pièces montées trompe-l'œil, buffets spectaculaires. Demandez un devis sur notre page Événements.",
+    'conservation': "Nos créations se conservent 5 jours en chambre froide (0-4°C). Elles sont livrées prêtes à servir — il suffit de les sortir 15 minutes avant le service pour un rendu optimal.",
+    'allergenes': "Chaque création a sa fiche technique avec allergènes détaillés. Les principaux : lait, œufs, gluten, fruits à coque. Consultez les fiches produit pour le détail par création.",
     'contact_humain': null
   };
 
@@ -731,10 +747,13 @@
         let resp = key ? chatResponses[key] : null;
         if (!resp && !key) {
           const msg = text.toLowerCase();
-          if (msg.includes('livr') || msg.includes('coursier')) resp = chatResponses['livraison'];
-          else if (msg.includes('tarif') || msg.includes('prix') || msg.includes('devis')) resp = chatResponses['prix'];
-          else if (msg.includes('mesure') || msg.includes('exclusif')) resp = chatResponses['sur_mesure'];
-          else if (msg.includes('mariage') || msg.includes('événement')) resp = chatResponses['événement'];
+          if (msg.includes('livr') || msg.includes('coursier') || msg.includes('transport')) resp = chatResponses['livraison'];
+          else if (msg.includes('tarif') || msg.includes('prix') || msg.includes('devis') || msg.includes('combien') || msg.includes('coût')) resp = chatResponses['prix'];
+          else if (msg.includes('mesure') || msg.includes('exclusif') || msg.includes('personnalis') || msg.includes('moule')) resp = chatResponses['sur_mesure'];
+          else if (msg.includes('mariage') || msg.includes('événement') || msg.includes('gala') || msg.includes('réception')) resp = chatResponses['événement'];
+          else if (msg.includes('conserv') || msg.includes('durée') || msg.includes('fraîcheur') || msg.includes('température') || msg.includes('frigo')) resp = chatResponses['conservation'];
+          else if (msg.includes('allerg') || msg.includes('gluten') || msg.includes('lait') || msg.includes('noix') || msg.includes('arachide')) resp = chatResponses['allergenes'];
+          else if (msg.includes('délai') || msg.includes('combien de temps') || msg.includes('production')) resp = chatResponses['delais'];
         }
         if (resp) addMessage(resp, 'bot'); else triggerEscalation(null);
       }

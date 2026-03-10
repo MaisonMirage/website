@@ -9,6 +9,7 @@
   <meta property="og:description" content="Intégrez l'expérience Mirage à votre carte. Des créations spectaculaires, prêtes à servir, pour booster l'attractivité de votre établissement." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
+  <meta property="og:image" content="https://www.lamaisonmirage.com/img/vitrine-boutique.webp" />
   <link rel="canonical" href="https://www.lamaisonmirage.com/partenaires.html" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
@@ -239,6 +240,16 @@
       .wa-pro-wrap { flex-direction:column; gap:1.5rem; text-align:center; }
       .wa-btn-pro { width:100%; justify-content:center; }
     }
+
+    /* PRICING GRID */
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.6rem; }
+    .pricing-tier { padding:1rem 1.2rem; background:var(--cream-2); border-radius:1rem; text-align:center; border:1px solid transparent; }
+    .pricing-tier:last-child { background:rgba(168,137,92,0.08); border-color:rgba(168,137,92,0.2); }
+    .pricing-tier-qty { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .pricing-tier-price { font-family:var(--serif); font-size:1.4rem; font-weight:300; color:var(--ink); }
+    .pricing-tier-price span { font-family:var(--mono); font-size:0.55rem; color:var(--ink-muted); }
+    .pricing-tier:last-child .pricing-tier-price { color:var(--gold); }
+    @media(max-width:480px) { .pricing-grid{grid-template-columns:1fr;} .pricing-tier{display:flex;justify-content:space-between;align-items:center;} .pricing-tier-qty{margin-bottom:0;} }
   </style>
 </head>
 <body>
@@ -275,8 +286,8 @@
     <section class="content-side">
       <div class="visual-anchor"></div>
       <p class="eyebrow gs-reveal">B2B & partenariats</p>
-      <h1 class="gs-reveal">Prestige<br><em>& Différenciation</em></h1>
-      <p class="description gs-reveal">De la table bistronomique au concept store tendance, intégrez l'expérience Mirage à votre carte. Offrez à vos clients un dessert spectaculaire, prêt à servir et pensé pour marquer les esprits.</p>
+      <h1 class="gs-reveal">Boostez votre carte<br><em>sans chef pâtissier.</em></h1>
+      <p class="description gs-reveal">De la table bistronomique au concept store tendance, intégrez l'expérience Mirage à votre carte. Un dessert spectaculaire qui génère du contenu viral et augmente votre ticket moyen — prêt à servir, livré en chambre froide.</p>
 
       <div class="hero-img-wrapper gs-reveal">
         <img src="img/vitrine-boutique.webp" alt="Boutique Maison Mirage" />
@@ -325,7 +336,7 @@
       <p class="testimonials-pro-label">Ils subliment nos créations</p>
       <div class="testimonials-pro-grid">
         <div class="testi-card">
-          <p class="testi-quote">Depuis qu'on a intégré Mirage, nos clients filment systématiquement leurs desserts. L'impact sur nos réseaux est immédiat.</p>
+          <p class="testi-quote">Depuis qu'on a intégré Mirage, nos clients filment systématiquement leurs desserts. +45% de contenu spontané sur Instagram en 3 mois.</p>
           <div class="testi-author">
             <img class="testi-author-img" src="img/avenuegrill.webp" alt="L'Avenue Grill" />
             <div>
@@ -335,7 +346,7 @@
           </div>
         </div>
         <div class="testi-card">
-          <p class="testi-quote">Zéro manipulation en cuisine, qualité constante, et chaque service se transforme en expérience. Exactement ce qu'il nous fallait.</p>
+          <p class="testi-quote">Zéro manipulation en cuisine, qualité constante, et chaque service se transforme en expérience. Notre ticket moyen dessert a augmenté de 30%.</p>
           <div class="testi-author">
             <img class="testi-author-img" src="img/fulldessert.webp" alt="Full Dessert" />
             <div>
@@ -345,7 +356,7 @@
           </div>
         </div>
         <div class="testi-card">
-          <p class="testi-quote">La livraison directe en chambre froide, sans intermédiaire. On commande, on reçoit, on sert. Simple et spectaculaire.</p>
+          <p class="testi-quote">La livraison directe en chambre froide, sans intermédiaire. On commande, on reçoit, on sert. Rentable dès le premier mois.</p>
           <div class="testi-author">
             <img class="testi-author-img" src="img/royalpatisserie.webp" alt="Royal Pâtisserie" />
             <div>
@@ -364,6 +375,48 @@
         <div class="sp-wrap" data-name="L'Avenue Grill"><img src="img/avenuegrill.webp" alt="L'Avenue Grill" /></div>
         <div class="sp-wrap" data-name="Royal Pâtisserie"><img src="img/royalpatisserie.webp" alt="Royal Pâtisserie" /></div>
         <div class="sp-wrap" data-name="Magnus Sushi"><img src="img/magnussushi.webp" alt="Magnus Sushi" /></div>
+      </div>
+    </section>
+
+    <!-- TARIFS DÉGRESSIFS -->
+    <section class="content-side gs-reveal" style="max-width:700px;">
+      <p class="eyebrow" style="justify-content:center;">Tarifs B2B</p>
+      <h2 style="font-family:var(--serif);font-weight:300;font-size:clamp(2rem,4vw,3rem);text-align:center;line-height:0.95;margin-bottom:2.5rem;">Des prix<br><em style="font-style:italic;color:var(--gold-light);">dégressifs.</em></h2>
+      <div class="pricing-grid" style="max-width:550px;margin:0 auto;">
+        <div class="pricing-tier">
+          <div class="pricing-tier-qty">&lt; 50 pièces</div>
+          <div class="pricing-tier-price">6€ <span>/pièce</span></div>
+        </div>
+        <div class="pricing-tier">
+          <div class="pricing-tier-qty">Dès 50 pièces</div>
+          <div class="pricing-tier-price">5,50€ <span>/pièce</span></div>
+        </div>
+        <div class="pricing-tier">
+          <div class="pricing-tier-qty">Dès 100 pièces</div>
+          <div class="pricing-tier-price">5€ <span>/pièce</span></div>
+        </div>
+      </div>
+      <p style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-align:center;margin-top:1.5rem;">Dégustation gratuite pour votre équipe</p>
+    </section>
+
+    <!-- COMMENT ÇA MARCHE -->
+    <section class="content-side gs-reveal">
+      <div class="b2b-list">
+        <div class="b2b-item">
+          <span class="b2b-num">01</span>
+          <h3 class="b2b-title">Dégustation gratuite</h3>
+          <p class="b2b-desc">Nous venons avec une sélection de nos créations pour que vous puissiez goûter, valider, et choisir celles qui correspondent à votre carte.</p>
+        </div>
+        <div class="b2b-item">
+          <span class="b2b-num">02</span>
+          <h3 class="b2b-title">Mise en place 1 semaine</h3>
+          <p class="b2b-desc">Vous validez vos choix. En 1 semaine, nous calons le prévisionnel, la fréquence de livraison et les volumes.</p>
+        </div>
+        <div class="b2b-item">
+          <span class="b2b-num">03</span>
+          <h3 class="b2b-title">Livraison & Sérénité</h3>
+          <p class="b2b-desc">Vous recevez vos créations en chambre froide, prêtes à servir. Zéro manipulation, zéro stress, qualité constante.</p>
+        </div>
       </div>
     </section>
 
@@ -450,7 +503,7 @@
 
   <!-- FOOTER -->
   <footer class="page-footer">
-    <div class="page-footer-brand">Maison Mirage</div>
+    <div class="footer-brand-text">Maison Mirage</div>
     <div class="page-footer-tagline">Haute Pâtisserie · Marseille</div>
     <div class="page-footer-links">
       <a href="index.html">Accueil</a>
