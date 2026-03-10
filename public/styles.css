@@ -361,8 +361,8 @@ select { display: none; }
 .shop-card-price em { font-family:var(--serif); font-size:1.4rem; font-weight:300; color:var(--ink); font-style: normal; margin: 0 0.15rem; }
 .shop-card-price span { font-family:var(--mono); font-size:0.6rem; color:var(--gold); letter-spacing:0.08em; margin-left:0.1rem; }
 
-.parallax-section { position: relative; padding: 8rem 6vw; background-image: url('img/boite-trans.png'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 70vh; background-attachment: fixed; }
-.engagements-overlay { position: absolute; inset: 0; background: rgba(26, 23, 20, 0.45); z-index: 1; }
+.parallax-section { position: relative; padding: 8rem 6vw; background-image: url('img/boite-trans.png'); background-size: cover; background-position: center 40%; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 70vh; background-attachment: fixed; }
+.engagements-overlay { position: absolute; inset: 0; background: rgba(26, 23, 20, 0.6); z-index: 1; }
 .engagements-content { position: relative; z-index: 2; max-width: 800px; display: flex; flex-direction: column; align-items: center; }
 .engagements .section-eyebrow.eyebrow-light { color: var(--gold-light); margin-bottom: 2.5rem; justify-content: center; }
 .engagements .section-eyebrow.eyebrow-light::before { background: var(--gold-light); }
@@ -732,7 +732,8 @@ footer { padding: 4rem 6vw 3rem; border-top: 1px solid rgba(26,23,20,0.06); text
   #chat-window { bottom: 4.8rem; right: 1.2rem; width: calc(100vw - 2.4rem); }
   #cart-toast { bottom: 5.5rem; }
 
-  .parallax-section { background-attachment: scroll !important; padding: 8rem 6vw !important; min-height: auto !important; background-position: center center !important; }
+  .parallax-section { background-attachment: scroll !important; padding: 5rem 6vw !important; min-height: auto !important; background-position: center center !important; }
+  .engagements-quote { font-size: clamp(1.5rem, 5vw, 2.2rem); }
   
   .atelier-steps { gap: 1.2rem; }
   .atelier-step { width: 82vw; max-width: 280px; }
