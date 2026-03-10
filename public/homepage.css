@@ -201,39 +201,119 @@
 }
 .video-reveal-frame {
   position: relative;
-  max-width: 900px;
+  max-width: 480px;
   margin: 0 auto;
   border-radius: 1.5rem;
   overflow: hidden;
-  aspect-ratio: 16/9;
+  aspect-ratio: 9/14;
   background: var(--ink);
 }
 .video-reveal-frame video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 15%;
+  transform: scale(1.08);
 }
 .video-sound-toggle {
   position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  top: 1rem;
+  right: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  background: rgba(26,23,20,0.7);
+  padding: 0.5rem 1rem;
+  background: rgba(0,0,0,0.35);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 999px;
-  color: var(--cream);
+  color: white;
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s;
+  z-index: 5;
 }
 .video-sound-toggle:hover { background: rgba(168,137,92,0.6); }
+
+/* --- REEL/TIKTOK OVERLAY --- */
+.reel-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 40%);
+}
+.reel-sidebar {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.reel-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+.reel-action svg {
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
+}
+.reel-action span {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.reel-bottom {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1rem;
+  right: 3.5rem;
+}
+.reel-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.reel-avatar {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 1.5px solid white;
+  background: rgba(0,0,0,0.3);
+  object-fit: contain;
+  padding: 2px;
+}
+.reel-avatar-placeholder {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 1.5px solid white;
+  background: linear-gradient(135deg, #E8A87C, #D4798A);
+}
+.reel-username {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+.reel-caption {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
 
 /* --- PRODUCT GRID (replaces carousel on desktop) --- */
 .shop-grid {
