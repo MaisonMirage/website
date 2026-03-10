@@ -395,7 +395,7 @@
       <a href="partenaires.html">Espace Pro</a>
     </nav>
     <div class="footer-contact">
-      <a href="mailto:bonjour@maison-mirage.fr">bonjour@maison-mirage.fr</a><br/>
+      <a href="mailto:contact@lamaisonmirage.com">contact@lamaisonmirage.com</a><br/>
       <a href="tel:+33622356575">+33 (0)6 22 35 65 75</a>
     </div>
     <div class="footer-bottom">
@@ -621,7 +621,7 @@
           addMessage("Transmission en cours...", 'bot');
           const formData = new FormData(); formData.append("Email_Pro", text); formData.append("Historique", conversationHistory.join('\n'));
           try { await fetch('https://formspree.io/f/' + FORMSPREE_CHAT_ID, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } }); addMessage("Transmis ! Nous vous contactons sous 24h ouvrées.", 'bot'); } 
-          catch(e) { addMessage("Erreur. Écrivez-nous à bonjour@maison-mirage.fr", 'bot'); }
+          catch(e) { addMessage("Erreur. Écrivez-nous à contact@lamaisonmirage.com", 'bot'); }
           chatState = 'NORMAL'; renderQuickReplies(); conversationHistory = [];
         } else addMessage("Format d'email invalide.", 'bot');
       } else {
