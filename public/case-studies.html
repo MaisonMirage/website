@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies — Maison Mirage · Résultats Partenaires B2B</title>
+  <meta name="description" content="Découvrez comment nos partenaires B2B ont boosté leur ticket moyen dessert, leur visibilité Instagram et leur rentabilité grâce aux créations trompe-l'œil Maison Mirage." />
+  <meta property="og:title" content="Case Studies — Maison Mirage" />
+  <meta property="og:description" content="Les résultats concrets de nos partenaires : +45% contenu Instagram, +30% ticket dessert, rentable dès le 1er mois." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:image" content="https://www.lamaisonmirage.com/img/hero-flatlay.webp" />
+  <meta property="og:site_name" content="Maison Mirage" />
+  <link rel="canonical" href="https://www.lamaisonmirage.com/case-studies.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCL4B8SJY0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JCL4B8SJY0');
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+
+  <style>
+    main {
+      display: flex; flex-direction: column; gap: 0;
+      min-height: calc(100dvh - 100px);
+      align-items: center;
+    }
+
+    /* --- HERO --- */
+    .cs-hero {
+      width: 100%; padding: 12rem 6vw 4rem;
+      text-align: center; position: relative;
+    }
+    .cs-hero .visual-anchor {
+      position: absolute; top: -5%; left: 50%; transform: translateX(-50%) rotate(-12deg);
+      width: 800px; height: 300px; border-radius: 999px;
+      background: radial-gradient(ellipse at center, rgba(168,137,92,0.12) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .cs-hero .eyebrow {
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
+      position: relative; z-index: 1;
+    }
+    .cs-hero h1 {
+      font-family: var(--serif); font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300; line-height: 0.9; letter-spacing: -0.02em;
+      margin-bottom: 2.5rem; position: relative; z-index: 1;
+    }
+    .cs-hero h1 em { font-style: italic; color: var(--gold); }
+    .cs-hero .subtitle {
+      font-size: 1.1rem; line-height: 1.85; color: var(--ink-muted);
+      max-width: 55ch; margin: 0 auto; position: relative; z-index: 1;
+    }
+
+    /* --- HIGHLIGHT KPIS --- */
+    .cs-kpis {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      width: 100%; max-width: 900px; padding: 3rem 6vw 5rem;
+      text-align: center;
+    }
+    .cs-kpi .kpi-number {
+      font-family: var(--serif); font-size: clamp(2.4rem, 4vw, 3.2rem);
+      font-weight: 300; color: var(--gold); line-height: 1;
+    }
+    .cs-kpi .kpi-label {
+      font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink-muted); margin-top: 0.6rem;
+    }
+
+    /* --- CASE STUDY CARD --- */
+    .cs-card {
+      width: 100%; max-width: 1100px;
+      margin: 0 auto; padding: 5rem 6vw;
+      border-top: 1px solid rgba(26,23,20,0.06);
+    }
+    .cs-card-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    .cs-card:nth-child(even) .cs-card-inner {
+      direction: rtl;
+    }
+    .cs-card:nth-child(even) .cs-card-inner > * {
+      direction: ltr;
+    }
+    .cs-card-visual {
+      border-radius: 2.5rem; overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: 0 20px 60px rgba(26,23,20,0.08);
+      border: 1px solid rgba(26,23,20,0.05);
+      background: var(--cream-2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cs-card-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .cs-card-visual .cs-logo-placeholder {
+      width: 120px; opacity: 0.7;
+    }
+    .cs-card-content { display: flex; flex-direction: column; gap: 1.5rem; }
+    .cs-card-header {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .cs-card-logo {
+      width: 48px; height: 48px; border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(26,23,20,0.06);
+      flex-shrink: 0;
+    }
+    .cs-card-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .cs-card-name {
+      font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--ink);
+    }
+    .cs-card-type {
+      font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink-muted);
+    }
+
+    /* METRICS ROW */
+    .cs-metrics {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    }
+    .cs-metric {
+      background: var(--cream-2); border-radius: 1rem; padding: 1.2rem 1rem;
+      text-align: center;
+    }
+    .cs-metric-value {
+      font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
+      color: var(--gold); line-height: 1;
+    }
+    .cs-metric-label {
+      font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-muted); margin-top: 0.4rem;
+    }
+
+    /* SECTIONS */
+    .cs-section-title {
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .cs-section-text {
+      font-size: 0.875rem; line-height: 1.85; color: var(--ink-muted);
+    }
+
+    /* QUOTE */
+    .cs-quote {
+      font-family: var(--serif); font-size: 1.05rem; font-style: italic;
+      line-height: 1.7; color: var(--ink);
+      padding-left: 1.5rem; border-left: 2px solid var(--gold-pale);
+    }
+    .cs-quote-attr {
+      font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink-muted);
+      margin-top: 0.75rem; padding-left: 1.5rem;
+    }
+
+    /* --- CTA BOTTOM --- */
+    .cs-cta {
+      width: 100%; padding: 5rem 6vw;
+      text-align: center; display: flex; flex-direction: column; align-items: center;
+      border-top: 1px solid rgba(26,23,20,0.06);
+    }
+    .cs-cta h2 {
+      font-family: var(--serif); font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 300; line-height: 0.95; margin-bottom: 1.5rem;
+    }
+    .cs-cta h2 em { font-style: italic; color: var(--gold); }
+    .cs-cta .desc {
+      font-size: 1rem; line-height: 1.8; color: var(--ink-muted);
+      max-width: 50ch; margin: 0 auto 2.5rem;
+    }
+    .cs-cta .cta-row { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+    .cs-cta .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 1rem 2.4rem; border-radius: 99px;
+      background: var(--ink); color: var(--cream);
+      font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+    }
+    .cs-cta .btn-primary:hover { background: var(--gold); color: var(--white); }
+    .cs-cta .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 1rem 2.4rem; border-radius: 99px;
+      background: transparent; color: var(--ink);
+      border: 1px solid rgba(26,23,20,0.15);
+      font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+    }
+    .cs-cta .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .cs-kpis { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .cs-card-inner,
+      .cs-card:nth-child(even) .cs-card-inner {
+        grid-template-columns: 1fr; direction: ltr;
+      }
+      .cs-metrics { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .gs-reveal { opacity: 0; transform: translateY(30px); }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="mobile-overlay" id="mobileOverlay">
+    <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Fermer le menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="index.html" class="mobile-nav-item">Accueil</a>
+    <a href="index.html#boutique" class="mobile-nav-item">Collection</a>
+    <a href="atelier.html" class="mobile-nav-item">L'Atelier</a>
+    <a href="notre-histoire.html" class="mobile-nav-item">Notre Histoire</a>
+    <a href="evenements.html" class="mobile-nav-item">Événements</a>
+    <a href="partenaires.html" class="mobile-nav-item">Devenir Partenaire</a>
+    <div class="mobile-nav-footer">
+      <a href="mailto:contact@lamaisonmirage.com">contact@lamaisonmirage.com</a>
+      <a href="tel:+33622356575">+33 (0)6 22 35 65 75</a>
+    </div>
+  </div>
+
+  <nav id="navbar" class="visible">
+    <div class="nav-left">
+      <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-overlay">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-desktop-links">
+        <a href="index.html#boutique">Catalogue</a>
+        <a href="atelier.html">L'Atelier</a>
+        <a href="notre-histoire.html">Notre Histoire</a>
+        <a href="evenements.html">Événements</a>
+      </div>
+    </div>
+    <a href="index.html" class="nav-brand" aria-label="Retour à l'accueil">
+      <img src="img/maison_mirage_logo_beige.webp" alt="" class="brand-logo" width="36" height="36" />
+      <span class="brand-name">Maison Mirage</span>
+    </a>
+    <div class="nav-right">
+      <a href="partenaires.html" class="nav-cta" aria-label="Espace Professionnel">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        <span class="cart-text-label">Espace Pro</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="cs-hero">
+      <div class="visual-anchor"></div>
+      <p class="eyebrow gs-reveal">Résultats concrets</p>
+      <h1 class="gs-reveal">Nos partenaires<br><em>témoignent.</em></h1>
+      <p class="subtitle gs-reveal">Ils ont intégré les créations Maison Mirage à leur carte. Voici ce qui s'est passé — en chiffres et en témoignages.</p>
+    </section>
+
+    <!-- GLOBAL KPIS -->
+    <section class="cs-kpis gs-reveal">
+      <div class="cs-kpi">
+        <div class="kpi-number">+37%</div>
+        <div class="kpi-label">Ticket dessert moyen</div>
+      </div>
+      <div class="cs-kpi">
+        <div class="kpi-number">100%</div>
+        <div class="kpi-label">Taux de renouvellement</div>
+      </div>
+      <div class="cs-kpi">
+        <div class="kpi-number">0</div>
+        <div class="kpi-label">Chef pâtissier requis</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         CASE STUDY 1 — L'Avenue Grill
+    ═══════════════════════════════════════════ -->
+    <article class="cs-card gs-reveal">
+      <div class="cs-card-inner">
+        <div class="cs-card-visual">
+          <img src="img/avenuegrill.webp" alt="L'Avenue Grill — Restaurant partenaire Maison Mirage à Marseille" loading="lazy" class="cs-logo-placeholder" />
+        </div>
+        <div class="cs-card-content">
+          <div>
+            <div class="cs-card-header">
+              <div>
+                <div class="cs-card-name">L'Avenue Grill</div>
+                <div class="cs-card-type">Restaurant · Marseille</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-metrics">
+            <div class="cs-metric">
+              <div class="cs-metric-value">+45%</div>
+              <div class="cs-metric-label">Contenu Instagram</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-value">+28%</div>
+              <div class="cs-metric-label">Commandes dessert</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-value">3 mois</div>
+              <div class="cs-metric-label">Délai résultats</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="cs-section-title">Le défi</p>
+            <p class="cs-section-text">L'Avenue Grill avait une carte salée solide, mais leurs desserts passaient inaperçus. Les clients commandaient rarement un dessert en fin de repas. L'établissement cherchait un moyen de dynamiser sa carte sucrée sans recruter un pâtissier à temps plein.</p>
+          </div>
+
+          <div>
+            <p class="cs-section-title">La solution</p>
+            <p class="cs-section-text">Intégration de 4 créations trompe-l'œil Maison Mirage sur la carte dessert. Livraison bi-hebdomadaire en chambre froide. Mise en avant sur table avec présentation sous cloche pour maximiser l'effet de surprise au moment du service.</p>
+          </div>
+
+          <div>
+            <p class="cs-section-title">Les résultats</p>
+            <p class="cs-section-text">En 3 mois, +45% de contenu spontané sur Instagram généré par les clients. Les vidéos de découpe sont devenues un rituel : les serveurs présentent la pièce intacte, puis la coupent devant le client. Le taux de commande dessert a bondi de 28%, sans aucune formation cuisine supplémentaire.</p>
+          </div>
+
+          <div>
+            <blockquote class="cs-quote">Depuis qu'on a intégré les créations Mirage, nos clients filment leurs desserts avant de les manger. C'est devenu le moment fort du repas.</blockquote>
+            <p class="cs-quote-attr">Gérant — L'Avenue Grill</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════════
+         CASE STUDY 2 — Full Dessert
+    ═══════════════════════════════════════════ -->
+    <article class="cs-card gs-reveal">
+      <div class="cs-card-inner">
+        <div class="cs-card-visual">
+          <img src="img/fulldessert.webp" alt="Full Dessert — Concept Store partenaire Maison Mirage" loading="lazy" class="cs-logo-placeholder" />
+        </div>
+        <div class="cs-card-content">
+          <div>
+            <div class="cs-card-header">
+              <div>
+                <div class="cs-card-name">Full Dessert</div>
+                <div class="cs-card-type">Concept Store Dessert · Marseille</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-metrics">
+            <div class="cs-metric">
+              <div class="cs-metric-value">+30%</div>
+              <div class="cs-metric-label">Ticket moyen</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-value">×2</div>
+              <div class="cs-metric-label">Volume commandes</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-value">0</div>
+              <div class="cs-metric-label">Manipulation cuisine</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="cs-section-title">Le défi</p>
+            <p class="cs-section-text">Full Dessert est un concept store spécialisé dans les desserts haut de gamme. Ils avaient besoin de renouveler régulièrement leur vitrine avec des pièces visuellement spectaculaires, tout en gardant une qualité constante sur de gros volumes — sans surcharger leur équipe en cuisine.</p>
+          </div>
+
+          <div>
+            <p class="cs-section-title">La solution</p>
+            <p class="cs-section-text">Partenariat avec Maison Mirage pour une gamme de 6 créations trompe-l'œil en rotation. Livraison en chambre froide 3 fois par semaine. Les pièces arrivent prêtes à servir — aucune manipulation, aucune finition nécessaire. Full Dessert les place directement en vitrine.</p>
+          </div>
+
+          <div>
+            <p class="cs-section-title">Les résultats</p>
+            <p class="cs-section-text">Le ticket moyen a augmenté de 30% dès le premier mois. Les créations trompe-l'œil sont devenues le produit phare de la boutique, attirant une nouvelle clientèle curieuse. Le volume de commandes a doublé en 6 mois, Full Dessert commandant désormais 80+ pièces par semaine.</p>
+          </div>
+
+          <div>
+            <blockquote class="cs-quote">Zéro manipulation en cuisine, la qualité est constante, et chaque service se transforme en expérience. C'est exactement ce qu'on cherchait.</blockquote>
+            <p class="cs-quote-attr">Gérant — Full Dessert</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════════
+         CASE STUDY 3 — Royal Pâtisserie
+    ═══════════════════════════════════════════ -->
+    <article class="cs-card gs-reveal">
+      <div class="cs-card-inner">
+        <div class="cs-card-visual">
+          <img src="img/royalpatisserie.webp" alt="Royal Pâtisserie — Partenaire Maison Mirage à Marignane" loading="lazy" class="cs-logo-placeholder" />
+        </div>
+        <div class="cs-card-content">
+          <div>
+            <div class="cs-card-header">
+              <div>
+                <div class="cs-card-name">Royal Pâtisserie</div>
+                <div class="cs-card-type">Pâtisserie · Marignane</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-metrics">
+            <div class="cs-metric">
+              <div class="cs-metric-value">Mois 1</div>
+              <div class="cs-metric-label">Rentabilité atteinte</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-value">+120%</div>
+              <div class="cs-metric-label">Marge dessert</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-value">6j/7</div>
+              <div class="cs-metric-label">Livraison réfrigérée</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="cs-section-title">Le défi</p>
+            <p class="cs-section-text">Royal Pâtisserie souhaitait diversifier son offre avec des créations trompe-l'œil sans investir dans la formation ni le matériel spécialisé. Le challenge : proposer une gamme complémentaire qui se différencie nettement de leur production classique, tout en maîtrisant les coûts.</p>
+          </div>
+
+          <div>
+            <p class="cs-section-title">La solution</p>
+            <p class="cs-section-text">Sélection de 5 créations Maison Mirage positionnées en gamme premium dans leur vitrine. Livraison directe en chambre froide, intégration dans le parcours client existant. Le prix de revente à la pièce offre une marge confortable grâce au positionnement "dessert d'exception".</p>
+          </div>
+
+          <div>
+            <p class="cs-section-title">Les résultats</p>
+            <p class="cs-section-text">Rentabilité atteinte dès le premier mois. La marge sur les desserts trompe-l'œil dépasse 120%, bien au-dessus de la pâtisserie classique. L'effet vitrine attire une clientèle nouvelle qui découvre ensuite le reste de la boutique. Royal Pâtisserie a doublé sa commande initiale dès le deuxième mois.</p>
+          </div>
+
+          <div>
+            <blockquote class="cs-quote">La livraison en chambre froide directement, sans intermédiaire. On commande, on reçoit, on sert. Simple, spectaculaire, et rentable dès le premier mois.</blockquote>
+            <p class="cs-quote-attr">Gérant — Royal Pâtisserie</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CTA FINAL -->
+    <section class="cs-cta gs-reveal">
+      <h2>Votre établissement<br><em>est le prochain ?</em></h2>
+      <p class="desc">Dégustation gratuite, mise en place en 1 semaine, remplacement garanti. Rejoignez les 15+ établissements qui ont déjà transformé leur carte dessert.</p>
+      <div class="cta-row">
+        <a href="partenaires.html" class="btn-primary">
+          Demander une dégustation
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="index.html#boutique" class="btn-ghost">
+          Voir la collection
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-name">Maison Mirage</span>
+        <span class="footer-tagline">Haute Pâtisserie Trompe-l'œil</span>
+      </div>
+      <div class="footer-nav">
+        <a href="index.html#boutique">Collection</a>
+        <a href="atelier.html">L'Atelier</a>
+        <a href="notre-histoire.html">Notre Histoire</a>
+        <a href="case-studies.html">Résultats</a>
+        <a href="evenements.html">Événements</a>
+        <a href="partenaires.html">Devenir Partenaire</a>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:contact@lamaisonmirage.com">contact@lamaisonmirage.com</a>
+        <a href="tel:+33622356575">+33 (0)6 22 35 65 75</a>
+      </div>
+      <div class="footer-legal">
+        <span>Marseille, France · Lun–Sam 8h–18h</span>
+        <span>© 2025 Maison Mirage. Tous droits réservés.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ---- NAV ---- */
+    const burger = document.getElementById('navBurger');
+    const overlay = document.getElementById('mobileOverlay');
+    const closeBtn = document.getElementById('mobileCloseBtn');
+    function toggleMenu(open) {
+      overlay.classList.toggle('active', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    burger.addEventListener('click', () => toggleMenu(true));
+    closeBtn.addEventListener('click', () => toggleMenu(false));
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+    /* ---- GSAP REVEALS ---- */
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof gsap === 'undefined') return;
+      const reveals = document.querySelectorAll('.gs-reveal');
+      reveals.forEach((el, i) => {
+        gsap.to(el, {
+          opacity: 1, y: 0, duration: 0.9,
+          ease: 'power3.out', delay: 0.1 + (i * 0.08),
+          scrollTrigger: typeof ScrollTrigger !== 'undefined' ? {
+            trigger: el, start: 'top 85%', toggleActions: 'play none none none'
+          } : undefined,
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
