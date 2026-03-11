@@ -11,7 +11,7 @@
   font-family: var(--sans);
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 400;
-  color: var(--ink-muted);
+  color: var(--ink);
   letter-spacing: 0.02em;
   opacity: 0;
   transform: translateY(20px);
@@ -21,7 +21,7 @@
 .hero-reassurance {
   margin-top: 1.2rem;
   font-family: var(--mono);
-  font-size: 0.58rem;
+  font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
@@ -43,15 +43,16 @@
   align-items: center;
   flex-wrap: wrap;
 }
+/* Audit A11Y: min-height 48px, font-size 0.8rem pour conformité loi de Fitts */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
-  padding: 1rem 2.2rem;
+  padding: 1.1rem 2.4rem;
   border-radius: 999px;
   font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink);
   border: 1px solid rgba(26,23,20,0.2);
@@ -59,6 +60,7 @@
   transition: all 0.4s var(--ease-out);
   position: relative;
   overflow: hidden;
+  min-height: 48px;
 }
 .btn-secondary::before {
   content: '';
@@ -201,9 +203,9 @@
   .kpi-bar { grid-template-columns: 1fr; }
 }
 
-/* --- VIDEO REVEAL SECTION — QW2: paddings réduits --- */
+/* --- VIDEO REVEAL SECTION — Audit v4: paddings réduits pour continuité visuelle --- */
 .video-reveal-section {
-  padding: 3rem 0;
+  padding: 2rem 0;
   text-align: center;
 }
 .video-reveal-header {
@@ -379,12 +381,12 @@
   }
 }
 
-/* --- TESTIMONIAL SECTION — QW2: paddings réduits --- */
+/* --- TESTIMONIAL SECTION — Audit v4: paddings optimisés pour rythme de scroll --- */
 .testimonials-section {
-  padding: 3rem 6vw;
+  padding: 2rem 6vw;
 }
 @media (max-width: 768px) {
-  .testimonials-section { padding: 2rem 5vw; }
+  .testimonials-section { padding: 1.5rem 5vw; }
 }
 .testimonials-header {
   text-align: center;
@@ -398,15 +400,28 @@
   max-width: 1000px;
   margin: 0 auto;
 }
+/* ── Testimonial Cards — Premium Editorial ── */
 .testimonial-card {
   background: var(--white);
-  border-radius: 1.5rem;
+  border-radius: var(--radius-lg, 2rem);
   padding: 2.5rem;
   border: 1px solid rgba(26,23,20,0.04);
-  box-shadow: 0 4px 24px rgba(26,23,20,0.04);
-  transition: transform 0.3s var(--ease-out);
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(26,23,20,0.06));
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.4s;
   position: relative;
+  overflow: hidden;
 }
+/* Decorative gold line at top of card */
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 2rem; right: 2rem;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold-pale, #E8D5B8), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.testimonial-card:hover::before { opacity: 1; }
 /* QW5: Metric badge en haut de chaque témoignage */
 .testimonial-metric {
   font-family: var(--serif);
@@ -425,17 +440,33 @@
   color: var(--ink-muted);
   margin-top: 0.3rem;
 }
-.testimonial-card:hover { transform: translateY(-4px); }
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg, 0 12px 48px rgba(26,23,20,0.1));
+  border-color: rgba(168,137,92,0.08);
+}
 .testimonial-quote {
   font-family: var(--serif);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-style: italic;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--ink);
   margin-bottom: 1.8rem;
   position: relative;
-  padding-left: 1.2rem;
+  padding-left: 1.4rem;
   border-left: 2px solid var(--gold-pale);
+}
+/* Large decorative quote mark */
+.testimonial-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.6rem;
+  left: -0.3rem;
+  font-family: var(--serif);
+  font-size: 3rem;
+  color: var(--gold-pale);
+  line-height: 1;
+  pointer-events: none;
 }
 .testimonial-author {
   display: flex;
@@ -514,10 +545,10 @@
   }
 }
 
-/* --- LEAD MAGNET --- */
+/* --- LEAD MAGNET — Audit v4: spacing réduit --- */
 .lead-magnet {
-  padding: 4rem 6vw;
-  margin: 0 6vw 2rem;
+  padding: 3rem 6vw;
+  margin: 0 6vw 1.5rem;
   background: var(--ink);
   border-radius: 2rem;
   display: grid;
@@ -586,12 +617,13 @@
   color: var(--cream);
   font-family: var(--sans);
   font-size: 0.9rem;
-  outline: none;
+  outline: none; /* base reset — :focus-visible below restores a11y ring */
   min-width: 220px;
   transition: border-color 0.3s;
 }
 .lead-magnet-input::placeholder { color: rgba(253,250,247,0.35); }
 .lead-magnet-input:focus { border-color: var(--gold); }
+.lead-magnet-input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .lead-magnet-submit {
   padding: 1rem 2rem;
   background: var(--gold);
@@ -782,15 +814,171 @@
   box-shadow: 0 4px 12px rgba(139,69,19,0.3);
 }
 
+/* ── Section CTA Link — Inline navigation link with arrow ── */
+.section-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(26,23,20,0.15);
+  transition: color 0.4s var(--ease-out), border-color 0.4s, gap 0.4s var(--ease-spring);
+  margin-top: 1.5rem;
+}
+.section-cta-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  gap: 1rem;
+}
+.section-cta-link svg {
+  transition: transform 0.4s var(--ease-spring);
+}
+.section-cta-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── CTA Fine — Phone number / small text in CTA banners ── */
+.cta-fine {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: rgba(250,245,239,0.45);
+  transition: color 0.3s;
+  display: block;
+  margin-top: 0.5rem;
+}
+a.cta-fine:hover { color: var(--gold); }
+
+/* ── Filter Pills — Enhanced ── */
+.filter-pill {
+  transition: all 0.4s var(--ease-out);
+}
+.filter-pill.active {
+  box-shadow: 0 4px 12px rgba(168,137,92,0.2);
+}
+
+/* ── Guarantees Bar — Hover glow ── */
+.guarantee-item {
+  transition: background 0.4s, transform 0.3s var(--ease-out);
+}
+.guarantee-item:hover {
+  background: var(--white);
+  transform: translateY(-2px);
+}
+.guarantee-icon {
+  transition: transform 0.4s var(--ease-spring);
+}
+.guarantee-item:hover .guarantee-icon {
+  transform: scale(1.1);
+}
+
+/* --- PRESS SECTION — Enhanced visual treatment (Audit) --- */
+.press-section {
+  padding: 2rem 6vw;
+  text-align: center;
+}
+.press-section .section-eyebrow { justify-content: center; }
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+}
+.press-card {
+  background: var(--white);
+  border-radius: var(--radius-lg, 2rem);
+  padding: 2.2rem 1.8rem;
+  border: 1px solid rgba(26,23,20,0.04);
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(26,23,20,0.06));
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.4s;
+  text-align: left;
+  position: relative;
+}
+.press-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md, 0 4px 24px rgba(26,23,20,0.08));
+  border-color: rgba(168,137,92,0.1);
+}
+.press-source-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--cream-2);
+  margin-bottom: 1.2rem;
+  color: var(--gold);
+  transition: background 0.3s;
+}
+.press-card:hover .press-source-logo {
+  background: rgba(168,137,92,0.1);
+}
+.press-source {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.press-quote {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+}
+.press-date {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+@media (max-width: 640px) {
+  .press-grid { grid-template-columns: 1fr; }
+}
+
+/* --- LEAD MAGNET PRIVACY NOTE --- */
+.lead-magnet-privacy {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: rgba(253,250,247,0.3);
+  margin-top: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 768px) {
   .atelier-teaser { padding: 0 5vw; }
   .atelier-teaser-inner { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 0; }
   .atelier-teaser-img { aspect-ratio: 16/9; }
 
-  /* QW2: paddings mobile encore plus serrés */
+  /* Paddings mobile serrés */
   .atelier { padding: 2.5rem 0 2rem !important; }
   .philosophy { padding: 2.5rem 5vw !important; }
   .boutique { padding: 2.5rem 5vw 2rem !important; }
   .video-reveal-section { padding: 2rem 0 !important; }
   .faq { padding: 2.5rem 5vw !important; }
+
+  /* CTA banner mobile: full width, single column */
+  .cta-banner {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    margin: 0 3vw 2rem;
+    padding: 2.5rem 5vw;
+  }
+  .cta-banner-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
 }

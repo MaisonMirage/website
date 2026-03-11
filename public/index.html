@@ -195,27 +195,27 @@
 
   <!-- ═══════ NAVIGATION ═══════ -->
   <nav id="navbar">
-    <div class="nav-left">
-      <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-overlay">
-        <span></span><span></span><span></span>
-      </button>
-      <!-- Navigation desktop horizontale (QW bonus) -->
-      <div class="nav-desktop-links">
-        <a href="#boutique">Catalogue</a>
-        <a href="atelier.html">L'Atelier</a>
-        <a href="notre-histoire.html">Notre Histoire</a>
-        <a href="case-studies.html">Résultats</a>
-        <a href="evenements.html">Événements</a>
-      </div>
+    <!-- Mobile burger (hidden on desktop) -->
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-overlay">
+      <span></span><span></span><span></span>
+    </button>
+    <!-- Desktop links — left of brand -->
+    <div class="nav-links-left">
+      <a href="#boutique">Catalogue</a>
+      <a href="atelier.html">L'Atelier</a>
+      <a href="notre-histoire.html">Notre Histoire</a>
     </div>
     <a href="#" class="nav-brand" aria-label="Retour à l'accueil">
       <img src="img/maison_mirage_logo_beige.webp" alt="" class="brand-logo" width="36" height="36" />
       <span class="brand-name">Maison Mirage</span>
     </a>
-    <div class="nav-right">
-      <a href="partenaires.html" class="nav-cta" aria-label="Espace Professionnel">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-        <span class="cart-text-label">Espace Pro</span>
+    <!-- Desktop links — right of brand + CTA -->
+    <div class="nav-links-right">
+      <a href="case-studies.html">Résultats</a>
+      <a href="evenements.html">Événements</a>
+      <a href="partenaires.html" class="nav-cta">
+        <span>Devis</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
   </nav>
@@ -415,27 +415,43 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
-       4b. PRESSE — Ils parlent de nous
+       4b. PRESSE — Ils parlent de nous (Audit: traitement visuel renforcé)
   ═══════════════════════════════════════════ -->
   <section class="press-section reveal">
     <p class="section-eyebrow">Ils parlent de nous</p>
     <h2 class="section-h2">Vu <em>dans.</em></h2>
     <div class="press-grid">
       <div class="press-card">
+        <div class="press-source-logo" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M18 18h-8M18 10h-8"/></svg>
+        </div>
         <div class="press-source">La Provence</div>
-        <p class="press-quote">Des desserts trompe-l'œil qui bluffent les restaurateurs marseillais — une pâtisserie locale qui bouscule les codes.</p>
+        <p class="press-quote">Des desserts trompe-l'œil qui bluffent les restaurateurs marseillais.</p>
         <span class="press-date">2024</span>
       </div>
       <div class="press-card">
+        <div class="press-source-logo" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
         <div class="press-source">Bouches-du-Rhône Entreprendre</div>
-        <p class="press-quote">Maison Mirage fait partie de ces jeunes maisons qui prouvent que l'innovation gastronomique se fait aussi en dehors de Paris.</p>
+        <p class="press-quote">L'innovation gastronomique se fait aussi en dehors de Paris.</p>
         <span class="press-date">2024</span>
       </div>
       <div class="press-card">
+        <div class="press-source-logo" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
         <div class="press-source">Instagram Food Community</div>
-        <p class="press-quote">Plus de 500K vues cumulées sur les vidéos de découpe — le format trompe-l'œil est devenu viral sur les réseaux.</p>
+        <p class="press-quote">500K+ vues cumulées — le trompe-l'œil est devenu viral.</p>
         <span class="press-date">2024–2025</span>
       </div>
+    </div>
+    <!-- Audit CRO: CTA contextuel après la presse — capturer l'intérêt au bon moment -->
+    <div class="section-cta-contextual reveal" style="margin-top:2.5rem;">
+      <a href="partenaires.html" class="btn-primary">
+        <span>Demander une dégustation gratuite</span>
+        <div class="btn-arrow"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
     </div>
   </section>
 
@@ -506,6 +522,43 @@
     <div class="reveal catalogue-cta-wrap">
       <a href="partenaires.html" class="btn-primary catalogue-cta-btn">
         <span>Demander un devis</span>
+        <div class="btn-arrow"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       5b. PRICING — Transparence tarifaire (Audit CRO: réduire friction)
+  ═══════════════════════════════════════════ -->
+  <section class="pricing-section" id="tarifs" style="padding:2.5rem 6vw;text-align:center;">
+    <div class="pricing-section-header reveal" style="max-width:700px;margin:0 auto 2.5rem;">
+      <p class="section-eyebrow pricing-section-eyebrow">Tarification B2B</p>
+      <h2 class="pricing-section-title">Des tarifs<br><em>transparents.</em></h2>
+    </div>
+    <div class="pricing-grid-wrap reveal">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(26,23,20,0.06);border-radius:1.5rem;overflow:hidden;max-width:650px;margin:0 auto;">
+        <div style="background:var(--cream);padding:2rem 1.5rem;text-align:center;">
+          <div style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.6rem;">Moins de 50 pièces</div>
+          <div style="font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--ink);line-height:1;">6<em style="font-style:italic;color:var(--gold-light);">€</em></div>
+          <div style="font-family:var(--mono);font-size:0.6rem;color:var(--ink-muted);margin-top:0.3rem;">/pièce</div>
+        </div>
+        <div style="background:var(--white);padding:2rem 1.5rem;text-align:center;position:relative;">
+          <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--white);font-family:var(--mono);font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.25rem 0.8rem;border-radius:0 0 999px 999px;">Populaire</div>
+          <div style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.6rem;">Dès 50 pièces</div>
+          <div style="font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--ink);line-height:1;">5,50<em style="font-style:italic;color:var(--gold-light);">€</em></div>
+          <div style="font-family:var(--mono);font-size:0.6rem;color:var(--ink-muted);margin-top:0.3rem;">/pièce</div>
+        </div>
+        <div style="background:var(--cream);padding:2rem 1.5rem;text-align:center;">
+          <div style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.6rem;">Dès 100 pièces</div>
+          <div style="font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--ink);line-height:1;">5<em style="font-style:italic;color:var(--gold-light);">€</em></div>
+          <div style="font-family:var(--mono);font-size:0.6rem;color:var(--ink-muted);margin-top:0.3rem;">/pièce</div>
+        </div>
+      </div>
+      <p class="pricing-section-note reveal">Dégustation gratuite pour vous et votre équipe, sans engagement</p>
+    </div>
+    <div class="section-cta-contextual reveal" style="margin-top:2rem;">
+      <a href="partenaires.html" class="btn-primary">
+        <span>Demander un devis personnalisé</span>
         <div class="btn-arrow"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
     </div>
@@ -688,10 +741,14 @@
     </div>
     <div>
       <form class="lead-magnet-form" id="leadMagnetForm" action="https://formspree.io/f/mnjbepky" method="POST">
-        <input type="text" name="etablissement" class="lead-magnet-input" placeholder="Nom de votre établissement" style="min-width:200px;" />
-        <input type="email" name="email_catalogue" class="lead-magnet-input" placeholder="Votre email professionnel" required />
-        <button type="submit" class="lead-magnet-submit">Recevoir le PDF gratuit</button>
+        <input type="hidden" name="_subject" value="Demande catalogue B2B — Maison Mirage" />
+        <input type="email" name="email_catalogue" class="lead-magnet-input" placeholder="Votre email professionnel" required aria-label="Email professionnel" autocomplete="email" />
+        <button type="submit" class="lead-magnet-submit">
+          Recevoir le PDF gratuit
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:0.4rem;"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </form>
+      <p class="lead-magnet-privacy">Vos données ne sont jamais partagées. Désinscription en un clic.</p>
       <div class="lead-magnet-success" id="leadSuccess">✓ Envoyé ! Vérifiez votre boîte mail.</div>
     </div>
   </div>
@@ -705,7 +762,7 @@
       <h3 class="cta-banner-h">Travaillons<br><em>ensemble.</em></h3>
     </div>
     <div class="cta-banner-action">
-      <a href="partenaires.html" class="btn-ghost">
+      <a href="partenaires.html" class="btn-gold-filled">
         <span>Devenir partenaire</span>
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -738,6 +795,20 @@
       <a href="tel:+33622356575">+33 (0)6 22 35 65 75</a>
     </div>
     <p class="footer-address">Marseille, France · Lun–Sam 8h–18h</p>
+
+    <!-- Audit: Réseaux sociaux dans le footer pour viralité -->
+    <div class="footer-social">
+      <a href="https://www.instagram.com/maisonmirage" target="_blank" rel="noopener noreferrer" aria-label="Instagram Maison Mirage">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@maisonmirage" target="_blank" rel="noopener noreferrer" aria-label="TikTok Maison Mirage">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.8a8.27 8.27 0 0 0 4.76 1.5v-3.4a4.85 4.85 0 0 1-1-.21z"/></svg>
+      </a>
+      <a href="mailto:contact@lamaisonmirage.com" aria-label="Email Maison Mirage">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+
     <div class="footer-bottom">
       <span>&copy; 2026 Maison Mirage</span>
       <a href="#">Mentions légales</a>
@@ -793,7 +864,8 @@
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <!-- Audit: duplicate Cloudflare email-decode removed (injected server-side by CF) -->
+  <script>
   // ═══════════════════════════════════════════════════════════════
   // JAVASCRIPT — V2 ENHANCED
   // ═══════════════════════════════════════════════════════════════
@@ -1058,19 +1130,59 @@
     });
   }
 
-  // 8. LEAD MAGNET — Form handling
+  // 8. LEAD MAGNET — Form handling (Audit: simplifié à 1 champ)
   const leadForm = document.getElementById('leadMagnetForm');
-  if (leadForm) {    leadForm.addEventListener('submit', async (e) => {
+  if (leadForm) {
+    leadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const submitBtn = leadForm.querySelector('.lead-magnet-submit');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Envoi en cours…';
+      submitBtn.disabled = true;
       const formData = new FormData(leadForm);
       try {
         await fetch(leadForm.action, { method:'POST', body:formData, headers:{'Accept':'application/json'} });
         leadForm.style.display = 'none';
         document.getElementById('leadSuccess').style.display = 'block';
+        const privacyNote = document.querySelector('.lead-magnet-privacy');
+        if (privacyNote) privacyNote.style.display = 'none';
         gtag('event','sign_up',{event_category:'B2B',event_label:'Catalogue Pro'});
       } catch(err) {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
         alert('Erreur. Merci de réessayer ou de nous écrire à contact@lamaisonmirage.com');
       }
+    });
+  }
+
+  // 9. FOCUS TRAP — Menu mobile overlay (Audit a11y: WCAG 2.4.3)
+  function setupFocusTrap() {
+    const overlay = document.getElementById('mobile-overlay');
+    if (!overlay) return;
+    overlay.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !overlay.classList.contains('open')) return;
+      const focusable = overlay.querySelectorAll('a[href], button, input, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+  setupFocusTrap();
+
+  // 10. PREFERS-REDUCED-MOTION — Disable GSAP animations
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (window.gsap) {
+      gsap.globalTimeline.pause();
+    }
+    // Forcer la visibilité de tous les éléments reveal
+    document.querySelectorAll('.reveal, .hero-eyebrow, .hero-h1, .hero-hook, .hero-desc, .hero-actions, .hero-reassurance, .hero-img-main, .scroll-hint').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
     });
   }
   </script>
