@@ -41,6 +41,88 @@
   }
   </script>
 
+  <!-- Structured Data: FAQ Page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quels sont vos volumes de production ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Notre atelier est dimensionné pour fournir les restaurants, les lieux de vie et l'événementiel avec une régularité absolue, même sur de gros volumes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment gérez-vous la livraison des trompe-l'œil ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nous disposons de notre propre réseau de coursiers privés spécialisés dans la manipulation de pièces fragiles. La livraison est effectuée directement dans vos chambres froides sur Marseille et sa région."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Est-il possible de créer un dessert signature exclusif ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolument. Nous proposons un service de création sur-mesure (sculpture du moule, développement de recette) pour intégrer parfaitement l'ADN de votre établissement ou le thème de votre événement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quel est le délai de mise en place ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pour intégrer notre collection existante à votre carte, comptez 1 semaine. Pour une création signature exclusive, comptez 2 à 3 semaines de développement incluant les essais et ajustements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels sont vos tarifs pour les professionnels ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nos tarifs sont dégressifs : 6€/pièce en dessous de 50 unités, 5,50€ dès 50 pièces, et 5€ dès 100 pièces. Nous proposons une dégustation gratuite pour vos équipes avant tout engagement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de temps se conservent vos créations ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "5 jours en chambre froide (0-4°C). Nos créations sont livrées prêtes à servir. Il suffit de les sortir 15 minutes avant le service pour un rendu visuel et gustatif optimal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Et si mes clients n'aiment pas le concept trompe-l'œil ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "100% de nos partenaires ont renouvelé leur commande après le premier mois. L'effet de surprise est universel. Et nous offrons une dégustation gratuite pour votre équipe avant tout engagement — zéro risque."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment justifier le prix sur ma carte ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nos partenaires revendent nos créations entre 9€ et 14€, soit une marge de 80% à 180%. Le spectacle visuel justifie un positionnement premium. C'est un dessert que vos clients photographient, partagent et recommandent."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Que se passe-t-il si une livraison est endommagée ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Remplacement immédiat et gratuit. Nos coursiers sont formés à la manipulation de pièces fragiles. En cas de dommage constaté, nous relançons une livraison de remplacement dans les 24h, à nos frais."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
@@ -103,6 +185,7 @@
     <a href="atelier.html" class="mobile-nav-item">L'Atelier</a>
     <a href="notre-histoire.html" class="mobile-nav-item">Notre Histoire</a>
     <a href="partenaires.html" class="mobile-nav-item">Espace Pro</a>
+    <a href="case-studies.html" class="mobile-nav-item">Résultats</a>
     <a href="evenements.html" class="mobile-nav-item">Événements</a>
     <div class="mobile-nav-footer">
       <a href="mailto:contact@lamaisonmirage.com">contact@lamaisonmirage.com</a>
@@ -121,6 +204,7 @@
         <a href="#boutique">Catalogue</a>
         <a href="atelier.html">L'Atelier</a>
         <a href="notre-histoire.html">Notre Histoire</a>
+        <a href="case-studies.html">Résultats</a>
         <a href="evenements.html">Événements</a>
       </div>
     </div>
@@ -386,7 +470,7 @@
         <div class="shop-card-name">La Fraise</div><div class="shop-card-sub">Confit Intense · Ganache Montée</div><div class="shop-card-footer"><div class="shop-card-price">Dès <em>5€</em><span>/pièce · Prix dégressif</span></div></div>
       </a>
       <a href="produit-mangue.html" class="shop-card reveal" data-cat="fruit" style="display:block;">
-        <div class="shop-card-img-wrap"><img class="shop-card-main" src="img/mangue.webp" alt="La Mangue" width="400" height="400" loading="lazy"/><img class="shop-card-zoom" src="img/mangue-zoom.webp" alt="Texture Mangue" loading="lazy"/><div class="shop-card-zoom-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div></div>
+        <div class="shop-card-img-wrap"><img class="shop-card-main" src="img/mangue.webp" alt="La Mangue" width="400" height="400" loading="lazy"/><img class="shop-card-zoom" src="img/mangue-zoom.webp" alt="Texture Mangue" loading="lazy"/><div class="shop-card-badge-season">Saison été</div><div class="shop-card-zoom-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div></div>
         <div class="shop-card-name">La Mangue</div><div class="shop-card-sub">Cœur Exotique · Velours</div><div class="shop-card-footer"><div class="shop-card-price">Dès <em>5€</em><span>/pièce · Prix dégressif</span></div></div>
       </a>
       <a href="produit-framboise.html" class="shop-card reveal" data-cat="fruit" style="display:block;">
@@ -394,15 +478,15 @@
         <div class="shop-card-name">La Framboise</div><div class="shop-card-sub">Velours Rouge · Acidulée</div><div class="shop-card-footer"><div class="shop-card-price">Dès <em>5€</em><span>/pièce · Prix dégressif</span></div></div>
       </a>
       <a href="produit-peche.html" class="shop-card reveal" data-cat="fruit signature" style="display:block;">
-        <div class="shop-card-img-wrap"><img class="shop-card-main" src="img/peche.webp" alt="La Pêche" width="400" height="400" loading="lazy"/><img class="shop-card-zoom" src="img/peche-zoom.webp" alt="Texture Pêche" loading="lazy"/><div class="shop-card-zoom-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div></div>
+        <div class="shop-card-img-wrap"><img class="shop-card-main" src="img/peche.webp" alt="La Pêche" width="400" height="400" loading="lazy"/><img class="shop-card-zoom" src="img/peche-zoom.webp" alt="Texture Pêche" loading="lazy"/><div class="shop-card-badge-season">Saison été</div><div class="shop-card-zoom-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div></div>
         <div class="shop-card-name">La Pêche</div><div class="shop-card-sub">Signature Fruitée</div><div class="shop-card-footer"><div class="shop-card-price">Dès <em>5€</em><span>/pièce · Prix dégressif</span></div></div>
       </a>
       <a href="produit-citron.html" class="shop-card reveal" data-cat="fruit" style="display:block;">
-        <div class="shop-card-img-wrap"><img class="shop-card-main" src="img/citron.webp" alt="Le Citron" width="400" height="400" loading="lazy"/><img class="shop-card-zoom" src="img/citron-zoom.webp" alt="Texture Citron" loading="lazy"/><div class="shop-card-zoom-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div></div>
+        <div class="shop-card-img-wrap"><img class="shop-card-main" src="img/citron.webp" alt="Le Citron" width="400" height="400" loading="lazy"/><img class="shop-card-zoom" src="img/citron-zoom.webp" alt="Texture Citron" loading="lazy"/><div class="shop-card-badge-new">Nouveau</div><div class="shop-card-zoom-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div></div>
         <div class="shop-card-name">Le Citron</div><div class="shop-card-sub">Zeste Givré · Acidité</div><div class="shop-card-footer"><div class="shop-card-price">Dès <em>5€</em><span>/pièce · Prix dégressif</span></div></div>
       </a>
       <a href="produit-passion.html" class="shop-card reveal" data-cat="fruit signature" style="display:block;">
-        <div class="shop-card-img-wrap"><img class="shop-card-main" src="img/passion.webp" alt="La Passion" width="400" height="400" loading="lazy"/><img class="shop-card-zoom" src="img/passion-zoom.webp" alt="Texture Passion" loading="lazy"/><div class="shop-card-zoom-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div></div>
+        <div class="shop-card-img-wrap"><img class="shop-card-main" src="img/passion.webp" alt="La Passion" width="400" height="400" loading="lazy"/><img class="shop-card-zoom" src="img/passion-zoom.webp" alt="Texture Passion" loading="lazy"/><div class="shop-card-badge-limited">Série limitée</div><div class="shop-card-zoom-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div></div>
         <div class="shop-card-name">La Passion</div><div class="shop-card-sub">Éclat Tropical · Cœur Exotique</div><div class="shop-card-footer"><div class="shop-card-price">Dès <em>5€</em><span>/pièce · Prix dégressif</span></div></div>
       </a>
       <a href="produit-cacao.html" class="shop-card reveal" data-cat="chocolat signature" style="display:block;">
@@ -645,6 +729,7 @@
       <a href="index.html#boutique">Le Catalogue</a>
       <a href="atelier.html">L'Atelier</a>
       <a href="notre-histoire.html">Notre Histoire</a>
+      <a href="case-studies.html">Résultats</a>
       <a href="evenements.html">Événements</a>
       <a href="partenaires.html">Espace Pro</a>
     </nav>
@@ -708,7 +793,7 @@
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ═══════════════════════════════════════════════════════════════
   // JAVASCRIPT — V2 ENHANCED
   // ═══════════════════════════════════════════════════════════════
@@ -800,6 +885,18 @@
     btn.addEventListener('click', e => { e.preventDefault(); orderGateway.classList.add('open'); document.getElementById('mobile-overlay').classList.remove('open'); document.getElementById('navBurger').classList.remove('open'); });
   });
   document.getElementById('closeGateway').addEventListener('click', () => orderGateway.classList.remove('open'));
+
+  // a11y: Add aria-controls + ids dynamically
+  document.querySelectorAll('.faq-item').forEach((item, idx) => {
+    const btn = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    const answerId = 'faq-answer-' + idx;
+    answer.id = answerId;
+    answer.setAttribute('role', 'region');
+    answer.setAttribute('aria-labelledby', 'faq-q-' + idx);
+    btn.id = 'faq-q-' + idx;
+    btn.setAttribute('aria-controls', answerId);
+  });
 
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {

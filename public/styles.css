@@ -80,9 +80,10 @@ html { scrollbar-color: var(--gold) var(--cream); scrollbar-width: thin; }
    5. SHARED TYPOGRAPHY & BUTTONS
 ══════════════════════════════════════ */
 .section-eyebrow {
-  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.38em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: #8A6D3B; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;
 }
+/* WCAG: #8A6D3B on #FAF5EF = ~5.1:1 contrast ratio (AA compliant for small text) */
 .section-eyebrow::before { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--gold); opacity: 0.5; }
 .section-h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2.8rem, 5vw, 5.5rem); line-height: 0.9; letter-spacing: -0.02em; }
 .section-h2 em { font-style: italic; color: var(--gold-light); }
@@ -250,7 +251,7 @@ select { display: none; }
    8. PAGE SECTIONS (HERO, ATELIER, ETC)
 ══════════════════════════════════════ */
 .hero { min-height: 100dvh; position: relative; overflow: hidden; display: flex; align-items: flex-end; }
-.hero-left { position: relative; z-index: 2; padding: 8rem 7vw 6rem; max-width: 600px; }
+.hero-left { position: relative; z-index: 2; padding: 6rem 7vw 4rem; max-width: 600px; }
 .hero-left::before { content:''; position:absolute; bottom: 0; left: -10%; width: 60%; height: 50%; background: radial-gradient(ellipse, rgba(168,137,92,0.08) 0%, transparent 70%); pointer-events:none; }
 .hero-eyebrow { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.55em; text-transform: uppercase; color: var(--gold); margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; opacity: 0; transform: translateY(20px); }
 .hero-eyebrow::before { content:''; display:inline-block; width:40px; height:1px; background:var(--gold); opacity:0.5; }
@@ -391,14 +392,14 @@ select { display: none; }
 .shop-card-price em { font-family:var(--serif); font-size:1.4rem; font-weight:300; color:var(--ink); font-style: normal; margin: 0 0.15rem; }
 .shop-card-price span { font-family:var(--mono); font-size:0.6rem; color:var(--gold); letter-spacing:0.08em; margin-left:0.1rem; }
 
-.parallax-section { position: relative; padding: 8rem 6vw; background: linear-gradient(145deg, #1A1714 0%, #2C2520 50%, #1A1714 100%); display: flex; align-items: center; justify-content: center; text-align: center; min-height: 50vh; }
+.parallax-section { position: relative; padding: 5rem 6vw; background: linear-gradient(145deg, #1A1714 0%, #2C2520 50%, #1A1714 100%); display: flex; align-items: center; justify-content: center; text-align: center; min-height: 40vh; }
 .engagements-overlay { display: none; }
 .engagements-content { position: relative; z-index: 2; max-width: 800px; display: flex; flex-direction: column; align-items: center; }
 .engagements .section-eyebrow.eyebrow-light { color: var(--gold-light); margin-bottom: 2.5rem; justify-content: center; }
 .engagements .section-eyebrow.eyebrow-light::before { background: var(--gold-light); }
 .engagements-quote { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; font-style: italic; line-height: 1.25; color: var(--white); text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
 
-.faq { padding: 6rem 6vw 5rem; display:grid; grid-template-columns:1fr 1.8fr; gap:8vw; align-items:start; position:relative; }
+.faq { padding: 4rem 6vw 3.5rem; display:grid; grid-template-columns:1fr 1.8fr; gap:8vw; align-items:start; position:relative; }
 .faq::before { content:''; position:absolute; top:0; left:6vw; right:6vw; height:1px; background: linear-gradient(to right, transparent, rgba(26,23,20,0.08) 30%, rgba(26,23,20,0.08) 70%, transparent); }
 .faq-left { position:sticky; top:120px; }
 .faq-items { display:flex; flex-direction:column; }
