@@ -1567,19 +1567,9 @@ footer::before { content: ''; position: absolute; top: 0; left: 10%; right: 10%;
 @media (max-width: 768px) {
   .sticky-cta-reassurance { display: none; }
   .sticky-cta-inner { justify-content: center; }
-  /* Audit: sticky bar visible UNIQUEMENT sur mobile, positionnée en bas (zone pouce) */
+  /* Bannière dégustation gratuite masquée sur mobile */
   .sticky-cta-bar {
-    display: block; /* Réactivée sur mobile */
-    top: auto;
-    bottom: 0;
-    transform: translateY(100%);
-    border-radius: 0;
-    padding: 0.8rem 5vw;
-    /* Safe area pour iPhone X+ */
-    padding-bottom: max(0.8rem, env(safe-area-inset-bottom));
-  }
-  .sticky-cta-bar.visible {
-    transform: translateY(0);
+    display: none !important;
   }
   .sticky-cta-btn {
     width: 100%;
