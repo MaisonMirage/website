@@ -142,6 +142,7 @@
     .form-side .input-group input:focus ~ label, .form-side .input-group input:not(:placeholder-shown) ~ label,
     .form-side .input-group textarea:focus ~ label, .form-side .input-group textarea:not(:placeholder-shown) ~ label { color:var(--gold); }
     .form-side .input-group input:focus, .form-side .input-group textarea:focus { border-bottom-color:transparent; }
+    .form-side .input-group input:focus-visible, .form-side .input-group textarea:focus-visible { outline:none; }
 
     .form-side .custom-select-wrapper label { color:var(--gold); }
     .form-side .custom-select { border-bottom-color:rgba(26,23,20,0.15); color:var(--ink); }
@@ -206,7 +207,16 @@
       .event-chips { justify-content: center; }
     }
 
-    /* PRICING GRID */
+    /* PRICING */
+    .pricing-section-desc {
+      font-family: var(--sans); font-size: 1rem; line-height: 1.7;
+      color: var(--ink-muted); max-width: 40ch; margin: -0.5rem auto 2rem; text-align: center;
+    }
+    .form-header-note {
+      display: block; margin-top: 0.8rem;
+      font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink-muted); opacity: 0.7;
+    }
     .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.6rem; }
     .pricing-tier { padding:1rem 1.2rem; background:var(--cream-2); border-radius:1rem; text-align:center; border:1px solid transparent; }
     .pricing-tier:last-child { background:rgba(168,137,92,0.08); border-color:rgba(168,137,92,0.2); }
@@ -220,12 +230,14 @@
 <body>
   <div class="page-transition"></div>
   <script>setTimeout(function(){var t=document.querySelector(".page-transition");if(t){t.style.opacity="0";t.style.visibility="hidden";}},2000);</script>
+  <!-- ═══════ MOBILE OVERLAY ═══════ -->
   <div id="mobile-overlay" role="dialog" aria-label="Menu de navigation">
     <a href="index.html" class="mobile-nav-item">Accueil</a>
     <a href="index.html#boutique" class="mobile-nav-item">Le Catalogue</a>
     <a href="atelier.html" class="mobile-nav-item">L'Atelier</a>
     <a href="notre-histoire.html" class="mobile-nav-item">Notre Histoire</a>
     <a href="partenaires.html" class="mobile-nav-item">Espace Pro</a>
+    <a href="case-studies.html" class="mobile-nav-item">Résultats</a>
     <a href="evenements.html" class="mobile-nav-item">Événements</a>
     <div class="mobile-nav-footer">
       <a href="mailto:contact@lamaisonmirage.com">contact@lamaisonmirage.com</a>
@@ -233,20 +245,29 @@
     </div>
   </div>
 
+  <!-- ═══════ NAVIGATION ═══════ -->
   <nav id="navbar" class="visible">
-    <div class="nav-left">
-      <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-overlay">
-        <span></span><span></span><span></span>
-      </button>
+    <!-- Mobile burger (hidden on desktop) -->
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-overlay">
+      <span></span><span></span><span></span>
+    </button>
+    <!-- Desktop links — left of brand -->
+    <div class="nav-links-left">
+      <a href="index.html#boutique">Catalogue</a>
+      <a href="atelier.html">L'Atelier</a>
+      <a href="notre-histoire.html">Notre Histoire</a>
     </div>
     <a href="index.html" class="nav-brand" aria-label="Retour à l'accueil">
-      <img src="img/maison_mirage_logo_beige.webp" alt="" class="brand-logo" />
+      <img src="img/maison_mirage_logo_beige.webp" alt="" class="brand-logo" width="36" height="36" />
       <span class="brand-name">Maison Mirage</span>
     </a>
-    <div class="nav-right">
-      <a href="partenaires.html" class="nav-cta" aria-label="Espace Professionnel">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-        <span class="cart-text-label">Espace Pro</span>
+    <!-- Desktop links — right of brand + CTA -->
+    <div class="nav-links-right">
+      <a href="case-studies.html">Résultats</a>
+      <a href="evenements.html">Événements</a>
+      <a href="partenaires.html" class="nav-cta">
+        <span>Devis</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
   </nav>
@@ -309,7 +330,7 @@
     <!-- FOURCHETTES DE PRIX -->
     <section class="content-side gs-reveal pricing-section-header">
       <p class="eyebrow pricing-section-eyebrow">Tarifs indicatifs</p>
-      <h2 class="pricing-section-title" style="font-size:clamp(1.8rem,3.5vw,2.5rem);">Chaque événement<br><em>est unique.</em></h2>
+      <p class="pricing-section-desc">Créations adaptées à votre thème, vos couleurs, votre histoire.</p>
       <div class="pricing-grid" class="pricing-grid-wrap">
         <div class="pricing-tier">
           <div class="pricing-tier-qty">Petit comité</div>
@@ -324,13 +345,13 @@
           <div class="pricing-tier-price pricing-tier-price-sm">100+ pièces</div>
         </div>
       </div>
-      <p class="pricing-section-note">Devis personnalisé sous 48h · Formes sur-mesure disponibles</p>
     </section>
 
     <!-- FORMULAIRE -->
     <section class="form-side gs-form">
       <div class="form-header">
         <p>Demande de devis événementiel</p>
+        <span class="form-header-note">Devis personnalisé sous 48h · Formes sur-mesure disponibles</span>
       </div>
       <form id="eventForm" aria-label="Formulaire de contact événementiel">
         <div class="form-grid">
@@ -418,19 +439,42 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="page-footer">
+  <footer>
     <div class="footer-brand-text">Maison Mirage</div>
-    <div class="page-footer-tagline">Haute Pâtisserie · Marseille</div>
-    <div class="page-footer-links">
-      <a href="index.html">Accueil</a>
-      <a href="index.html#boutique">Catalogue</a>
+    <div class="footer-tagline">Haute Pâtisserie · Marseille</div>
+
+    <nav class="footer-nav">
+      <a href="index.html#boutique">Le Catalogue</a>
+      <a href="atelier.html">L'Atelier</a>
       <a href="notre-histoire.html">Notre Histoire</a>
-        <a href="case-studies.html">Résultats</a>
-      <a href="partenaires.html">Espace Pro</a>
+      <a href="case-studies.html">Résultats</a>
       <a href="evenements.html">Événements</a>
-      <a href="mailto:contact@lamaisonmirage.com">Contact</a>
+      <a href="partenaires.html">Espace Pro</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="mailto:contact@lamaisonmirage.com">contact@lamaisonmirage.com</a><br/>
+      <a href="tel:+33622356575">+33 (0)6 22 35 65 75</a>
     </div>
-    <div class="page-footer-copy">&copy; 2026 Maison Mirage</div>
+    <p class="footer-address">Marseille, France · Lun–Sam 8h–18h</p>
+
+    <!-- Réseaux sociaux -->
+    <div class="footer-social">
+      <a href="https://www.instagram.com/maisonmirage" target="_blank" rel="noopener noreferrer" aria-label="Instagram Maison Mirage">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@maisonmirage" target="_blank" rel="noopener noreferrer" aria-label="TikTok Maison Mirage">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.8a8.27 8.27 0 0 0 4.76 1.5v-3.4a4.85 4.85 0 0 1-1-.21z"/></svg>
+      </a>
+      <a href="mailto:contact@lamaisonmirage.com" aria-label="Email Maison Mirage">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Maison Mirage</span>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="cgv-pro.html">CGV Pro</a>
+    </div>
   </footer>
 
   <!-- Cloudflare email-decode script removed (injected server-side) --><script>
