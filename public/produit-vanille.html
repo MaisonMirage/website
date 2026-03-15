@@ -8,6 +8,7 @@
   <meta property="og:title" content="La Vanille — Maison Mirage" />
   <meta property="og:description" content="Une crème vanille bourbon de Madagascar infusée 48h, un caramel vanille." />
   <meta property="og:type" content="product" />
+  <meta property="og:url" content="https://www.lamaisonmirage.com/produit-vanille.html" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Maison Mirage" />
   <meta property="og:image" content="https://www.lamaisonmirage.com/img/vanille.webp" />
@@ -20,10 +21,26 @@
     "@type": "Product",
     "name": "La Vanille",
     "description": "Une crème vanille bourbon de Madagascar infusée 48h, un caramel vanille.",
-    "brand": { "@type": "Brand", "name": "Maison Mirage" },
+    "brand": {
+        "@type": "Brand",
+        "name": "Maison Mirage"
+    },
     "category": "Haute Pâtisserie",
-    "image": "https://www.lamaisonmirage.com/img/vanille.webp"
-  }
+    "image": "https://www.lamaisonmirage.com/img/vanille.webp",
+    "offers": {
+        "@type": "Offer",
+        "url": "https://www.lamaisonmirage.com/produit-vanille.html",
+        "priceCurrency": "EUR",
+        "price": "5.00",
+        "priceValidUntil": "2026-12-31",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+            "@type": "Organization",
+            "name": "Maison Mirage"
+        }
+    },
+    "sku": "MM-VANILLE"
+}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -54,6 +71,13 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@maisonmirage" />
+  <meta name="twitter:title" content="La Vanille — Maison Mirage" />
+  <meta name="twitter:description" content="Une crème vanille bourbon de Madagascar infusée 48h, un caramel vanille." />
+  <meta name="twitter:image" content="https://www.lamaisonmirage.com/img/vanille.webp" />
 </head>
 <body>
   <!-- ═══════ MOBILE OVERLAY ═══════ -->

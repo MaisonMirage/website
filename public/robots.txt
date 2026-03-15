@@ -4,5 +4,5 @@ Allow: /
 
 Sitemap: https://www.lamaisonmirage.com/sitemap.xml
 
-# Empêcher l'indexation des ressources inutiles
-Disallow: /img/*.webp$
+# Pages non indexables
+Disallow: /confirmation.html
